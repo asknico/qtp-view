@@ -52,6 +52,14 @@ export const overridesPreferences = defineOverridesPreferences({
      * 2. 切换租户登录后不会重新加载菜单
      */
     // loginExpiredMode: 'modal',
+    // contentCompact: 'compact',
+    // contentCompactWidth: 1696,
+    // contentPadding: 4,
+    contentPadding: 0,
+    contentPaddingTop: 0,
+    contentPaddingRight: 0,
+    contentPaddingBottom: 0,
+    contentPaddingLeft: 0,
   },
   footer: {
     /**
@@ -76,7 +84,7 @@ export const overridesPreferences = defineOverridesPreferences({
     /**
      * 浅色sidebar
      */
-    semiDarkSidebar: false,
+    semiDarkSidebar: true,
     /**
      * 圆角大小 换算比例为1.6px = 0.1radius
      * 这里为6px 与antd保持一致
@@ -86,11 +94,13 @@ export const overridesPreferences = defineOverridesPreferences({
     // 错误色
     colorDestructive: 'hsl(359, 100%, 65%)',
     // 主题色
-    colorPrimary: 'hsl(215, 100%, 54%)',
+    colorPrimary: 'hsl(211 91% 39%)',
     // 成功色
     colorSuccess: 'hsl(100, 77%, 44%)',
     // 警告色
     colorWarning: 'hsl(40, 96%, 53%)',
+
+    builtinType: 'deep-blue',
   },
   /**
    * !!! 更改配置后请清空浏览器缓存

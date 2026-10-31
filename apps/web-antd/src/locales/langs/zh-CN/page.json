@@ -9,8 +9,8 @@
     "profile": "个人中心"
   },
   "dashboard": {
-    "title": "概览",
-    "analytics": "分析页",
+    "title": "驾驶舱",
+    "assetOverview": "资产总览",
     "workspace": "工作台"
   }
 }

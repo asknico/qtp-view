@@ -14,11 +14,11 @@ import {
   SvgDownloadIcon,
 } from '@vben/icons';
 
-import AnalyticsTrends from './analytics-trends.vue';
 import AnalyticsVisitsData from './analytics-visits-data.vue';
 import AnalyticsVisitsSales from './analytics-visits-sales.vue';
 import AnalyticsVisitsSource from './analytics-visits-source.vue';
 import AnalyticsVisits from './analytics-visits.vue';
+import AssetTrends from './asset-trends.vue';
 
 const overviewItems: AnalysisOverviewItem[] = [
   {
@@ -64,11 +64,11 @@ const chartTabs: TabOption[] = [
 </script>
 
 <template>
-  <div class="p-5">
+  <div class="p-2">
     <AnalysisOverview :items="overviewItems" />
     <AnalysisChartsTabs :tabs="chartTabs" class="mt-5">
       <template #trends>
-        <AnalyticsTrends />
+        <AssetTrends />
       </template>
       <template #visits>
         <AnalyticsVisits />

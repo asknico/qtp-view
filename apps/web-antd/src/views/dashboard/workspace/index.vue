@@ -21,7 +21,7 @@ import { preferences } from '@vben/preferences';
 import { useUserStore } from '@vben/stores';
 import { openWindow } from '@vben/utils';
 
-import AnalyticsVisitsSource from '../analytics/analytics-visits-source.vue';
+import AnalyticsVisitsSource from '#/views/dashboard/asset-overview/analytics-visits-source.vue';
 
 const userStore = useUserStore();
 
@@ -121,7 +121,7 @@ const quickNavItems: WorkbenchQuickNavItem[] = [
     color: '#00d8ff',
     icon: 'ion:bar-chart-outline',
     title: '图表',
-    url: '/analytics',
+    url: '/asset-overview',
   },
 ];
 
@@ -234,7 +234,7 @@ function navTo(nav: WorkbenchProjectItem | WorkbenchQuickNavItem) {
 </script>
 
 <template>
-  <div class="p-5">
+  <div class="p-2">
     <WorkbenchHeader
       :avatar="userStore.userInfo?.avatar || preferences.app.defaultAvatar"
     >
