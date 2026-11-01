@@ -9,7 +9,6 @@ export interface TaskInfo {
   categoryName: string;
   createTime: string;
   updateTime: string;
-  tenantId: string;
   delFlag?: any;
   definitionId: string;
   instanceId: string;
@@ -95,7 +94,6 @@ export interface NextNodeInfo {
   id: string;
   createTime: string;
   updateTime: string;
-  tenantId: string;
   delFlag: string;
   nodeType: number;
   definitionId: string;

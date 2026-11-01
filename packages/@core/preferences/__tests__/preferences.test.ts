@@ -269,11 +269,11 @@ describe('preferences', () => {
         {
           component: 'select',
           defaultValue: 'single',
-          key: 'tenantMode',
-          label: '租户模式',
+          key: 'appMode',
+          label: '应用模式',
           options: [
-            { label: '单租户', value: 'single' },
-            { label: '多租户', value: 'multi' },
+            { label: '单应用', value: 'single' },
+            { label: '多应用', value: 'multi' },
           ],
         },
       ],
@@ -289,7 +289,7 @@ describe('preferences', () => {
     expect(preferenceManager.getPreferencesExtension()).toEqual(extension);
     expect(preferenceManager.getCustomPreferences()).toEqual({
       enableWorkbench: true,
-      tenantMode: 'single',
+      appMode: 'single',
     });
   });
 
@@ -398,11 +398,11 @@ describe('preferences', () => {
           {
             component: 'select',
             defaultValue: 'single',
-            key: 'tenantMode',
-            label: '租户模式',
+            key: 'appMode',
+            label: '应用模式',
             options: [
-              { label: '单租户', value: 'single' },
-              { label: '多租户', value: 'multi' },
+              { label: '单应用', value: 'single' },
+              { label: '多应用', value: 'multi' },
             ],
           },
         ],
@@ -415,7 +415,7 @@ describe('preferences', () => {
 
     preferenceManager.updateCustomPreferences({
       enableWorkbench: 'true' as unknown as boolean,
-      tenantMode: 'unknown',
+      appMode: 'unknown',
       unknownField: 'value',
     } as any);
 

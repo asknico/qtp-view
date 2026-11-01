@@ -9,7 +9,6 @@ enum Api {
   menuTreeSelect = '/system/menu/treeselect',
   roleMenuTree = '/system/menu/roleMenuTreeselect',
   root = '/system/menu',
-  tenantPackageMenuTreeselect = '/system/menu/tenantPackageMenuTreeselect',
 }
 
 /**
@@ -69,17 +68,6 @@ export function roleMenuTreeSelect(roleId: ID) {
  */
 export function menuTreeSelect() {
   return alovaInstance.get<MenuOption[]>(Api.menuTreeSelect);
-}
-
-/**
- * 租户套餐使用
- * @param packageId packageId
- * @returns resp
- */
-export function tenantPackageMenuTreeSelect(packageId: ID) {
-  return alovaInstance.get<MenuResp>(
-    `${Api.tenantPackageMenuTreeselect}/${packageId}`,
-  );
 }
 
 /**

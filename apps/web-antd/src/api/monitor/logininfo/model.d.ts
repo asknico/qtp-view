@@ -1,6 +1,5 @@
 export interface LoginLog {
   infoId: string;
-  tenantId: string;
   userName: string;
   status: string;
   ipaddr: string;

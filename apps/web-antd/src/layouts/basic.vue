@@ -18,11 +18,9 @@ import { openWindow } from '@vben/utils';
 
 import { GithubOutlined, UserOutlined } from '@antdv-next/icons';
 
-import { TenantToggle } from '#/components/tenant-toggle';
 import { $t } from '#/locales';
 import { resetRoutes } from '#/router';
 import { useAuthStore, useNotifyStore } from '#/store';
-import { useTenantStore } from '#/store/tenant';
 import { useVersionUpdate } from '#/utils/check-update';
 import LoginForm from '#/views/_core/authentication/login.vue';
 
@@ -33,7 +31,6 @@ const router = useRouter();
 const { destroyWatermark, updateWatermark } = useWatermark();
 const { isDark } = usePreferences();
 
-const tenantStore = useTenantStore();
 const menus = computed(() => {
   const defaultMenus = [
     {
@@ -80,12 +77,6 @@ const menus = computed(() => {
       text: $t('ui.widgets.qa'),
     },
   ];
-  /**
-   * 租户选中状态 不显示个人中心
-   */
-  if (tenantStore.checked) {
-    defaultMenus.splice(1, 1);
-  }
   return defaultMenus;
 });
 
@@ -152,9 +143,6 @@ useVersionUpdate();
 
 <template>
   <BasicLayout @clear-preferences-and-logout="handleLogout">
-    <template #header-right-1>
-      <TenantToggle />
-    </template>
     <template #user-dropdown>
       <UserDropdown
         :avatar

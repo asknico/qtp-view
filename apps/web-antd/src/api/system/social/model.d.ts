@@ -1,7 +1,6 @@
 export interface SocialInfo {
   id: string;
   userId: number;
-  tenantId: string;
   authId: string;
   source: string;
   accessToken: string;
