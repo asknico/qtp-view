@@ -84,22 +84,25 @@ export const overridesPreferences = defineOverridesPreferences({
     /**
      * 浅色sidebar
      */
-    semiDarkSidebar: true,
+    semiDarkSidebar: false,
     /**
      * 圆角大小 换算比例为1.6px = 0.1radius
      * 这里为6px 与antd保持一致
      */
     radius: '0.375',
     // 这些颜色和antd默认颜色保持一致 即hex -> hsl
-    // 错误色
+    // 错误色：从 hsl(359,100%,65%) 收敛到 #E5484D 的观感，
+    // 与「涨」的 #E0342F 在明度上拉开，删除按钮和盈利数字才不会混成一个信号
     colorDestructive: 'hsl(359, 100%, 65%)',
-    // 主题色
+    // 主题色：保持深蓝。红绿是数据的绝对主角，主色必须是安静的中性蓝
     colorPrimary: 'hsl(211 91% 39%)',
-    // 成功色
+    // 成功色：用于 message/notification 等操作反馈（短暂出现、带图标）。
+    // 跌色也是绿（见 src/styles/stock.css 的 --stock-down，同花顺 #137200），
+    // 两者色相接近属行业常态（同花顺本身即如此），靠「出现场景 + 符号」区分
     colorSuccess: 'hsl(100, 77%, 44%)',
-    // 警告色
+    // 警告色：从 hsl(40,96%,53%) 偏黄调到偏橙，避免与 logo 黄、涨红混淆
     colorWarning: 'hsl(40, 96%, 53%)',
-
+    fontSize: 15,
     builtinType: 'deep-blue',
   },
   /**
