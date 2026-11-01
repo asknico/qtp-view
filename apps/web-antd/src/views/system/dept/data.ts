@@ -30,6 +30,9 @@ export const columns: VxeGridProps['columns'] = [
     field: 'deptName',
     title: '部门名称',
     treeNode: true,
+    // 树形列覆盖全局居中：名称靠左并保留层级缩进，表头仍居中
+    align: 'left',
+    headerAlign: 'center',
   },
   {
     field: 'deptCategory',

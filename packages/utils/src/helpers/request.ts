@@ -18,7 +18,7 @@ export function setObjToUrlParams(baseUrl: string, obj: any): string {
     parameters += `${key}=${encodeURIComponent(obj[key])}&`;
   }
   parameters = parameters.replace(/&$/, '');
-  return /\?$/.test(baseUrl)
+  return baseUrl.endsWith('?')
     ? baseUrl + parameters
     : baseUrl.replace(/\/?$/, '?') + parameters;
 }

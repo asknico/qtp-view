@@ -114,6 +114,6 @@ export const overridesPreferences = defineOverridesPreferences({
    */
   logo: {
     enable: true,
-    source: '/plus-vben.png',
+    source: '/qtp.png',
   },
 });

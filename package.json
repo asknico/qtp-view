@@ -43,6 +43,7 @@
     "dev:antd": "pnpm -F @vben/web-antd run dev",
     "format": "vsh lint --format",
     "lint": "vsh lint",
+    "lint:fix": "oxlint --fix && eslint . --fix",
     "postinstall": "pnpm -r run --if-present stub",
     "preinstall": "npx only-allow pnpm",
     "prepare": "is-ci || pnpm exec lefthook install",

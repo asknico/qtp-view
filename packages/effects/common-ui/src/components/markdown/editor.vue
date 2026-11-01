@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { PropType } from 'vue';
+
 import {
   onBeforeUnmount,
   onMounted,
-  type PropType,
   shallowRef,
   useTemplateRef,
   watch,
@@ -101,7 +102,8 @@ function changeDisabled(disabled: boolean) {
 watch(() => props.disabled, changeDisabled);
 
 onMounted(() => {
-  vditorInstance.value = new Vditor(vditorRef.value!, {
+  if (!vditorRef.value) return;
+  vditorInstance.value = new Vditor(vditorRef.value, {
     mode: props.mode,
     value: content.value,
     height: props.height,
