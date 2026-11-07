@@ -3,7 +3,7 @@ UPDATE t_sys_menu SET icon = 'eos-icons:system-group' WHERE menu_id = 1;
 UPDATE t_sys_menu SET icon = 'solar:monitor-camera-outline' WHERE menu_id = 2;
 UPDATE t_sys_menu SET icon = 'ant-design:tool-outlined' WHERE menu_id = 3;
 UPDATE t_sys_menu SET icon = 'flat-color-icons:plus' WHERE menu_id = 4;
-UPDATE t_sys_menu SET icon = 'devicon:vscode' WHERE menu_id = 5;
+UPDATE t_sys_menu SET icon = 'ant-design:experiment-outlined' WHERE menu_id = 5;
 UPDATE t_sys_menu SET icon = 'ph:users-light' WHERE menu_id = 6;
 UPDATE t_sys_menu SET icon = 'ant-design:user-outlined' WHERE menu_id = 100;
 UPDATE t_sys_menu SET icon = 'eos-icons:role-binding-outlined' WHERE menu_id = 101;
