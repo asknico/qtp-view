@@ -76,7 +76,7 @@ export const overridesPreferences = defineOverridesPreferences({
   },
   theme: {
     /** 默认主题模式 */
-    mode: 'dark',
+    mode: 'light',
     /**
      * 按钮水波纹样式
      */
@@ -95,7 +95,7 @@ export const overridesPreferences = defineOverridesPreferences({
     // 与「涨」的 #E0342F 在明度上拉开，删除按钮和盈利数字才不会混成一个信号
     colorDestructive: 'hsl(359, 100%, 65%)',
     // 主题色：保持深蓝。红绿是数据的绝对主角，主色必须是安静的中性蓝
-    colorPrimary: 'hsl(215, 77%, 55%)',
+    colorPrimary: 'hsl(240 5.9% 10%)',
     // 成功色：用于 message/notification 等操作反馈（短暂出现、带图标）。
     // 跌色也是绿（见 src/styles/stock.css 的 --stock-down，同花顺 #137200），
     // 两者色相接近属行业常态（同花顺本身即如此），靠「出现场景 + 符号」区分

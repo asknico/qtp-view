@@ -11,6 +11,9 @@
   "dashboard": {
     "title": "驾驶舱",
     "assetOverview": "资产总览",
+    "todayOverview": "今日速览",
+    "marketOverview": "市场概览",
+    "goalsProgress": "目标进度",
     "workspace": "工作台"
   }
 }

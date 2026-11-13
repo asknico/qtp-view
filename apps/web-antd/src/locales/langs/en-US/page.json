@@ -10,7 +10,10 @@
   },
   "dashboard": {
     "title": "Dashboard",
-    "assetOverview": "AssetOverview",
+    "assetOverview": "Asset Overview",
+    "todayOverview": "Today Overview",
+    "marketOverview": "Market Overview",
+    "goalsProgress": "Goals & Progress",
     "workspace": "Workspace"
   }
 }
