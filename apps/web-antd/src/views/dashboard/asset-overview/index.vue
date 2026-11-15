@@ -117,25 +117,14 @@ function onDemoAction(name: string) {
   margin-left: auto;
 }
 
-/* 头部按钮统一钉高：四页同款，避免主题/继承样式造成高度漂移 */
+/* 按钮统一：同高、同基线、无下投影（黑色主按钮边框色由全局 styles/ui.css 统一） */
 .ao-page__actions :deep(.ant-btn) {
-  height: 32px;
-  min-height: 32px;
-  padding-inline: 15px;
-  font-size: 14px;
-  line-height: 30px;
-  border-radius: 6px;
-  box-shadow: none;
-}
-
-/* 主按钮也强制同高，并去掉自带下投影（黑主题下呈一条黑边） */
-.ao-page__actions :deep(.ant-btn-primary),
-.ao-page__actions :deep(.ant-btn-lg) {
   height: 32px !important;
   min-height: 32px !important;
-  padding-inline: 15px !important;
+  padding: 0 15px !important;
   font-size: 14px !important;
   line-height: 30px !important;
+  border-radius: 6px;
   box-shadow: none !important;
 }
 

@@ -14,6 +14,8 @@
     "todayOverview": "Today Overview",
     "marketOverview": "Market Overview",
     "goalsProgress": "Goals & Progress",
+    "todoReminders": "To-dos & Reminders",
+    "customDashboard": "Custom Dashboard",
     "workspace": "Workspace"
   }
 }

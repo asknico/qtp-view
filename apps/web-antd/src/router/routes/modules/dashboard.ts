@@ -46,6 +46,22 @@ const routes: RouteRecordRaw[] = [
         },
       },
       {
+        name: 'TodoReminders',
+        path: '/todo-reminders',
+        component: () => import('#/views/dashboard/todo-reminders/index.vue'),
+        meta: {
+          title: $t('page.dashboard.todoReminders'),
+        },
+      },
+      {
+        name: 'CustomDashboard',
+        path: '/custom-dashboard',
+        component: () => import('#/views/dashboard/custom-dashboard/index.vue'),
+        meta: {
+          title: $t('page.dashboard.customDashboard'),
+        },
+      },
+      {
         name: 'Workspace',
         path: '/workspace',
         component: () => import('#/views/dashboard/workspace/index.vue'),

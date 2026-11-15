@@ -125,7 +125,7 @@
       <feColorMatrix
         in="shadowInnerInner1"
         type="matrix"
-        values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.498880026 0"
+        values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.16 0"
       />
     </filter>
     <filter
@@ -349,166 +349,195 @@
       <feColorMatrix
         in="shadowInnerInner1"
         type="matrix"
-        values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.498880026 0"
+        values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.16 0"
       />
     </filter>
     <title>87667-SVG8</title>
     <g>
-      <g id="Group备份" transform="translate(40.000000, 350.000000)">
-        <linearGradient
-          id="Shape_1_"
-          gradientTransform="matrix(352.3498 0 0 -229.3688 -21376.5684 335815.1875)"
-          gradientUnits="userSpaceOnUse"
-          x1="62.7934"
-          x2="61.7099"
-          y1="1462.9332"
-          y2="1462.535"
-        >
-          <stop offset="0" style="stop-color: #0043fb" />
-          <stop offset="1" style="stop-color: #3684ff" />
+      <defs>
+        <linearGradient id="platform-edge-fade-x" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" style="stop-color: #fff; stop-opacity: 0" />
+          <stop offset="0.06" style="stop-color: #fff; stop-opacity: 0.5" />
+          <stop offset="0.15" style="stop-color: #fff" />
+          <stop offset="0.85" style="stop-color: #fff" />
+          <stop offset="0.94" style="stop-color: #fff; stop-opacity: 0.5" />
+          <stop offset="1" style="stop-color: #fff; stop-opacity: 0" />
         </linearGradient>
-        <path
-          id="Shape"
-          d="M368,428.9c1.4,0.8,3.2,0.8,4.6,0l344.4-198.3c2.8-1.6,3.4-5.4,1.2-7.8l-16.3-22.7
-			L370.3,395.7v31.6l-3.2,1L368,428.9z"
-          fill="url(#Shape_1_)"
-        />
-
-        <linearGradient
-          id="SVGID_1_"
-          gradientTransform="matrix(369.5781 0 0 -241.7468 -22811.1367 353968.8438)"
-          gradientUnits="userSpaceOnUse"
-          x1="63.31"
-          x2="61.5984"
-          y1="1462.5217"
-          y2="1463.1935"
-        >
-          <stop offset="5.400000e-03" style="stop-color: #00c6fb" />
-          <stop offset="1" style="stop-color: #005bea" />
+        <linearGradient id="platform-edge-fade-y" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" style="stop-color: #fff; stop-opacity: 0.45" />
+          <stop offset="0.1" style="stop-color: #fff" />
+          <stop offset="0.88" style="stop-color: #fff" />
+          <stop offset="0.96" style="stop-color: #fff; stop-opacity: 0.5" />
+          <stop offset="1" style="stop-color: #fff; stop-opacity: 0.15" />
         </linearGradient>
-        <path
-          d="M370.3,427.3c0,1.3-1.4,2.1-2.5,1.4L3.2,217.3c-2.8-1.6-3.4-5.4-1.2-7.8l17.8-22.3l350.5,208.4
-			V427.3L370.3,427.3z"
-          fill="url(#SVGID_1_)"
-        />
-        <g>
-          <g>
+        <mask id="platform-edge-mask-x" maskContentUnits="objectBoundingBox">
+          <rect fill="url(#platform-edge-fade-x)" height="1" width="1" />
+        </mask>
+        <mask id="platform-edge-mask-y" maskContentUnits="objectBoundingBox">
+          <rect fill="url(#platform-edge-fade-y)" height="1" width="1" />
+        </mask>
+      </defs>
+      <g mask="url(#platform-edge-mask-y)">
+        <g mask="url(#platform-edge-mask-x)">
+          <g id="Group备份" transform="translate(40.000000, 350.000000)">
             <linearGradient
-              id="path-4_1_"
-              gradientTransform="matrix(689.8593 0 0 -397.2563 -42654.3008 582014.8125)"
+              id="Shape_1_"
+              gradientTransform="matrix(352.3498 0 0 -229.3688 -21376.5684 335815.1875)"
               gradientUnits="userSpaceOnUse"
-              x1="62.5423"
-              x2="62.1013"
-              y1="1464.4305"
-              y2="1464.7888"
+              x1="62.7934"
+              x2="61.7099"
+              y1="1462.9332"
+              y2="1462.535"
             >
-              <stop offset="0" style="stop-color: #4587ef" />
-              <stop offset="1" style="stop-color: #00209e" />
+              <stop offset="0" style="stop-color: #34393f" />
+              <stop offset="1" style="stop-color: #42484f" />
             </linearGradient>
             <path
-              id="path-4"
-              clip-rule="evenodd"
-              d="M355.7,393.8L18,198.7
+              id="Shape"
+              d="M368,428.9c1.4,0.8,3.2,0.8,4.6,0l344.4-198.3c2.8-1.6,3.4-5.4,1.2-7.8l-16.3-22.7
+			L370.3,395.7v31.6l-3.2,1L368,428.9z"
+              fill="url(#Shape_1_)"
+            />
+
+            <linearGradient
+              id="SVGID_1_"
+              gradientTransform="matrix(369.5781 0 0 -241.7468 -22811.1367 353968.8438)"
+              gradientUnits="userSpaceOnUse"
+              x1="63.31"
+              x2="61.5984"
+              y1="1462.5217"
+              y2="1463.1935"
+            >
+              <stop offset="5.400000e-03" style="stop-color: #34393f" />
+              <stop offset="1" style="stop-color: #31363b" />
+            </linearGradient>
+            <path
+              d="M370.3,427.3c0,1.3-1.4,2.1-2.5,1.4L3.2,217.3c-2.8-1.6-3.4-5.4-1.2-7.8l17.8-22.3l350.5,208.4
+			V427.3L370.3,427.3z"
+              fill="url(#SVGID_1_)"
+            />
+            <g>
+              <g>
+                <linearGradient
+                  id="path-4_1_"
+                  gradientTransform="matrix(689.8593 0 0 -397.2563 -42654.3008 582014.8125)"
+                  gradientUnits="userSpaceOnUse"
+                  x1="62.5423"
+                  x2="62.1013"
+                  y1="1464.4305"
+                  y2="1464.7888"
+                >
+                  <stop offset="0" style="stop-color: #42484f" />
+                  <stop offset="1" style="stop-color: #2b2f34" />
+                </linearGradient>
+                <path
+                  id="path-4"
+                  clip-rule="evenodd"
+                  d="M355.7,393.8L18,198.7
 					c-4-2.3-4-8.1,0-10.4L337.8,3.6c7.4-4.3,16.5-4.3,24,0l340.1,196.5c4,2.3,4,8.1,0,10.4L384.4,393.8
 					C375.5,398.9,364.6,398.9,355.7,393.8z"
-              fill="url(#path-4_1_)"
-              fill-rule="evenodd"
-            />
-          </g>
-          <g filter="url(#filter-5)">
-            <path
-              clip-rule="evenodd"
-              d="M355.7,393.8L18,198.7c-4-2.3-4-8.1,0-10.4L337.8,3.6c7.4-4.3,16.5-4.3,24,0
+                  fill="url(#path-4_1_)"
+                  fill-rule="evenodd"
+                />
+              </g>
+              <g filter="url(#filter-5)">
+                <path
+                  clip-rule="evenodd"
+                  d="M355.7,393.8L18,198.7c-4-2.3-4-8.1,0-10.4L337.8,3.6c7.4-4.3,16.5-4.3,24,0
 					l340.1,196.5c4,2.3,4,8.1,0,10.4L384.4,393.8C375.5,398.9,364.6,398.9,355.7,393.8z"
-              fill-rule="evenodd"
+                  fill-rule="evenodd"
+                />
+              </g>
+            </g>
+            <path
+              id="Shape备份"
+              d="M356.1,376L49.6,199c-3.6-2.1-3.6-7.4,0-9.5
+			L339.8,21.9c6.7-3.9,15-3.9,21.7,0l308.6,178.3c3.6,2.1,3.6,7.4,0,9.5L382.1,376C374.1,380.7,364.1,380.7,356.1,376z"
+              fill="none"
+              stroke="#FFFFFF"
+              stroke-opacity="0.35"
+              stroke-width="0.9511"
             />
           </g>
-        </g>
-        <path
-          id="Shape备份"
-          d="M356.1,376L49.6,199c-3.6-2.1-3.6-7.4,0-9.5
-			L339.8,21.9c6.7-3.9,15-3.9,21.7,0l308.6,178.3c3.6,2.1,3.6,7.4,0,9.5L382.1,376C374.1,380.7,364.1,380.7,356.1,376z"
-          fill="none"
-          stroke="#FFFFFF"
-          stroke-width="0.9511"
-        />
-      </g>
-      <g id="Group" transform="translate(0.000000, 259.000000)">
-        <linearGradient
-          id="SVGID_2_"
-          gradientTransform="matrix(391.4998 0 0 -254.8542 -39423.0664 396432.7188)"
-          gradientUnits="userSpaceOnUse"
-          x1="102.8224"
-          x2="101.7388"
-          y1="1554.3767"
-          y2="1553.9784"
-        >
-          <stop offset="0" style="stop-color: #0043fb" />
-          <stop offset="1" style="stop-color: #3684ff" />
-        </linearGradient>
-        <path
-          d="M408.9,476.5c1.6,0.9,3.5,0.9,5.1,0l382.6-220.3c3.1-1.8,3.8-6,1.3-8.7l-18.1-25.2L411.4,439.6
-			v35.2l-3.5,1.1L408.9,476.5z"
-          fill="url(#SVGID_2_)"
-        />
-
-        <linearGradient
-          id="SVGID_3_"
-          gradientTransform="matrix(410.6423 0 0 -268.6075 -41782.7344 417855)"
-          gradientUnits="userSpaceOnUse"
-          x1="103.3376"
-          x2="101.626"
-          y1="1553.9424"
-          y2="1554.6141"
-        >
-          <stop offset="5.400000e-03" style="stop-color: #00c6fb" />
-          <stop offset="1" style="stop-color: #005bea" />
-        </linearGradient>
-        <path
-          d="M411.4,474.8c0,1.4-1.5,2.3-2.8,1.6L3.6,241.5c-3.1-1.8-3.8-6-1.3-8.7L22,208l389.4,231.6V474.8
-			L411.4,474.8z"
-          fill="url(#SVGID_3_)"
-        />
-        <g>
-          <g>
+          <g id="Group" transform="translate(0.000000, 259.000000)">
             <linearGradient
-              id="path-9_1_"
-              gradientTransform="matrix(766.5103 0 0 -441.3958 -78065.4141 686963.125)"
+              id="SVGID_2_"
+              gradientTransform="matrix(391.4998 0 0 -254.8542 -39423.0664 396432.7188)"
               gradientUnits="userSpaceOnUse"
-              x1="102.5571"
-              x2="102.1161"
-              y1="1555.6865"
-              y2="1556.0448"
+              x1="102.8224"
+              x2="101.7388"
+              y1="1554.3767"
+              y2="1553.9784"
             >
-              <stop offset="0" style="stop-color: #4587ef" />
-              <stop offset="1" style="stop-color: #00209e" />
+              <stop offset="0" style="stop-color: #34393f" />
+              <stop offset="1" style="stop-color: #42484f" />
             </linearGradient>
             <path
-              id="path-9"
-              clip-rule="evenodd"
-              d="M395.2,437.6L20,220.8
+              d="M408.9,476.5c1.6,0.9,3.5,0.9,5.1,0l382.6-220.3c3.1-1.8,3.8-6,1.3-8.7l-18.1-25.2L411.4,439.6
+			v35.2l-3.5,1.1L408.9,476.5z"
+              fill="url(#SVGID_2_)"
+            />
+
+            <linearGradient
+              id="SVGID_3_"
+              gradientTransform="matrix(410.6423 0 0 -268.6075 -41782.7344 417855)"
+              gradientUnits="userSpaceOnUse"
+              x1="103.3376"
+              x2="101.626"
+              y1="1553.9424"
+              y2="1554.6141"
+            >
+              <stop offset="5.400000e-03" style="stop-color: #34393f" />
+              <stop offset="1" style="stop-color: #31363b" />
+            </linearGradient>
+            <path
+              d="M411.4,474.8c0,1.4-1.5,2.3-2.8,1.6L3.6,241.5c-3.1-1.8-3.8-6-1.3-8.7L22,208l389.4,231.6V474.8
+			L411.4,474.8z"
+              fill="url(#SVGID_3_)"
+            />
+            <g>
+              <g>
+                <linearGradient
+                  id="path-9_1_"
+                  gradientTransform="matrix(766.5103 0 0 -441.3958 -78065.4141 686963.125)"
+                  gradientUnits="userSpaceOnUse"
+                  x1="102.5571"
+                  x2="102.1161"
+                  y1="1555.6865"
+                  y2="1556.0448"
+                >
+                  <stop offset="0" style="stop-color: #42484f" />
+                  <stop offset="1" style="stop-color: #2b2f34" />
+                </linearGradient>
+                <path
+                  id="path-9"
+                  clip-rule="evenodd"
+                  d="M395.2,437.6L20,220.8
 					c-4.5-2.6-4.5-9,0-11.6L375.3,4c8.2-4.8,18.4-4.8,26.6,0l377.9,218.3c4.5,2.6,4.5,9,0,11.6L427.1,437.6
 					C417.2,443.3,405.1,443.3,395.2,437.6z"
-              fill="url(#path-9_1_)"
-              fill-rule="evenodd"
-            />
-          </g>
-          <g filter="url(#filter-10)">
-            <path
-              clip-rule="evenodd"
-              d="M395.2,437.6L20,220.8c-4.5-2.6-4.5-9,0-11.6L375.3,4c8.2-4.8,18.4-4.8,26.6,0
+                  fill="url(#path-9_1_)"
+                  fill-rule="evenodd"
+                />
+              </g>
+              <g filter="url(#filter-10)">
+                <path
+                  clip-rule="evenodd"
+                  d="M395.2,437.6L20,220.8c-4.5-2.6-4.5-9,0-11.6L375.3,4c8.2-4.8,18.4-4.8,26.6,0
 					l377.9,218.3c4.5,2.6,4.5,9,0,11.6L427.1,437.6C417.2,443.3,405.1,443.3,395.2,437.6z"
-              fill-rule="evenodd"
+                  fill-rule="evenodd"
+                />
+              </g>
+            </g>
+            <path
+              d="M395.6,417.8L55.2,221.1c-4.1-2.3-4.1-8.2,0-10.5L377.6,24.4
+			c7.5-4.3,16.7-4.3,24.2,0l342.9,198.1c4.1,2.3,4.1,8.2,0,10.5L424.6,417.8C415.6,423,404.6,423,395.6,417.8z"
+              fill="none"
+              stroke="#FFFFFF"
+              stroke-opacity="0.35"
+              stroke-width="1.0568"
             />
           </g>
         </g>
-        <path
-          d="M395.6,417.8L55.2,221.1c-4.1-2.3-4.1-8.2,0-10.5L377.6,24.4
-			c7.5-4.3,16.7-4.3,24.2,0l342.9,198.1c4.1,2.3,4.1,8.2,0,10.5L424.6,417.8C415.6,423,404.6,423,395.6,417.8z"
-          fill="none"
-          stroke="#FFFFFF"
-          stroke-width="1.0568"
-        />
       </g>
       <g id="编组备份-4" transform="translate(386.000000, 561.000000)">
         <g id="编组备份-3" transform="translate(0.000000, 69.529529)">
@@ -523,8 +552,8 @@
                 y1="1149.4111"
                 y2="1150.4111"
               >
-                <stop offset="0" style="stop-color: #3a3aff" />
-                <stop offset="1" style="stop-color: #0707d6" />
+                <stop offset="0" style="stop-color: #eda54c" />
+                <stop offset="1" style="stop-color: #c97814" />
               </linearGradient>
               <polygon
                 id="path-13"
@@ -547,13 +576,13 @@
               >
                 <stop
                   offset="0"
-                  style="stop-color: #8fa0ff; stop-opacity: 0.467"
+                  style="stop-color: #f7e497; stop-opacity: 0.467"
                 />
                 <stop
                   offset="1"
                   style="stop-color: #0f0f0f; stop-opacity: 0.06"
                 />
-                <stop offset="1" style="stop-color: #2f59e1; stop-opacity: 0" />
+                <stop offset="1" style="stop-color: #eec522; stop-opacity: 0" />
               </linearGradient>
               <polygon
                 clip-rule="evenodd"
@@ -581,8 +610,8 @@
             y1="1162.8857"
             y2="1161.1971"
           >
-            <stop offset="0" style="stop-color: #4f3eff" />
-            <stop offset="1" style="stop-color: #060071" />
+            <stop offset="0" style="stop-color: #eea64f" />
+            <stop offset="1" style="stop-color: #ba6e12" />
           </linearGradient>
           <polygon
             id="Stroke-3"
@@ -602,8 +631,8 @@
             y1="1162.8857"
             y2="1161.1971"
           >
-            <stop offset="0" style="stop-color: #1200ca" />
-            <stop offset="1" style="stop-color: #060071" />
+            <stop offset="0" style="stop-color: #ba6e12" />
+            <stop offset="1" style="stop-color: #ba6e12" />
           </linearGradient>
           <polygon
             id="Stroke-5"
@@ -651,8 +680,8 @@
               y1="1610.2603"
               y2="1610.6188"
             >
-              <stop offset="0" style="stop-color: #4587ef" />
-              <stop offset="1" style="stop-color: #00209e" />
+              <stop offset="0" style="stop-color: #f1ce43" />
+              <stop offset="1" style="stop-color: #b4930e" />
             </linearGradient>
             <path
               id="path-19"
@@ -686,8 +715,8 @@
                   y1="1526.6367"
                   y2="1527.6367"
                 >
-                  <stop offset="0" style="stop-color: #3a3aff" />
-                  <stop offset="1" style="stop-color: #0707d6" />
+                  <stop offset="0" style="stop-color: #eda54c" />
+                  <stop offset="1" style="stop-color: #c97814" />
                 </linearGradient>
                 <polygon
                   id="path-23"
@@ -710,7 +739,7 @@
                 >
                   <stop
                     offset="0"
-                    style="stop-color: #8fa0ff; stop-opacity: 0.467"
+                    style="stop-color: #f7e497; stop-opacity: 0.467"
                   />
                   <stop
                     offset="1"
@@ -718,7 +747,7 @@
                   />
                   <stop
                     offset="1"
-                    style="stop-color: #2f59e1; stop-opacity: 0"
+                    style="stop-color: #eec522; stop-opacity: 0"
                   />
                 </linearGradient>
                 <polygon
@@ -747,8 +776,8 @@
               y1="1558.8499"
               y2="1557.1613"
             >
-              <stop offset="0" style="stop-color: #4f3eff" />
-              <stop offset="1" style="stop-color: #060071" />
+              <stop offset="0" style="stop-color: #eea64f" />
+              <stop offset="1" style="stop-color: #ba6e12" />
             </linearGradient>
             <polygon
               clip-rule="evenodd"
@@ -767,8 +796,8 @@
               y1="1558.8499"
               y2="1557.1613"
             >
-              <stop offset="0" style="stop-color: #1200ca" />
-              <stop offset="1" style="stop-color: #060071" />
+              <stop offset="0" style="stop-color: #ba6e12" />
+              <stop offset="1" style="stop-color: #ba6e12" />
             </linearGradient>
             <polygon
               clip-rule="evenodd"
@@ -790,8 +819,8 @@
                   y1="1446.6069"
                   y2="1446.6069"
                 >
-                  <stop offset="0" style="stop-color: #bda0e5" />
-                  <stop offset="1" style="stop-color: #5f3abd" />
+                  <stop offset="0" style="stop-color: #f4c791" />
+                  <stop offset="1" style="stop-color: #e18616" />
                 </linearGradient>
                 <polygon
                   id="path-28"
@@ -814,7 +843,7 @@
                 >
                   <stop
                     offset="0"
-                    style="stop-color: #8fa0ff; stop-opacity: 0.467"
+                    style="stop-color: #f7e497; stop-opacity: 0.467"
                   />
                   <stop
                     offset="1"
@@ -822,7 +851,7 @@
                   />
                   <stop
                     offset="1"
-                    style="stop-color: #2f59e1; stop-opacity: 0"
+                    style="stop-color: #eec522; stop-opacity: 0"
                   />
                 </linearGradient>
                 <polygon
@@ -851,7 +880,7 @@
               y1="1475.4679"
               y2="1474.0222"
             >
-              <stop offset="0" style="stop-color: #4f3eff" />
+              <stop offset="0" style="stop-color: #eea64f" />
               <stop offset="1" style="stop-color: #f77" />
             </linearGradient>
             <polygon
@@ -871,7 +900,7 @@
               y1="1475.4679"
               y2="1474.0222"
             >
-              <stop offset="0" style="stop-color: #4f3eff" />
+              <stop offset="0" style="stop-color: #eea64f" />
               <stop offset="1" style="stop-color: #d73838" />
             </linearGradient>
             <polygon
@@ -894,8 +923,8 @@
                   y1="1580.8652"
                   y2="1580.8652"
                 >
-                  <stop offset="0" style="stop-color: #8afffc" />
-                  <stop offset="1" style="stop-color: #003dde" />
+                  <stop offset="0" style="stop-color: #e5e3a4" />
+                  <stop offset="1" style="stop-color: #cea810" />
                 </linearGradient>
                 <polygon
                   id="path-33"
@@ -918,7 +947,7 @@
                 >
                   <stop
                     offset="0"
-                    style="stop-color: #8fa0ff; stop-opacity: 0.467"
+                    style="stop-color: #f7e497; stop-opacity: 0.467"
                   />
                   <stop
                     offset="1"
@@ -926,7 +955,7 @@
                   />
                   <stop
                     offset="1"
-                    style="stop-color: #2f59e1; stop-opacity: 0"
+                    style="stop-color: #eec522; stop-opacity: 0"
                   />
                 </linearGradient>
                 <polygon
@@ -955,8 +984,8 @@
               y1="1604.7488"
               y2="1605.7488"
             >
-              <stop offset="0" style="stop-color: #45efed" />
-              <stop offset="1" style="stop-color: #d0ffed; stop-opacity: 0" />
+              <stop offset="0" style="stop-color: #d7d370" />
+              <stop offset="1" style="stop-color: #f5f4da; stop-opacity: 0" />
             </linearGradient>
             <polygon
               clip-rule="evenodd"
@@ -977,8 +1006,8 @@
               y1="1604.7488"
               y2="1605.7488"
             >
-              <stop offset="0" style="stop-color: #45efed" />
-              <stop offset="1" style="stop-color: #d0ffed; stop-opacity: 0" />
+              <stop offset="0" style="stop-color: #d7d370" />
+              <stop offset="1" style="stop-color: #f5f4da; stop-opacity: 0" />
             </linearGradient>
 
             <polygon
@@ -1001,8 +1030,8 @@
               y1="1604.7488"
               y2="1605.7488"
             >
-              <stop offset="0" style="stop-color: #45efed" />
-              <stop offset="1" style="stop-color: #d0ffed; stop-opacity: 0" />
+              <stop offset="0" style="stop-color: #d7d370" />
+              <stop offset="1" style="stop-color: #f5f4da; stop-opacity: 0" />
             </linearGradient>
 
             <polygon
@@ -1025,8 +1054,8 @@
               y1="1607.5193"
               y2="1606.3573"
             >
-              <stop offset="0" style="stop-color: #68dfff" />
-              <stop offset="1" style="stop-color: #004a8b" />
+              <stop offset="0" style="stop-color: #f4da73" />
+              <stop offset="1" style="stop-color: #b4930e" />
             </linearGradient>
             <polygon
               clip-rule="evenodd"
@@ -1045,8 +1074,8 @@
               y1="1607.3881"
               y2="1606.5361"
             >
-              <stop offset="0" style="stop-color: #0567de" />
-              <stop offset="1" style="stop-color: #00048b" />
+              <stop offset="0" style="stop-color: #d3ac10" />
+              <stop offset="1" style="stop-color: #b4930e" />
             </linearGradient>
             <polygon
               clip-rule="evenodd"
@@ -1070,8 +1099,8 @@
               y1="1458.1069"
               y2="1457.9841"
             >
-              <stop offset="0" style="stop-color: #1b0f9c; stop-opacity: 0" />
-              <stop offset="1" style="stop-color: #060071" />
+              <stop offset="0" style="stop-color: #ba6e12; stop-opacity: 0" />
+              <stop offset="1" style="stop-color: #ba6e12" />
             </linearGradient>
             <path
               clip-rule="evenodd"
@@ -1092,8 +1121,8 @@
                 y1="1425.4349"
                 y2="1425.3547"
               >
-                <stop offset="0" style="stop-color: #3b76df" />
-                <stop offset="1" style="stop-color: #0c2ea7" />
+                <stop offset="0" style="stop-color: #efc82b" />
+                <stop offset="1" style="stop-color: #b4930e" />
               </linearGradient>
               <path
                 clip-rule="evenodd"
@@ -1162,8 +1191,8 @@
                 y1="1457.2306"
                 y2="1457.5913"
               >
-                <stop offset="0" style="stop-color: #4587ef" />
-                <stop offset="1" style="stop-color: #00209e" />
+                <stop offset="0" style="stop-color: #f1ce43" />
+                <stop offset="1" style="stop-color: #b4930e" />
               </linearGradient>
               <path
                 id="path-45"
@@ -1196,10 +1225,10 @@
                 y1="1459.0104"
                 y2="1458.9812"
               >
-                <stop offset="0" style="stop-color: #8dcbff" />
-                <stop offset="0.1196" style="stop-color: #cafbff" />
-                <stop offset="0.768" style="stop-color: #7feeff" />
-                <stop offset="1" style="stop-color: #adcbff" />
+                <stop offset="0" style="stop-color: #f7e395" />
+                <stop offset="0.1196" style="stop-color: #fbf2ce" />
+                <stop offset="0.768" style="stop-color: #f6e088" />
+                <stop offset="1" style="stop-color: #f9ebb3" />
               </linearGradient>
               <path
                 clip-rule="evenodd"
@@ -1268,8 +1297,8 @@
                 y1="1782.2883"
                 y2="1782.6489"
               >
-                <stop offset="0" style="stop-color: #4587ef" />
-                <stop offset="1" style="stop-color: #00209e" />
+                <stop offset="0" style="stop-color: #f1ce43" />
+                <stop offset="1" style="stop-color: #b4930e" />
               </linearGradient>
               <path
                 id="path-52"
@@ -1299,8 +1328,8 @@
             y1="1788.1943"
             y2="1789.1943"
           >
-            <stop offset="0" style="stop-color: #45efed" />
-            <stop offset="1" style="stop-color: #d0ffed; stop-opacity: 0" />
+            <stop offset="0" style="stop-color: #d7d370" />
+            <stop offset="1" style="stop-color: #f5f4da; stop-opacity: 0" />
           </linearGradient>
           <path
             clip-rule="evenodd"
@@ -1325,8 +1354,8 @@
               y1="1226.9152"
               y2="1226.8395"
             >
-              <stop offset="0" style="stop-color: #1b0f9c; stop-opacity: 0" />
-              <stop offset="1" style="stop-color: #060071" />
+              <stop offset="0" style="stop-color: #ba6e12; stop-opacity: 0" />
+              <stop offset="1" style="stop-color: #ba6e12" />
             </linearGradient>
             <ellipse
               clip-rule="evenodd"
@@ -1347,9 +1376,9 @@
             gradientUnits="userSpaceOnUse"
             r="0.9018"
           >
-            <stop offset="0" style="stop-color: #dedbff" />
-            <stop offset="0.3987" style="stop-color: #4165fc" />
-            <stop offset="1" style="stop-color: #0a00c2" />
+            <stop offset="0" style="stop-color: #fbecda" />
+            <stop offset="0.3987" style="stop-color: #f1d04c" />
+            <stop offset="1" style="stop-color: #ba6e12" />
           </radialGradient>
           <circle
             clip-rule="evenodd"
@@ -1371,8 +1400,8 @@
               y1="1249.9197"
               y2="1249.844"
             >
-              <stop offset="0" style="stop-color: #1b0f9c; stop-opacity: 0" />
-              <stop offset="1" style="stop-color: #060071" />
+              <stop offset="0" style="stop-color: #ba6e12; stop-opacity: 0" />
+              <stop offset="1" style="stop-color: #ba6e12" />
             </linearGradient>
             <ellipse
               clip-rule="evenodd"
@@ -1393,9 +1422,9 @@
             gradientUnits="userSpaceOnUse"
             r="0.9018"
           >
-            <stop offset="0" style="stop-color: #dedbff" />
-            <stop offset="0.3987" style="stop-color: #4165fc" />
-            <stop offset="1" style="stop-color: #0a00c2" />
+            <stop offset="0" style="stop-color: #fbecda" />
+            <stop offset="0.3987" style="stop-color: #f1d04c" />
+            <stop offset="1" style="stop-color: #ba6e12" />
           </radialGradient>
           <circle
             clip-rule="evenodd"
@@ -1423,7 +1452,7 @@
           y2="1685.3489"
         >
           <stop offset="0" style="stop-color: #fff" />
-          <stop offset="1" style="stop-color: #00c6fb" />
+          <stop offset="1" style="stop-color: #e9be12" />
         </linearGradient>
         <path
           d="M72.5,0l3.8,2.1L75.1,4l-1.6,0.6l-0.7,49.2c0,1.6-0.9,3.4-2.1,4.2l-0.2,0.1L5.7,95.5l0,0l-0.7,4
@@ -1441,8 +1470,8 @@
           y1="1683.6631"
           y2="1685.1311"
         >
-          <stop offset="0" style="stop-color: #005bea" />
-          <stop offset="1" style="stop-color: #00c6fb" />
+          <stop offset="0" style="stop-color: #dab110" />
+          <stop offset="1" style="stop-color: #e9be12" />
         </linearGradient>
         <path
           d="M6.3,99.2l67.8-39.1c1.2-0.7,2.3-2.7,2.3-4.3L77.1,4c0-1.7-1-2.4-2.3-1.7L7,41.4
@@ -1508,12 +1537,12 @@
           y1="1654.5455"
           y2="1655.6864"
         >
-          <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-          <stop offset="0.2823" style="stop-color: #285ecb" />
-          <stop offset="0.538" style="stop-color: #3aa3dd" />
-          <stop offset="0.75" style="stop-color: #47d5eb" />
-          <stop offset="0.9102" style="stop-color: #4ff4f3" />
-          <stop offset="1" style="stop-color: #52fff6" />
+          <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+          <stop offset="0.2823" style="stop-color: #e2b811" />
+          <stop offset="0.538" style="stop-color: #efc728" />
+          <stop offset="0.75" style="stop-color: #f1ce41" />
+          <stop offset="0.9102" style="stop-color: #d7d370" />
+          <stop offset="1" style="stop-color: #d9d678" />
         </linearGradient>
 
         <linearGradient
@@ -1546,12 +1575,12 @@
           y1="1663.0452"
           y2="1663.531"
         >
-          <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-          <stop offset="0.2823" style="stop-color: #285ecb" />
-          <stop offset="0.538" style="stop-color: #3aa3dd" />
-          <stop offset="0.75" style="stop-color: #47d5eb" />
-          <stop offset="0.9102" style="stop-color: #4ff4f3" />
-          <stop offset="1" style="stop-color: #52fff6" />
+          <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+          <stop offset="0.2823" style="stop-color: #e2b811" />
+          <stop offset="0.538" style="stop-color: #efc728" />
+          <stop offset="0.75" style="stop-color: #f1ce41" />
+          <stop offset="0.9102" style="stop-color: #d7d370" />
+          <stop offset="1" style="stop-color: #d9d678" />
         </linearGradient>
 
         <linearGradient
@@ -1584,12 +1613,12 @@
           y1="1668.4514"
           y2="1669.1958"
         >
-          <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-          <stop offset="0.2823" style="stop-color: #285ecb" />
-          <stop offset="0.538" style="stop-color: #3aa3dd" />
-          <stop offset="0.75" style="stop-color: #47d5eb" />
-          <stop offset="0.9102" style="stop-color: #4ff4f3" />
-          <stop offset="1" style="stop-color: #52fff6" />
+          <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+          <stop offset="0.2823" style="stop-color: #e2b811" />
+          <stop offset="0.538" style="stop-color: #efc728" />
+          <stop offset="0.75" style="stop-color: #f1ce41" />
+          <stop offset="0.9102" style="stop-color: #d7d370" />
+          <stop offset="1" style="stop-color: #d9d678" />
         </linearGradient>
 
         <linearGradient
@@ -1632,8 +1661,8 @@
           y1="1659.3563"
           y2="1659.0363"
         >
-          <stop offset="0" style="stop-color: #3158d3" />
-          <stop offset="1" style="stop-color: #306ef3" />
+          <stop offset="0" style="stop-color: #edc217" />
+          <stop offset="1" style="stop-color: #f0ca33" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -1657,8 +1686,8 @@
             y1="1666.1232"
             y2="1666.0233"
           >
-            <stop offset="0" style="stop-color: #1b0f9c; stop-opacity: 0" />
-            <stop offset="1" style="stop-color: #060071" />
+            <stop offset="0" style="stop-color: #ba6e12; stop-opacity: 0" />
+            <stop offset="1" style="stop-color: #ba6e12" />
           </linearGradient>
           <ellipse
             clip-rule="evenodd"
@@ -1681,7 +1710,7 @@
           y2="1622.7434"
         >
           <stop offset="0" style="stop-color: #434343" />
-          <stop offset="1" style="stop-color: #122142" />
+          <stop offset="1" style="stop-color: #b4930e" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -1715,8 +1744,8 @@
           y1="1676.3293"
           y2="1675.5613"
         >
-          <stop offset="0" style="stop-color: #021814" />
-          <stop offset="1" style="stop-color: #424fec" />
+          <stop offset="0" style="stop-color: #d7d370" />
+          <stop offset="1" style="stop-color: #f0cd3e" />
         </linearGradient>
         <path
           d="M17.5,117.5l1.9,57.1L4.8,238c0,0,3.3,5.5,18.1,4.1c0,0,16.4-56.8,18-59.2
@@ -1734,7 +1763,7 @@
           y2="1623.5803"
         >
           <stop offset="0" style="stop-color: #434343" />
-          <stop offset="1" style="stop-color: #122142" />
+          <stop offset="1" style="stop-color: #b4930e" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -1761,8 +1790,8 @@
           y1="1672.3391"
           y2="1672.2106"
         >
-          <stop offset="0" style="stop-color: #77f7e1" />
-          <stop offset="1" style="stop-color: #424fec" />
+          <stop offset="0" style="stop-color: #dfdd8f" />
+          <stop offset="1" style="stop-color: #f0cd3e" />
         </linearGradient>
         <path
           d="M76.5,100.3c5.7,0.2,44.9-17.6,44.9-17.6c-0.2-8.2-5.8-10.7-5.8-10.7l-33.7,8.6
@@ -1780,8 +1809,8 @@
           y1="1653.8715"
           y2="1653.0199"
         >
-          <stop offset="0" style="stop-color: #253c6f" />
-          <stop offset="1" style="stop-color: #3068e8" />
+          <stop offset="0" style="stop-color: #b4930e" />
+          <stop offset="1" style="stop-color: #efc729" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -1877,8 +1906,8 @@
           y1="1739.7522"
           y2="1740.8326"
         >
-          <stop offset="0" style="stop-color: #4587ef" />
-          <stop offset="1" style="stop-color: #00209e" />
+          <stop offset="0" style="stop-color: #f1ce43" />
+          <stop offset="1" style="stop-color: #b4930e" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -1900,8 +1929,8 @@
           y1="1729.7074"
           y2="1729.7074"
         >
-          <stop offset="0" style="stop-color: #4c83ff" />
-          <stop offset="1" style="stop-color: #2afadf" />
+          <stop offset="0" style="stop-color: #f2d459" />
+          <stop offset="1" style="stop-color: #d7d370" />
         </linearGradient>
         <path
           d="M33.5,44.1c11.8,6.8,21.4,23.4,21.4,37
@@ -1921,8 +1950,8 @@
           y1="1720.6718"
           y2="1720.6718"
         >
-          <stop offset="0" style="stop-color: #4c83ff" />
-          <stop offset="1" style="stop-color: #2afadf" />
+          <stop offset="0" style="stop-color: #f2d459" />
+          <stop offset="1" style="stop-color: #d7d370" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -1946,8 +1975,8 @@
           y1="1694.7522"
           y2="1695.8326"
         >
-          <stop offset="0" style="stop-color: #4587ef" />
-          <stop offset="1" style="stop-color: #00209e" />
+          <stop offset="0" style="stop-color: #f1ce43" />
+          <stop offset="1" style="stop-color: #b4930e" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -1969,8 +1998,8 @@
           y1="1684.7074"
           y2="1684.7074"
         >
-          <stop offset="0" style="stop-color: #ccff70" />
-          <stop offset="1" style="stop-color: #2afadf" />
+          <stop offset="0" style="stop-color: #e0dd8f" />
+          <stop offset="1" style="stop-color: #d7d370" />
         </linearGradient>
         <path
           d="M33.5,44.1c11.8,6.8,21.4,23.4,21.4,37
@@ -1990,8 +2019,8 @@
           y1="1675.6718"
           y2="1675.6718"
         >
-          <stop offset="0" style="stop-color: #4c83ff" />
-          <stop offset="1" style="stop-color: #2afa91" />
+          <stop offset="0" style="stop-color: #f2d459" />
+          <stop offset="1" style="stop-color: #d7d370" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -2011,8 +2040,8 @@
           y1="1574.0848"
           y2="1575.1653"
         >
-          <stop offset="0" style="stop-color: #4587ef" />
-          <stop offset="1" style="stop-color: #00209e" />
+          <stop offset="0" style="stop-color: #f1ce43" />
+          <stop offset="1" style="stop-color: #b4930e" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -2034,8 +2063,8 @@
           y1="1566.6797"
           y2="1567.7601"
         >
-          <stop offset="0" style="stop-color: #4587ef" />
-          <stop offset="1" style="stop-color: #00209e" />
+          <stop offset="0" style="stop-color: #f1ce43" />
+          <stop offset="1" style="stop-color: #b4930e" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -2056,8 +2085,8 @@
           y1="1517.4354"
           y2="1516.2238"
         >
-          <stop offset="0" style="stop-color: #4c83ff" />
-          <stop offset="1" style="stop-color: #2afadf" />
+          <stop offset="0" style="stop-color: #f2d459" />
+          <stop offset="1" style="stop-color: #d7d370" />
         </linearGradient>
         <polygon
           clip-rule="evenodd"
@@ -2076,8 +2105,8 @@
           y1="1517.4354"
           y2="1516.2238"
         >
-          <stop offset="0" style="stop-color: #4c83ff" />
-          <stop offset="1" style="stop-color: #2afadf" />
+          <stop offset="0" style="stop-color: #f2d459" />
+          <stop offset="1" style="stop-color: #d7d370" />
         </linearGradient>
         <polygon
           id="Path备份"
@@ -2097,8 +2126,8 @@
           y1="1562.8905"
           y2="1558.8889"
         >
-          <stop offset="0" style="stop-color: #4c83ff" />
-          <stop offset="1" style="stop-color: #2afadf" />
+          <stop offset="0" style="stop-color: #f2d459" />
+          <stop offset="1" style="stop-color: #d7d370" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -2117,8 +2146,8 @@
           y1="1536.7212"
           y2="1535.3361"
         >
-          <stop offset="0" style="stop-color: #4c83ff" />
-          <stop offset="1" style="stop-color: #2afadf" />
+          <stop offset="0" style="stop-color: #f2d459" />
+          <stop offset="1" style="stop-color: #d7d370" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -2137,8 +2166,8 @@
           y1="1559.7903"
           y2="1558.4763"
         >
-          <stop offset="0" style="stop-color: #4c83ff" />
-          <stop offset="1" style="stop-color: #2afadf" />
+          <stop offset="0" style="stop-color: #f2d459" />
+          <stop offset="1" style="stop-color: #d7d370" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -2157,8 +2186,8 @@
           y1="1547.6044"
           y2="1546.2904"
         >
-          <stop offset="0" style="stop-color: #4c83ff" />
-          <stop offset="1" style="stop-color: #2afadf" />
+          <stop offset="0" style="stop-color: #f2d459" />
+          <stop offset="1" style="stop-color: #d7d370" />
         </linearGradient>
         <path
           id="Path备份-2"
@@ -2183,8 +2212,8 @@
           y1="1629.0848"
           y2="1630.1653"
         >
-          <stop offset="0" style="stop-color: #4587ef" />
-          <stop offset="1" style="stop-color: #00209e" />
+          <stop offset="0" style="stop-color: #f1ce43" />
+          <stop offset="1" style="stop-color: #b4930e" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -2206,8 +2235,8 @@
           y1="1621.6797"
           y2="1622.7601"
         >
-          <stop offset="0" style="stop-color: #4587ef" />
-          <stop offset="1" style="stop-color: #00209e" />
+          <stop offset="0" style="stop-color: #f1ce43" />
+          <stop offset="1" style="stop-color: #b4930e" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -2256,8 +2285,8 @@
               y1="1501.2344"
               y2="1501.0835"
             >
-              <stop offset="0" style="stop-color: #1b0f9c; stop-opacity: 0" />
-              <stop offset="1" style="stop-color: #060071" />
+              <stop offset="0" style="stop-color: #ba6e12; stop-opacity: 0" />
+              <stop offset="1" style="stop-color: #ba6e12" />
             </linearGradient>
             <path
               clip-rule="evenodd"
@@ -2277,8 +2306,8 @@
               y1="1374.2056"
               y2="1374.2056"
             >
-              <stop offset="0" style="stop-color: #6ecaf9" />
-              <stop offset="0.35" style="stop-color: #a1ddfb" />
+              <stop offset="0" style="stop-color: #f4da73" />
+              <stop offset="0.35" style="stop-color: #f8e7a4" />
               <stop offset="1" style="stop-color: #fff" />
             </linearGradient>
             <path
@@ -2298,11 +2327,11 @@
               y1="1372.403"
               y2="1372.403"
             >
-              <stop offset="0.12" style="stop-color: #5c90fe" />
-              <stop offset="0.56" style="stop-color: #466cf5" />
-              <stop offset="0.69" style="stop-color: #4265f3" />
-              <stop offset="0.87" style="stop-color: #3853ef" />
-              <stop offset="1" style="stop-color: #2e42eb" />
+              <stop offset="0.12" style="stop-color: #f4d766" />
+              <stop offset="0.56" style="stop-color: #f1d04a" />
+              <stop offset="0.69" style="stop-color: #f1ce44" />
+              <stop offset="0.87" style="stop-color: #f0cb37" />
+              <stop offset="1" style="stop-color: #efc82a" />
             </linearGradient>
             <path
               clip-rule="evenodd"
@@ -2321,11 +2350,11 @@
               y1="1367.8169"
               y2="1367.8169"
             >
-              <stop offset="0.12" style="stop-color: #5c90fe" />
-              <stop offset="0.56" style="stop-color: #466cf5" />
-              <stop offset="0.69" style="stop-color: #4265f3" />
-              <stop offset="0.87" style="stop-color: #3853ef" />
-              <stop offset="1" style="stop-color: #2e42eb" />
+              <stop offset="0.12" style="stop-color: #f4d766" />
+              <stop offset="0.56" style="stop-color: #f1d04a" />
+              <stop offset="0.69" style="stop-color: #f1ce44" />
+              <stop offset="0.87" style="stop-color: #f0cb37" />
+              <stop offset="1" style="stop-color: #efc82a" />
             </linearGradient>
             <path
               clip-rule="evenodd"
@@ -2360,8 +2389,8 @@
                 y1="1394.5802"
                 y2="1394.4315"
               >
-                <stop offset="0" style="stop-color: #1b0f9c; stop-opacity: 0" />
-                <stop offset="1" style="stop-color: #060071" />
+                <stop offset="0" style="stop-color: #ba6e12; stop-opacity: 0" />
+                <stop offset="1" style="stop-color: #ba6e12" />
               </linearGradient>
               <path
                 clip-rule="evenodd"
@@ -2381,8 +2410,8 @@
               y1="1394.4705"
               y2="1394.4705"
             >
-              <stop offset="0" style="stop-color: #6ecaf9" />
-              <stop offset="0.35" style="stop-color: #a1ddfb" />
+              <stop offset="0" style="stop-color: #f4da73" />
+              <stop offset="0.35" style="stop-color: #f8e7a4" />
               <stop offset="1" style="stop-color: #fff" />
             </linearGradient>
             <path
@@ -2402,11 +2431,11 @@
               y1="1392.4675"
               y2="1392.4675"
             >
-              <stop offset="0.12" style="stop-color: #5c90fe" />
-              <stop offset="0.56" style="stop-color: #466cf5" />
-              <stop offset="0.69" style="stop-color: #4265f3" />
-              <stop offset="0.87" style="stop-color: #3853ef" />
-              <stop offset="1" style="stop-color: #2e42eb" />
+              <stop offset="0.12" style="stop-color: #f4d766" />
+              <stop offset="0.56" style="stop-color: #f1d04a" />
+              <stop offset="0.69" style="stop-color: #f1ce44" />
+              <stop offset="0.87" style="stop-color: #f0cb37" />
+              <stop offset="1" style="stop-color: #efc82a" />
             </linearGradient>
             <path
               clip-rule="evenodd"
@@ -2425,11 +2454,11 @@
               y1="1387.3719"
               y2="1387.3719"
             >
-              <stop offset="0.12" style="stop-color: #5c90fe" />
-              <stop offset="0.56" style="stop-color: #466cf5" />
-              <stop offset="0.69" style="stop-color: #4265f3" />
-              <stop offset="0.87" style="stop-color: #3853ef" />
-              <stop offset="1" style="stop-color: #2e42eb" />
+              <stop offset="0.12" style="stop-color: #f4d766" />
+              <stop offset="0.56" style="stop-color: #f1d04a" />
+              <stop offset="0.69" style="stop-color: #f1ce44" />
+              <stop offset="0.87" style="stop-color: #f0cb37" />
+              <stop offset="1" style="stop-color: #efc82a" />
             </linearGradient>
             <path
               clip-rule="evenodd"
@@ -2476,44 +2505,44 @@
             y1="1504.9636"
             y2="1506.2531"
           >
-            <stop offset="0" style="stop-color: #00dcf3" />
+            <stop offset="0" style="stop-color: #e2b811" />
             <stop
               offset="1.000000e-02"
-              style="stop-color: #00dbf3; stop-opacity: 0.97"
+              style="stop-color: #e2b811; stop-opacity: 0.97"
             />
             <stop
               offset="8.000000e-02"
-              style="stop-color: #00d0ef; stop-opacity: 0.77"
+              style="stop-color: #deb511; stop-opacity: 0.77"
             />
             <stop
               offset="0.16"
-              style="stop-color: #00c7ec; stop-opacity: 0.59"
+              style="stop-color: #dbb311; stop-opacity: 0.59"
             />
             <stop
               offset="0.24"
-              style="stop-color: #00beea; stop-opacity: 0.43"
+              style="stop-color: #dab110; stop-opacity: 0.43"
             />
             <stop
               offset="0.32"
-              style="stop-color: #00b7e8; stop-opacity: 0.3"
+              style="stop-color: #d8b010; stop-opacity: 0.3"
             />
             <stop
               offset="0.42"
-              style="stop-color: #00b2e6; stop-opacity: 0.19"
+              style="stop-color: #d6ae10; stop-opacity: 0.19"
             />
             <stop
               offset="0.52"
-              style="stop-color: #00ade5; stop-opacity: 0.1"
+              style="stop-color: #d5ae10; stop-opacity: 0.1"
             />
             <stop
               offset="0.63"
-              style="stop-color: #00aae4; stop-opacity: 4e-2"
+              style="stop-color: #d4ad10; stop-opacity: 4e-2"
             />
             <stop
               offset="0.77"
-              style="stop-color: #00a9e3; stop-opacity: 1e-2"
+              style="stop-color: #d3ac10; stop-opacity: 1e-2"
             />
-            <stop offset="1" style="stop-color: #00a8e3; stop-opacity: 0" />
+            <stop offset="1" style="stop-color: #d3ac10; stop-opacity: 0" />
           </linearGradient>
           <path
             clip-rule="evenodd"
@@ -2538,8 +2567,8 @@
               y1="1430.0212"
               y2="1429.8705"
             >
-              <stop offset="0" style="stop-color: #1b0f9c; stop-opacity: 0" />
-              <stop offset="1" style="stop-color: #060071" />
+              <stop offset="0" style="stop-color: #ba6e12; stop-opacity: 0" />
+              <stop offset="1" style="stop-color: #ba6e12" />
             </linearGradient>
             <polygon
               clip-rule="evenodd"
@@ -2561,7 +2590,7 @@
                 y2="1422.4436"
               >
                 <stop offset="0" style="stop-color: #fff" />
-                <stop offset="1" style="stop-color: #00a2ff" />
+                <stop offset="1" style="stop-color: #edc112" />
               </linearGradient>
               <polygon
                 id="path-108"
@@ -2590,8 +2619,8 @@
             y1="1431.3086"
             y2="1429.8619"
           >
-            <stop offset="0" style="stop-color: #7bedff" />
-            <stop offset="1" style="stop-color: #060071" />
+            <stop offset="0" style="stop-color: #f6df84" />
+            <stop offset="1" style="stop-color: #ba6e12" />
           </linearGradient>
           <polygon
             clip-rule="evenodd"
@@ -2687,12 +2716,12 @@
                     y1="1319.3007"
                     y2="1321.1917"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_61_)"
@@ -2743,8 +2772,8 @@
                   y1="1321.2085"
                   y2="1320.8575"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_62_)"
@@ -2763,12 +2792,12 @@
                     y1="1313.6917"
                     y2="1315.5826"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_63_)"
@@ -2819,8 +2848,8 @@
                   y1="1315.5994"
                   y2="1315.2484"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_64_)"
@@ -2916,12 +2945,12 @@
                     y1="1308.2231"
                     y2="1310.1143"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_67_)"
@@ -2972,8 +3001,8 @@
                   y1="1310.131"
                   y2="1309.78"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_68_)"
@@ -2992,12 +3021,12 @@
                     y1="1302.6141"
                     y2="1304.5051"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_69_)"
@@ -3048,8 +3077,8 @@
                   y1="1304.5219"
                   y2="1304.1709"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_70_)"
@@ -3145,12 +3174,12 @@
                     y1="1297.1456"
                     y2="1299.0367"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_73_)"
@@ -3201,8 +3230,8 @@
                   y1="1299.0535"
                   y2="1298.7025"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_74_)"
@@ -3221,12 +3250,12 @@
                     y1="1291.5366"
                     y2="1293.4276"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_75_)"
@@ -3277,8 +3306,8 @@
                   y1="1293.4443"
                   y2="1293.0934"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_76_)"
@@ -3298,8 +3327,8 @@
             y1="1431.6647"
             y2="1430.4622"
           >
-            <stop offset="0" style="stop-color: #7bedff" />
-            <stop offset="1" style="stop-color: #060071" />
+            <stop offset="0" style="stop-color: #f6df84" />
+            <stop offset="1" style="stop-color: #ba6e12" />
           </linearGradient>
           <polygon
             clip-rule="evenodd"
@@ -3389,12 +3418,12 @@
                     y1="1319.3007"
                     y2="1321.1917"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_80_)"
@@ -3434,8 +3463,8 @@
                   y1="1321.2085"
                   y2="1320.8575"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_81_)"
@@ -3454,12 +3483,12 @@
                     y1="1313.6917"
                     y2="1315.5826"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_82_)"
@@ -3499,8 +3528,8 @@
                   y1="1315.5994"
                   y2="1315.2484"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_83_)"
@@ -3585,12 +3614,12 @@
                     y1="1308.2231"
                     y2="1310.1143"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_86_)"
@@ -3630,8 +3659,8 @@
                   y1="1310.131"
                   y2="1309.78"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_87_)"
@@ -3650,12 +3679,12 @@
                     y1="1302.6141"
                     y2="1304.5051"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_88_)"
@@ -3695,8 +3724,8 @@
                   y1="1304.5219"
                   y2="1304.1709"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_89_)"
@@ -3781,12 +3810,12 @@
                     y1="1297.1456"
                     y2="1299.0367"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_92_)"
@@ -3826,8 +3855,8 @@
                   y1="1299.0535"
                   y2="1298.7025"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_93_)"
@@ -3846,12 +3875,12 @@
                     y1="1291.5366"
                     y2="1293.4276"
                   >
-                    <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-                    <stop offset="0.2823" style="stop-color: #285ecb" />
-                    <stop offset="0.538" style="stop-color: #3aa3dd" />
-                    <stop offset="0.75" style="stop-color: #47d5eb" />
-                    <stop offset="0.9102" style="stop-color: #4ff4f3" />
-                    <stop offset="1" style="stop-color: #52fff6" />
+                    <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+                    <stop offset="0.2823" style="stop-color: #e2b811" />
+                    <stop offset="0.538" style="stop-color: #efc728" />
+                    <stop offset="0.75" style="stop-color: #f1ce41" />
+                    <stop offset="0.9102" style="stop-color: #d7d370" />
+                    <stop offset="1" style="stop-color: #d9d678" />
                   </linearGradient>
                   <polygon
                     fill="url(#SVGID_94_)"
@@ -3891,8 +3920,8 @@
                   y1="1293.4443"
                   y2="1293.0934"
                 >
-                  <stop offset="0" style="stop-color: #00c4ba" />
-                  <stop offset="1" style="stop-color: #52fff6" />
+                  <stop offset="0" style="stop-color: #d7d370" />
+                  <stop offset="1" style="stop-color: #d9d678" />
                 </linearGradient>
                 <polygon
                   fill="url(#SVGID_95_)"
@@ -3920,7 +3949,7 @@
             >
               <stop
                 offset="0"
-                style="stop-color: #5cd7e8; stop-opacity: 0.1893"
+                style="stop-color: #f2d252; stop-opacity: 0.1893"
               />
               <stop offset="1" style="stop-color: #fff" />
             </linearGradient>
@@ -3976,7 +4005,7 @@
             >
               <stop
                 offset="0"
-                style="stop-color: #5cd7e8; stop-opacity: 0.1893"
+                style="stop-color: #f2d252; stop-opacity: 0.1893"
               />
               <stop offset="1" style="stop-color: #fff" />
             </linearGradient>
@@ -4033,7 +4062,7 @@
           y2="1747.1095"
         >
           <stop offset="0" style="stop-color: #fff" />
-          <stop offset="1" style="stop-color: #00c6fb" />
+          <stop offset="1" style="stop-color: #e9be12" />
         </linearGradient>
         <path
           d="M134.9,0l7.1,4l-2.2,3.6l-3,1.2l-1.4,92c0,3-1.8,6.5-4,8l-0.2,0.1L10,178.8l0,0l-1.2,7.5l-7-3.9
@@ -4051,8 +4080,8 @@
           y1="1746.7982"
           y2="1746.3707"
         >
-          <stop offset="0" style="stop-color: #276cfc" />
-          <stop offset="1" style="stop-color: #84ffd1" />
+          <stop offset="0" style="stop-color: #f0ca33" />
+          <stop offset="1" style="stop-color: #e4e29f" />
         </linearGradient>
         <path
           clip-rule="evenodd"
@@ -4123,12 +4152,12 @@
           y1="1729.8617"
           y2="1731.0027"
         >
-          <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-          <stop offset="0.2823" style="stop-color: #285ecb" />
-          <stop offset="0.538" style="stop-color: #3aa3dd" />
-          <stop offset="0.75" style="stop-color: #47d5eb" />
-          <stop offset="0.9102" style="stop-color: #4ff4f3" />
-          <stop offset="1" style="stop-color: #52fff6" />
+          <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+          <stop offset="0.2823" style="stop-color: #e2b811" />
+          <stop offset="0.538" style="stop-color: #efc728" />
+          <stop offset="0.75" style="stop-color: #f1ce41" />
+          <stop offset="0.9102" style="stop-color: #d7d370" />
+          <stop offset="1" style="stop-color: #d9d678" />
         </linearGradient>
 
         <linearGradient
@@ -4225,7 +4254,7 @@
               d="
 					M5.4,0.8c3,1.9,5.4,6.4,5.4,10.1c0,3.7-2.4,5.2-5.4,3.4C2.4,12.4,0,7.9,0,4.2C0,0.4,2.4-1.1,5.4,0.8"
               enable-background="new    "
-              fill="#AA69FF"
+              fill="#f2ba76"
               fill-rule="evenodd"
               opacity="0.6"
             />
@@ -4234,7 +4263,7 @@
               d="M9.7,10.7
 					c0,3.2-2,4.5-4.3,2.9C3,12,1.1,8.1,1.1,4.9c0-3.2,2-4.5,4.3-2.9S9.7,7.5,9.7,10.7z"
               enable-background="new    "
-              fill="#7005FF"
+              fill="#e88c1c"
               fill-rule="evenodd"
               opacity="0.6"
             />
@@ -4257,12 +4286,12 @@
           y1="1734.5078"
           y2="1734.9935"
         >
-          <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-          <stop offset="0.2823" style="stop-color: #285ecb" />
-          <stop offset="0.538" style="stop-color: #3aa3dd" />
-          <stop offset="0.75" style="stop-color: #47d5eb" />
-          <stop offset="0.9102" style="stop-color: #4ff4f3" />
-          <stop offset="1" style="stop-color: #52fff6" />
+          <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+          <stop offset="0.2823" style="stop-color: #e2b811" />
+          <stop offset="0.538" style="stop-color: #efc728" />
+          <stop offset="0.75" style="stop-color: #f1ce41" />
+          <stop offset="0.9102" style="stop-color: #d7d370" />
+          <stop offset="1" style="stop-color: #d9d678" />
         </linearGradient>
 
         <linearGradient
@@ -4297,12 +4326,12 @@
           y1="1737.4004"
           y2="1738.1447"
         >
-          <stop offset="5.400000e-03" style="stop-color: #130cb5" />
-          <stop offset="0.2823" style="stop-color: #285ecb" />
-          <stop offset="0.538" style="stop-color: #3aa3dd" />
-          <stop offset="0.75" style="stop-color: #47d5eb" />
-          <stop offset="0.9102" style="stop-color: #4ff4f3" />
-          <stop offset="1" style="stop-color: #52fff6" />
+          <stop offset="5.400000e-03" style="stop-color: #ba6e12" />
+          <stop offset="0.2823" style="stop-color: #e2b811" />
+          <stop offset="0.538" style="stop-color: #efc728" />
+          <stop offset="0.75" style="stop-color: #f1ce41" />
+          <stop offset="0.9102" style="stop-color: #d7d370" />
+          <stop offset="1" style="stop-color: #d9d678" />
         </linearGradient>
 
         <linearGradient
@@ -4341,9 +4370,9 @@
                 y1="1654.3923"
                 y2="1654.5082"
               >
-                <stop offset="0" style="stop-color: #544cde" />
-                <stop offset="0.5868" style="stop-color: #a7a0ff" />
-                <stop offset="1" style="stop-color: #7b74ff" />
+                <stop offset="0" style="stop-color: #ec9e3e" />
+                <stop offset="0.5868" style="stop-color: #f6d3a9" />
+                <stop offset="1" style="stop-color: #f2bf81" />
               </linearGradient>
               <path
                 clip-rule="evenodd"
@@ -4401,10 +4430,10 @@
               y1="1649.8344"
               y2="1650.4406"
             >
-              <stop offset="0" style="stop-color: #4f3eff" />
-              <stop offset="0.4096" style="stop-color: #9c92ff" />
-              <stop offset="0.7979" style="stop-color: #2519da" />
-              <stop offset="1" style="stop-color: #0d04ab" />
+              <stop offset="0" style="stop-color: #eea64f" />
+              <stop offset="0.4096" style="stop-color: #f5cd9c" />
+              <stop offset="0.7979" style="stop-color: #dd8316" />
+              <stop offset="1" style="stop-color: #ba6e12" />
             </linearGradient>
 
             <path
@@ -4463,10 +4492,10 @@
               y1="1649.8344"
               y2="1650.4406"
             >
-              <stop offset="0" style="stop-color: #4f3eff" />
-              <stop offset="0.4096" style="stop-color: #9c92ff" />
-              <stop offset="0.7979" style="stop-color: #2519da" />
-              <stop offset="1" style="stop-color: #0d04ab" />
+              <stop offset="0" style="stop-color: #eea64f" />
+              <stop offset="0.4096" style="stop-color: #f5cd9c" />
+              <stop offset="0.7979" style="stop-color: #dd8316" />
+              <stop offset="1" style="stop-color: #ba6e12" />
             </linearGradient>
 
             <path
@@ -4524,10 +4553,10 @@
               y1="1649.8344"
               y2="1650.4406"
             >
-              <stop offset="0" style="stop-color: #4f3eff" />
-              <stop offset="0.4096" style="stop-color: #9c92ff" />
-              <stop offset="0.7979" style="stop-color: #2519da" />
-              <stop offset="1" style="stop-color: #0d04ab" />
+              <stop offset="0" style="stop-color: #eea64f" />
+              <stop offset="0.4096" style="stop-color: #f5cd9c" />
+              <stop offset="0.7979" style="stop-color: #dd8316" />
+              <stop offset="1" style="stop-color: #ba6e12" />
             </linearGradient>
             <path
               clip-rule="evenodd"
@@ -4548,8 +4577,8 @@
             y1="1654.2188"
             y2="1652.9083"
           >
-            <stop offset="0" style="stop-color: #5e51e4" />
-            <stop offset="1" style="stop-color: #060071" />
+            <stop offset="0" style="stop-color: #eda348" />
+            <stop offset="1" style="stop-color: #ba6e12" />
           </linearGradient>
           <path
             id="Fill-1备份"

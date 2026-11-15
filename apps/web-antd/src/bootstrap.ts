@@ -20,6 +20,7 @@ import { router } from './router';
 import { initPopupContext } from './utils/context';
 
 import './styles/stock.css';
+import './styles/ui.css';
 
 async function bootstrap(namespace: string) {
   // 初始化组件适配器
