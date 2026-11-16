@@ -17,5 +17,9 @@
     "todoReminders": "To-dos & Reminders",
     "customDashboard": "Custom Dashboard",
     "workspace": "Workspace"
+  },
+  "accounts": {
+    "title": "Accounts & Capital",
+    "brokerAccounts": "Broker Accounts"
   }
 }

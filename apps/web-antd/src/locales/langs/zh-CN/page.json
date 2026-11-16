@@ -17,5 +17,9 @@
     "todoReminders": "待办提醒",
     "customDashboard": "自定义看板",
     "workspace": "工作台"
+  },
+  "accounts": {
+    "title": "账户与资金",
+    "brokerAccounts": "券商账户"
   }
 }
