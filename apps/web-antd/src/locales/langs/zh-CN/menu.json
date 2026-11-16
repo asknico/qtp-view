@@ -18,10 +18,6 @@
     "oss": "文件管理",
     "client": "客户端管理"
   },
-  "tenant": {
-    "root": "租户管理",
-    "package": "套餐管理"
-  },
   "monitor": {
     "root": "系统监控",
     "online": "在线用户",

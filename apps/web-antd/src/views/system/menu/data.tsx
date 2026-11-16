@@ -68,6 +68,7 @@ export const columns: VxeGridProps['columns'] = [
     title: '菜单名称',
     field: 'menuName',
     treeNode: true,
+    headerAlign: 'center',
     width: 200,
     // 层级更明显显示
     align: 'left',

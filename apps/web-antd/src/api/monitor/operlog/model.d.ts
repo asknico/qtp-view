@@ -1,6 +1,5 @@
 export interface OperationLog {
   operId: string;
-  tenantId: string;
   title: string;
   businessType: string;
   businessTypes?: any;

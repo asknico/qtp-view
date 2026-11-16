@@ -47,7 +47,6 @@ export interface Role {
 
 export interface User {
   userId: string;
-  tenantId: string;
   deptId: number;
   userName: string;
   nickName: string;

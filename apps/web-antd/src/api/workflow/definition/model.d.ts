@@ -2,7 +2,6 @@ export interface ProcessDefinition {
   id: string;
   createTime: string;
   updateTime: string;
-  tenantId: string;
   delFlag: string;
   flowCode: string;
   flowName: string;

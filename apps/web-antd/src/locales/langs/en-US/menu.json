@@ -18,10 +18,6 @@
     "oss": "File",
     "client": "Client"
   },
-  "tenant": {
-    "root": "Tenant",
-    "package": "Package"
-  },
   "monitor": {
     "root": "System Monitoring",
     "online": "Online Users",

@@ -53,7 +53,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-  submit: [{ code: string; phoneNumber: string; tenantId: string }];
+  submit: [{ code: string; phoneNumber: string }];
 }>();
 
 const router = useRouter();
@@ -74,7 +74,6 @@ async function handleSubmit() {
   const values = await formApi.getValues();
   if (valid) {
     emit('submit', {
-      tenantId: values?.tenantId,
       code: values?.code,
       phoneNumber: values?.phoneNumber,
     });

@@ -11,6 +11,15 @@
   "dashboard": {
     "title": "驾驶舱",
     "assetOverview": "资产总览",
+    "todayOverview": "今日速览",
+    "marketOverview": "市场概览",
+    "goalsProgress": "目标进度",
+    "todoReminders": "待办提醒",
+    "customDashboard": "自定义看板",
     "workspace": "工作台"
+  },
+  "accounts": {
+    "title": "账户与资金",
+    "brokerAccounts": "券商账户"
   }
 }

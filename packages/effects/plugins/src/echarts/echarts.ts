@@ -5,11 +5,16 @@ import {
   MapChart,
   PieChart,
   RadarChart,
+  ScatterChart,
+  TreemapChart,
 } from 'echarts/charts';
 import {
   DatasetComponent,
   GridComponent,
   LegendComponent,
+  MarkAreaComponent,
+  MarkLineComponent,
+  MarkPointComponent,
   TitleComponent,
   ToolboxComponent,
   TooltipComponent,
@@ -34,6 +39,8 @@ echarts.use([
   TransformComponent,
   BarChart,
   LineChart,
+  ScatterChart,
+  TreemapChart,
   LabelLayout,
   LegacyGridContainLabel,
   UniversalTransition,
@@ -43,6 +50,9 @@ echarts.use([
   GaugeChart,
   VisualMapComponent,
   MapChart,
+  MarkLineComponent,
+  MarkAreaComponent,
+  MarkPointComponent,
 ]);
 export type { ECOption } from './types';
 

@@ -34,6 +34,8 @@ export const columns: VxeGridProps['columns'] = [
     title: '主键',
     field: 'id',
     treeNode: true,
+    align: 'left',
+    headerAlign: 'center',
   },
   {
     title: '父id',

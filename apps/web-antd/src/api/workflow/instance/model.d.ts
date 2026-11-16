@@ -1,10 +1,7 @@
-export {};
-
 export interface Flow {
   id: string;
   createTime: string;
   updateTime: string;
-  tenantId: string;
   delFlag: string;
   definitionId: string;
   flowName?: any;

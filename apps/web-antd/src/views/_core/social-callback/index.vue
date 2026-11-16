@@ -4,7 +4,7 @@ import type { AuthApi } from '#/api';
 import { onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import { DEFAULT_TENANT_ID, LOGIN_PATH } from '@vben/constants';
+import { LOGIN_PATH } from '@vben/constants';
 import { preferences } from '@vben/preferences';
 import { useAccessStore } from '@vben/stores';
 import { cn } from '@vben/utils';
@@ -23,9 +23,6 @@ const state = route.query.state as string;
 const stateJson = JSON.parse(atob(state));
 // 来源
 const source = route.query.source as string;
-// 租户ID
-const defaultTenantId = DEFAULT_TENANT_ID;
-const tenantId = (stateJson.tenantId as string) ?? defaultTenantId;
 const domain = stateJson.domain as string;
 
 const accessStore = useAccessStore();
@@ -57,7 +54,6 @@ onMounted(async () => {
       socialCode: code,
       socialState: state,
       source,
-      tenantId,
     };
     // 没有token为登录 有token是授权
     if (accessStore.accessToken) {

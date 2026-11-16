@@ -1,0 +1,145 @@
+/**
+ * 股票业务设计 token
+ * ---------------------------------------------------------------------------
+ * 为什么需要这个文件：
+ * 主题里的 colorSuccess / colorDestructive 属于「操作语义」（成功、危险），
+ * 而 A 股「涨红跌绿」属于「数据语义」。两者共用同一组颜色会导致
+ * 「删除按钮是红的，盈利数字也是红的」这种语义打架，
+ * 因此涨跌色必须独立成 token，不与 antd 的语义色复用。
+ *
+ * 命名遵循项目 design-tokens 规范：变量存 HSL 三元组，消费时用 hsl(var(--x))
+ *
+ * 使用方式：
+ *   <span class="stock-up">+2.35%</span>
+ *   <span class="stock-num stock-down">-1.28%</span>
+ */
+
+:root {
+  /* ---- 涨跌三态 ---- */
+
+  /* 涨：不用 antd 的 #FF4D4F，饱和度过高，满屏数字长时间盯盘会累 */
+  --stock-up: 358 74% 53%; /* #E02E34 */
+
+  /* 跌：同花顺同款绿 #137200（hsl 110 100% 22.35%，截图取色），
+     纯绿相、极深，是国内行情软件用户最熟悉的跌色 */
+  --stock-down: 110 100% 22.35%; /* #137200 */
+  --stock-flat: 0 0% 55%; /* #8C8C8C */
+
+  /* ---- 涨跌浅底（用于单元格/角标背景） ---- */
+  --stock-up-bg: hsl(358deg 74% 53% / 8%);
+  --stock-down-bg: hsl(110deg 100% 22.35% / 8%);
+
+  /* ---- 图表色板（均线等多序列场景，K线仍严格用涨跌色） ---- */
+  --chart-1: 211 85% 45%; /* #116FD4 主蓝 */
+  --chart-2: 250 100% 69%; /* #7B61FF 紫 */
+  --chart-3: 180 82% 41%; /* #13BEBE 青 */
+  --chart-4: 32 95% 53%; /* #F98F15 橙 */
+  --chart-5: 328 84% 55%; /* #ED2C93 粉 */
+  --chart-6: 25 56% 40%; /* #9F5C2D 棕 */
+  --chart-7: 210 24% 48%; /* #5D7A98 灰蓝 */
+  --chart-8: 79 96% 36%; /* #7CB404 橄榄 */
+}
+
+.dark {
+  /* 深色下需要提亮，否则在深底上发闷 */
+  --stock-up: 0 100% 71%; /* #FF6B6B */
+  --stock-down: 110 80% 42%; /* #32C115 同花顺绿提亮 */
+  --stock-flat: 0 0% 65%; /* #A6A6A6 */
+  --stock-up-bg: hsl(0deg 100% 71% / 12%);
+  --stock-down-bg: hsl(110deg 80% 42% / 12%);
+  --chart-1: 211 85% 58%;
+  --chart-2: 250 100% 76%;
+  --chart-3: 180 70% 50%;
+  --chart-4: 32 95% 60%;
+  --chart-5: 328 84% 63%;
+  --chart-6: 25 56% 52%;
+  --chart-7: 210 24% 62%;
+  --chart-8: 79 80% 48%;
+}
+
+/* ===========================================================================
+   语义工具类
+   =========================================================================== */
+
+/* 涨跌文字色 */
+.stock-up {
+  color: hsl(var(--stock-up));
+}
+
+.stock-down {
+  color: hsl(var(--stock-down));
+}
+
+.stock-flat {
+  color: hsl(var(--stock-flat));
+}
+
+/* 涨跌浅底（角标、涨跌幅胶囊） */
+.stock-up-bg {
+  color: hsl(var(--stock-up));
+  background-color: var(--stock-up-bg);
+}
+
+.stock-down-bg {
+  color: hsl(var(--stock-down));
+  background-color: var(--stock-down-bg);
+}
+
+/**
+ * 数字排版：等宽数字 + 右对齐
+ * 价格、金额、涨跌幅必须用等宽数字，否则数字刷新时列宽会跳动。
+ * 注意 vxe-table 内部已默认 tabular-nums，但 KPI 卡片、详情页等
+ * 非表格场景仍需手动加这个类。
+ */
+.stock-num {
+  font-feature-settings: 'tnum';
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* 强平/风险提示等需要红色但又不是「涨」的语义，单独命名避免误用涨色 */
+.stock-risk {
+  color: hsl(var(--destructive));
+}
+
+/* ===========================================================================
+   vxe-table 主题适配
+   ---------------------------------------------------------------------------
+   vben 在 packages/effects/plugins/src/vxe-table/style.css 里已用
+   `:root .vxe-grid` 定义过一轮变量（特异性 0,2,0）。这里选择器重复写一次
+   类名（:root .vxe-grid.vxe-grid → 0,3,0）是为了稳定胜出，不依赖打包后的
+   CSS 注入顺序——否则不同构建产物下表现可能不一致。
+   =========================================================================== */
+
+:root .vxe-grid.vxe-grid {
+  /* 行 hover：带主色倾向，比纯灰更明确地提示「当前指向哪一行」 */
+  --vxe-ui-table-row-hover-background-color: hsl(var(--primary) / 6%);
+
+  /* 选中/当前行：主色 10%，与 hover 拉开层级 */
+  --vxe-ui-table-row-current-background-color: hsl(var(--primary) / 10%);
+  --vxe-ui-table-row-hover-current-background-color: hsl(var(--primary) / 14%);
+
+  /* 勾选行：比当前行略浅，避免勾选后整行过重 */
+  --vxe-ui-table-row-checkbox-checked-background-color: hsl(
+    var(--primary) / 8%
+  );
+  --vxe-ui-table-row-hover-checkbox-checked-background-color: hsl(
+    var(--primary) / 12%
+  );
+
+  /* 表头保持中性浅灰，不用主色底——数据密集场景主色表头会抢数字的注意力 */
+  --vxe-ui-table-header-background-color: hsl(0deg 0% 98.5%);
+}
+
+.dark .vxe-grid.vxe-grid {
+  --vxe-ui-table-row-hover-background-color: hsl(var(--primary) / 10%);
+  --vxe-ui-table-row-current-background-color: hsl(var(--primary) / 16%);
+  --vxe-ui-table-row-hover-current-background-color: hsl(var(--primary) / 20%);
+  --vxe-ui-table-row-checkbox-checked-background-color: hsl(
+    var(--primary) / 13%
+  );
+  --vxe-ui-table-row-hover-checkbox-checked-background-color: hsl(
+    var(--primary) / 17%
+  );
+  --vxe-ui-table-header-background-color: hsl(var(--accent) / 50%);
+}

@@ -1,0 +1,19 @@
+/**
+ * 应用级 UI 微调（全局，仅 light 主题）
+ * ---------------------------------------------------------------------------
+ * 黑色主按钮边框统一：
+ *   本主题 colorPrimary 为近黑（rgb(24,24,27)），solid 主按钮默认边框透明，
+ *   hover/active 时为近黑描边，和相邻浅色按钮放在一起会显得更"大"更重。
+ *   这里保持黑色填充与白色文字不动，只把边框色钉成与浅色按钮相同的 #E4E4E7
+ *   （antd 默认按钮的 --ant-color-border，light 主题下 rgb(228,228,231)）。
+ *
+ *   - 只匹配 color-primary + variant-solid，danger 红、ghost、dashed 均不受影响
+ *   - 深色主题不动（.dark 下浅灰边框会发刺眼）
+ */
+
+html:not(.dark) .ant-btn.ant-btn-color-primary.ant-btn-variant-solid,
+html:not(.dark) .ant-btn.ant-btn-color-primary.ant-btn-variant-solid:hover,
+html:not(.dark) .ant-btn.ant-btn-color-primary.ant-btn-variant-solid:focus-visible,
+html:not(.dark) .ant-btn.ant-btn-color-primary.ant-btn-variant-solid:active {
+  border-color: #e4e4e7 !important;
+}
