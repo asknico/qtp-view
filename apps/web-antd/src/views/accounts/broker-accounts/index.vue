@@ -3,6 +3,8 @@ import type { AccountOverview } from './data/types';
 
 import { computed, onMounted, ref } from 'vue';
 
+import { useVbenModal } from '@vben/common-ui';
+
 import { Button } from 'antdv-next';
 
 import CardShell from '../_shared/card-shell.vue';
@@ -10,7 +12,9 @@ import { fetchBrokerAccountOverview } from './api/broker-accounts';
 import AccountDetailCard from './components/account-detail-card.vue';
 import AccountKpiRow from './components/account-kpi-row.vue';
 import AccountOverviewCard from './components/account-overview-card.vue';
+import CreateAccountModal from './components/create-account-modal.vue';
 import FeeRateCard from './components/fee-rate-card.vue';
+import SyncAccountModal from './components/sync-account-modal.vue';
 import { pageDescription } from './data/demo';
 import {
   activeAccountsOf,
@@ -33,10 +37,20 @@ const overview = ref<AccountOverview | null>(null);
 const selectedId = ref('');
 
 onMounted(async () => {
+  await reload();
+});
+
+/** 拉取/刷新页面数据（新建、同步完成后都会触发） */
+async function reload() {
   const data = await fetchBrokerAccountOverview();
   overview.value = data;
-  selectedId.value = activeAccountsOf(data.accounts)[0]?.id ?? '';
-});
+  if (
+    !selectedId.value ||
+    !data.accounts.some((a) => a.id === selectedId.value)
+  ) {
+    selectedId.value = activeAccountsOf(data.accounts)[0]?.id ?? '';
+  }
+}
 
 const activeAccounts = computed(() =>
   overview.value ? activeAccountsOf(overview.value.accounts) : [],
@@ -73,12 +87,21 @@ function onSelect(id: string) {
   selectedId.value = id;
 }
 
+/** 两个写操作弹窗（对齐设计稿 FORM·2.1-A / SYNC·2.1-B） */
+const [CreateModal, createModalApi] = useVbenModal({
+  connectedComponent: CreateAccountModal,
+});
+const [SyncModal, syncModalApi] = useVbenModal({
+  connectedComponent: SyncAccountModal,
+});
+
 function onDemoAction(name: string) {
   window.message.info(`【${name}】为演示入口，接入后端后开放`);
 }
 
 function onCreate() {
-  onDemoAction('新建账户');
+  createModalApi.setData({});
+  createModalApi.open();
 }
 
 function onEdit() {
@@ -86,9 +109,14 @@ function onEdit() {
 }
 
 function onSync() {
-  window.message.success(
-    `已同步 ${activeAccounts.value.length} 个账户（${overview.value?.syncedAt ?? ''}）`,
-  );
+  syncModalApi.setData({
+    accounts: activeAccounts.value.map((a) => ({
+      id: a.id,
+      alias: a.alias,
+      broker: a.broker,
+    })),
+  });
+  syncModalApi.open();
 }
 </script>
 
@@ -103,8 +131,16 @@ function onSync() {
         <span v-if="overview" class="ba-page__sync">
           <i class="ba-page__dot"></i>{{ overview.syncedAt }}
         </span>
-        <Button @click="onSync">⟳ 同步账户</Button>
-        <Button type="primary" @click="onCreate">＋ 新建账户</Button>
+        <Button v-access:code="['acc:sync:exec']" @click="onSync">
+⟳ 同步账户
+</Button>
+        <Button
+          v-access:code="['acc:brokerAccount:add']"
+          type="primary"
+          @click="onCreate"
+          >
+＋ 新建账户
+</Button>
       </div>
     </header>
 
@@ -124,7 +160,14 @@ function onSync() {
         <template #title>账户详情</template>
         <template #sub>{{ currentAccount?.id ?? '—' }}</template>
         <template #actions>
-          <button class="ba-link" type="button" @click="onEdit">编辑</button>
+          <button
+            v-access:code="['acc:brokerAccount:edit']"
+            class="ba-link"
+            type="button"
+            @click="onEdit"
+          >
+            编辑
+          </button>
         </template>
         <AccountDetailCard :account="currentAccount" />
       </CardShell>
@@ -141,6 +184,10 @@ function onSync() {
         />
       </CardShell>
     </div>
+
+    <!-- 新建账户 / 同步账户弹窗 -->
+    <CreateModal @reload="reload" />
+    <SyncModal @reload="reload" />
   </div>
 </template>
 
