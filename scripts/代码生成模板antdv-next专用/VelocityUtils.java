@@ -1,17 +1,17 @@
-package org.dromara.generator.util;
+package com.minscope.generator.util;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Dict;
 import cn.hutool.core.util.ObjectUtil;
-import org.dromara.common.mybatis.enums.DataBaseType;
-import org.dromara.generator.constant.GenConstants;
-import org.dromara.common.core.utils.DateUtils;
-import org.dromara.common.core.utils.StringUtils;
-import org.dromara.common.json.utils.JsonUtils;
-import org.dromara.common.mybatis.helper.DataBaseHelper;
-import org.dromara.generator.domain.GenTable;
-import org.dromara.generator.domain.GenTableColumn;
+import com.minscope.common.mybatis.enums.DataBaseType;
+import com.minscope.generator.constant.GenConstants;
+import com.minscope.common.core.utils.DateUtils;
+import com.minscope.common.core.utils.StringUtils;
+import com.minscope.common.json.utils.JsonUtils;
+import com.minscope.common.mybatis.helper.DataBaseHelper;
+import com.minscope.generator.domain.GenTable;
+import com.minscope.generator.domain.GenTableColumn;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.apache.velocity.VelocityContext;
@@ -289,8 +289,8 @@ public class VelocityUtils {
             } else if (!column.isSuperColumn() && GenConstants.TYPE_BIGDECIMAL.equals(column.getJavaType())) {
                 importList.add("java.math.BigDecimal");
             } else if (!column.isSuperColumn() && "imageUpload".equals(column.getHtmlType())) {
-                importList.add("org.dromara.common.translation.annotation.Translation");
-                importList.add("org.dromara.common.translation.constant.TransConstant");
+                importList.add("com.minscope.common.translation.annotation.Translation");
+                importList.add("com.minscope.common.translation.constant.TransConstant");
             }
         }
         return importList;

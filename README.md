@@ -1,201 +1,170 @@
-[![license](https://img.shields.io/github/license/anncwb/vue-vben-admin.svg)](LICENSE)
+# QTP - 个人股票管理系统（前端）
 
-## 置顶说明
+> QTP（Quant Trade Platform）个人股票管理系统的 Web 前端。配套后端仓库 `qtp`。
 
-当前分支适配后端`v5的latest` 不适配v6
+| 组件/框架 | 版本 |
+| :-------- | :--- |
+| vben | 5.7.0 |
+| antdv-next | 1.3.0 |
+| vue | 3.5.13 |
+| node | >= 22.16.0 |
+| pnpm | >= 11.0.0 |
 
-当前分支适配后端`v5的latest` 不适配v6
+---
 
-当前分支适配后端`v5的latest` 不适配v6
+## 系统功能
 
-v6已经基于vben5.7版本完全重构(改为单仓项目) 不兼容当前框架 仓库地址 https://gitee.com/dapppp/bell-plus 目前进度开发中 不要用于新项目 底层可能大改
+### 1. 驾驶舱（dashboard）
 
-原`ant-design-vue`版本已经归档到`v1/ant-design-vue`分支 不再进行更新(当然你可以手动合并官方的更新)
+系统的核心入口，提供多个维度的股票资产视图：
 
-## 提示
+| 页面 | 路径 | 说明 |
+| :--- | :--- | :--- |
+| 资产总览 | `views/dashboard/asset-overview` | 总资产、持仓市值、收益曲线等资产全景 |
+| 今日概览 | `views/dashboard/today-overview` | 当日盈亏、成交、资金变动 |
+| 行情概览 | `views/dashboard/market-overview` | 指数/自选股行情速览 |
+| 目标进度 | `views/dashboard/goals-progress` | 投资目标与完成进度跟踪 |
+| 待办提醒 | `views/dashboard/todo-reminders` | 待办事项与重要节点提醒 |
+| 自定义看板 | `views/dashboard/custom-dashboard` | 可自行组合卡片的个性化看板 |
+| 工作台 | `views/dashboard/workspace` | 个人工作台，汇总常用信息与快捷入口 |
 
-最低需要使用`node版本>22.16.0` 否则会影响编辑器的格式化(需要安装oxc插件)
+### 2. 账户与资金 ACC（accounts）
 
-该分支使用[antdv-next](https://github.com/antdv-next/antdv-next)替代已经不维护的antd-design-vue
+业务核心模块，对应后端 `qtp-modules/qtp-acc`（包 `com.minscope.acc`）：
 
-该仓库使用vben最新版本v5开发
+| 页面 | 路径 | 说明 |
+| :--- | :--- | :--- |
+| 券商账户 | `views/accounts/broker-accounts` | 券商账户全生命周期管理 |
 
-v5版本采用分仓(包)目录结构, 具体开发路径为: `根目录/apps/web-antd`
+覆盖的后端领域模型：
 
-目前对应后端版本: **分布式5.6.0/微服务2.6.0**
+- **券商**（AccBroker）：券商基础信息维护
+- **券商账户**（AccBrokerAccount）：资金账号、状态、账户卡片
+- **股东账户**（AccShareholderAccount）：沪/深股东代码管理
+- **银行账户**（AccBankAccount）：三方存管银行卡
+- **存管渠道**（AccBrokerChannel）：券商-银行绑定关系
+- **费率**（AccBrokerFee）：佣金/印花税/过户费等费率配置
+- **融资融券额度**（AccMarginQuota）：两融额度跟踪
+- **资金流水**（AccCashFlow）：出入金与资金变动记录
+- **每日快照**（AccDailySnapshot）：账户每日资产快照（用于资产曲线）
+- **数据同步**（AccSync）：券商数据同步任务发起与结果查看
+- **权限**（AccAccountPermLog）：账户看板授权与权限变更日志
 
-## 简介
+### 3. 系统管理（system）
 
-基于 [vben5 & antdv-next](https://github.com/vbenjs/vue-vben-admin) 的 RuoYi-Vue-Plus 前端项目
+用户、角色、部门、岗位、菜单、字典、参数配置、通知公告、文件管理（OSS 及配置）、客户端管理。
 
-| 组件/框架  | 版本   |
-| :--------- | :----- |
-| vben       | 5.7.0  |
-| antdv-next | 1.3.0  |
-| vue        | 3.5.13 |
+### 4. 系统监控（monitor）
 
-对应后端项目: **(分布式 5.X 分支 微服务 2.分支)**
+在线用户、登录日志、操作日志、缓存监控、Spring Boot Admin 监控（iframe）。
 
-分布式 [RuoYi-Vue-Plus](https://gitee.com/dromara/RuoYi-Vue-Plus/tree/5.X/)
+### 5. 系统工具（tool）
 
-微服务 [RuoYi-Cloud-Plus](https://gitee.com/dromara/RuoYi-Cloud-Plus/tree/2.X/)
+代码生成（gen）：在线生成前后端代码。
 
-## 赞助商
+### 6. 工作流（workflow）
 
-- 万级算力服务 https://ku0.com/
+基于 warm-flow：流程定义、流程实例、待办/已办任务、流程分类、SpEL 表达式扩展。
 
-## 预览
+> `views/演示使用自行删除` 目录为框架自带演示页面，实际部署可整目录删除（需同步清理对应菜单）。
 
-admin 账号: admin admin123
+---
 
-[预览地址点这里](http://vben5.dapdap.top)
+## 目录结构
 
-服务器由以下群友赞助(以下排名不分前后)
+采用 monorepo（pnpm + turbo）分仓结构：
 
-依依-阿里/腾讯/华为云服务器高返, 疯狂的牛子Li, 四海升平(站长推荐https://ku0.com/), 疯狂的骡子Li, 疯狂的鸟哥Li疯狂的麦克斯, 消息必须回🤔, 群复读机(末初科技 mochu.tech), 大熊, 張Zcccccy, 等風來再離開, AI主理人
+```
+qtp-view/
+├── apps/
+│   └── web-antd/           # 主应用（开发都在这里）
+│       └── src/
+│           ├── api/        # 接口封装（core/system/monitor/tool/workflow）
+│           ├── router/     # 路由（静态路由 + 后端动态菜单）
+│           ├── store/      # Pinia 状态
+│           ├── views/      # 页面（dashboard/accounts/system/monitor/tool/workflow）
+│           └── styles/     # 全局样式（ui.css 存放主题级覆盖规则）
+├── packages/               # vben 公共包（@vben/*）
+├── internal/               # lint/构建配置
+└── scripts/                # 脚本（含后端代码生成模板 antdv-next 专用）
+```
 
-## WX Group
-
-演示站 - 微信群菜单
-
-## 文档
-
-[本框架文档 强烈建议阅读](https://dapdap.top/)
-
-[Vben V5 文档地址](https://doc.vben.pro/)
-
-[RuoYi-Plus 文档地址](https://plus-doc.dromara.org/#/)
-
-## 预览图
-
-![图片](https://github.com/imdap/ruoyi-plus-vben5/raw/main/scripts/preview/1.png) ![图片](https://github.com/imdap/ruoyi-plus-vben5/raw/main/scripts/preview/2.png) ![图片](https://github.com/imdap/ruoyi-plus-vben5/raw/main/scripts/preview/3.png) ![图片](https://github.com/imdap/ruoyi-plus-vben5/raw/main/scripts/preview/4.png) ![图片](https://github.com/imdap/ruoyi-plus-vben5/raw/main/scripts/preview/5.png) ![图片](https://github.com/imdap/ruoyi-plus-vben5/raw/main/scripts/preview/6.png) ![图片](https://github.com/imdap/ruoyi-plus-vben5/raw/main/scripts/preview/7.png) ![图片](https://github.com/imdap/ruoyi-plus-vben5/raw/main/scripts/preview/8.png) ![图片](https://github.com/imdap/ruoyi-plus-vben5/raw/main/scripts/preview/9.png)
+---
 
 ## 安装使用
 
-前置准备环境(只能用pnpm)
+### 环境要求
 
-```json
-"packageManager": "pnpm",
-"engines": {
-  "node": ">=22.16.0",
-  "pnpm": "latest"
-},
-```
+- Node.js >= 22.16.0（影响编辑器格式化，需安装 oxc 插件）
+- pnpm >= 11（只能用 pnpm，已通过 `preinstall` 强制）
 
-- 获取项目代码
+### 启动
 
 ```bash
-git clone https://github.com/imdap/ruoyi-plus-vben5.git
-```
-
-2. 安装依赖
-
-```bash
-cd ruoyi-plus-vben5
-
+# 安装依赖
 pnpm install
-```
 
-- 菜单图标替换
-
-参考 [菜单图标替换](https://dapdap.top/guide/quick-start.html#%E8%8F%9C%E5%8D%95%E5%9B%BE%E6%A0%87%E5%AF%BC%E5%85%A5)
-
-- 关于一些监控的地址配置(微服务版本可以跳过这一小节)
-
-使用[RuoYi-Vue-Plus](https://gitee.com/dromara/RuoYi-Vue-Plus/tree/5.X/)注意 `已经去除 admin/snailjob 的.env 配置` 可自行修改 有两种方式
-
-1. 修改源码`/views/monitor/admin` `views/monitor/snailjob`
-
-```html
-<!-- 修改地址 -->
-<template>
-  <iframe
-    class="size-full"
-    src="http://localhost:9090/admin/applications"
-  ></iframe>
-</template>
-```
-
-2. **推荐** 使用菜单自行配置 (跟 cloud 版本打开方式一致)
-
-![图片](https://github.com/imdap/ruoyi-plus-vben/raw/main/preview/菜单修改.png)
-
-使用内嵌 iframe 方式需要解决跨域问题 可参考[nginx.conf](https://gitee.com/dromara/RuoYi-Vue-Plus/blob/5.X/script/docker/nginx/conf/nginx.conf#LC87)配置
-
-- 修改.env.development 配置文件
-- **注意 RSA 公私钥一定要修改和后端匹配**
-- RSA 公私钥为两对 `前端请求加密-后端解密是一对` `后端响应加密 前端解密是一对`
-
-```properties
-# 端口号
-VITE_PORT=5666
-# 打包路径
-VITE_BASE=/
-# 是否开启 Nitro Mock服务，true 为开启，false 为关闭
-VITE_NITRO_MOCK=false
-# 是否打开 devtools，true 为打开，false 为关闭
-VITE_DEVTOOLS=false
-# 是否注入全局loading
-VITE_INJECT_APP_LOADING=true
-
-# 后台请求路径 具体在vite.config.mts配置代理
-VITE_GLOB_API_URL=/api
-# 全局加密开关(即开启了加解密功能才会生效 不是全部接口加密 需要和后端对应)
-VITE_GLOB_ENABLE_ENCRYPT=true
-# RSA公钥 请求加密使用 注意这两个是两对RSA公私钥 请求加密-后端解密是一对 响应解密-后端加密是一对
-VITE_GLOB_RSA_PUBLIC_KEY=
-# RSA私钥 响应解密使用 注意这两个是两对RSA公私钥 请求加密-后端解密是一对 响应解密-后端加密是一对
-VITE_GLOB_RSA_PRIVATE_KEY=
-# 客户端id
-VITE_GLOB_APP_CLIENT_ID=e5cd7e4891bf95d1d19206ce24a7b32e
-# 开启WEBSOCKET
-VITE_GLOB_WEBSOCKET_ENABLE=false
-```
-
-- 运行
-
-```bash
+# 启动开发服务（默认端口 5666）
 pnpm dev:antd
 ```
 
-4. 打包
+### 打包
 
 ```bash
+# 生产构建
 pnpm build:antd
+
+# 测试环境构建
+pnpm build:antd:test
 ```
 
-## 这是一个特性 而不是一个bug!
+### 后端对接
 
-1. 菜单管理可分配 但只有`admin`/`superadmin`角色能访问 其他角色访问会到403页面
-2. 租户相关菜单可分配 但只有`superadmin`角色能访问 其他角色访问会到403页面
-3. 分配的租户管理员无法修改自己的角色的菜单(即管理员角色的菜单) 防止自己把自己权限弄没了
+对应后端仓库：`qtp`（Spring Boot，包名 `com.minscope`）。
 
-## Git 贡献提交规范
+- 开发环境 API 走 vite 代理：`VITE_GLOB_API_URL=/api`（在 `vite.config.mts` 配置代理目标），生产环境为 `/prod-api`
+- **RSA 公私钥必须与后端匹配**：两对密钥——「前端请求加密-后端解密」一对，「后端响应加密-前端解密」一对，在 `.env.development` / `.env.production` 中配置
+- 客户端 ID：`VITE_GLOB_APP_CLIENT_ID` 需与后端 `sys_client` 表记录一致
+- 全局加密开关：`VITE_GLOB_ENABLE_ENCRYPT`
 
-参考 [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) 规范 ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
+关键环境变量（`apps/web-antd/.env.development`）：
 
-- `feat` 增加新功能
-- `fix` 修复问题/BUG
-- `style` 代码风格相关无影响运行结果的
-- `perf` 优化/性能提升
-- `refactor` 重构
-- `revert` 撤销修改
-- `test` 测试相关
-- `docs` 文档/注释
-- `chore` 依赖更新/脚手架配置修改等
-- `workflow` 工作流改进
-- `ci` 持续集成
-- `types` 类型定义文件更改
-- `wip` 开发中
+```properties
+VITE_PORT=5666
+VITE_APP_TITLE=QTP
+VITE_GLOB_API_URL=/api
+VITE_GLOB_ENABLE_ENCRYPT=true
+VITE_GLOB_RSA_PUBLIC_KEY=
+VITE_GLOB_RSA_PRIVATE_KEY=
+VITE_GLOB_APP_CLIENT_ID=e5cd7e4891bf95d1d19206ce24a7b32e
+```
 
-## 浏览器支持
+### 常用脚本
 
-最低适配应该为`Chrome 88+`以上浏览器 详见 [css - where](https://developer.mozilla.org/en-US/docs/Web/CSS/:where#browser_compatibility)
+| 命令 | 说明 |
+| :--- | :--- |
+| `pnpm dev:antd` | 启动 web-antd 开发服务 |
+| `pnpm build:antd` | 生产构建 |
+| `pnpm check:type` | TS 类型检查 |
+| `pnpm lint` / `pnpm lint:fix` | 代码检查 / 自动修复 |
+| `pnpm format` | 格式化 |
+| `pnpm test:unit` | 单元测试（vitest） |
 
-本地开发推荐使用`Chrome` 最新版本浏览器
+---
 
-支持现代浏览器，不支持 IE
+## Git 提交规范
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| :-: | :-: | :-: | :-: | :-: |
-| not support | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
+遵循 Angular 提交规范（`feat` / `fix` / `style` / `perf` / `refactor` / `revert` / `test` / `docs` / `chore` / `wip` 等），可使用 `pnpm commit` 交互式提交。
+
+---
+
+## 致谢
+
+- [vue-vben-admin v5](https://github.com/vbenjs/vue-vben-admin)
+- [ruoyi-plus-vben5](https://gitee.com/dapppp/ruoyi-plus-vben5)（本项目所基于的前端基座）
+- [RuoYi-Vue-Plus](https://gitee.com/dromara/RuoYi-Vue-Plus/tree/5.X/)
+- [antdv-next](https://github.com/antdv-next/antdv-next)
+
+## License
+
+[MIT](./LICENSE)

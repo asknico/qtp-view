@@ -1,11 +1,12 @@
 /**
  * 应用级 UI 微调（全局，仅 light 主题）
  * ---------------------------------------------------------------------------
- * 黑色主按钮边框统一：
- *   本主题 colorPrimary 为近黑（rgb(24,24,27)），solid 主按钮默认边框透明，
- *   hover/active 时为近黑描边，和相邻浅色按钮放在一起会显得更"大"更重。
- *   这里保持黑色填充与白色文字不动，只把边框色钉成与浅色按钮相同的 #E4E4E7
- *   （antd 默认按钮的 --ant-color-border，light 主题下 rgb(228,228,231)）。
+ * 黑色实底主按钮统一（参照【资产总览】的按钮规范）：
+ *   本主题 colorPrimary 为近黑（rgb(24,24,27)），antd 给 solid 主按钮渲染
+ *   0 2px 0 rgba(3,4,12,0.67) 的硬投影——深色底影超出按钮下边界，在搜索表单
+ *   /表格工具栏里看起来就像黑按钮边缘压住相邻按钮（浅色按钮投影 alpha 0.02
+ *   不可见，因此只有黑按钮"显大压边"）。
+ *   处理：去掉硬投影 + 边框钉成与浅色按钮相同的 #E4E4E7，视觉与浅色按钮等重。
  *
  *   - 只匹配 color-primary + variant-solid，danger 红、ghost、dashed 均不受影响
  *   - 深色主题不动（.dark 下浅灰边框会发刺眼）
@@ -16,4 +17,17 @@ html:not(.dark) .ant-btn.ant-btn-color-primary.ant-btn-variant-solid:hover,
 html:not(.dark) .ant-btn.ant-btn-color-primary.ant-btn-variant-solid:focus-visible,
 html:not(.dark) .ant-btn.ant-btn-color-primary.ant-btn-variant-solid:active {
   border-color: #e4e4e7 !important;
+  box-shadow: none !important;
+}
+
+/**
+ * filled Tag 前景色统一：
+ *   本主题 colorInfo 被映射为锌灰，color="processing" 的实底 Tag
+ *   渲染为 深灰底 rgb(86,87,92) + 近黑字 rgb(24,24,27)，几乎不可读。
+ *   实底背景本身够深，把前景钉成白色提高区分度（角色管理"权限字符"列等）。
+ *   - 只处理实底（filled）的 processing 标签，green/cyan/error 等浅底彩字不受影响
+ *   - 深色主题不动
+ */
+html:not(.dark) .ant-tag.ant-tag-filled.ant-tag-processing {
+  color: #fff;
 }

@@ -40,7 +40,7 @@ const { apiURL, clientId, enableEncrypt, rsaPublicKey, rsaPrivateKey } =
  *
  * 你可以使用Sm2Encryption来替换 后端也需要同步替换公私钥对
  *
- * 后端文件位置: ruoyi-common/ruoyi-common-encrypt/src/main/java/org/dromara/common/encrypt/filter/DecryptRequestBodyWrapper.java
+ * 后端文件位置: qtp-common/qtp-common-data/src/main/java/com/minscope/common/encrypt/filter/DecryptRequestBodyWrapper.java
  *
  * 注意前端sm-crypto库只能支持04开头的公钥! 否则加密会有问题 你可以使用前端的import { logSm2KeyPair } from '@vben/utils';方法来生成
  * 如果你生成的公钥开头不是04 那么不能正常加密
