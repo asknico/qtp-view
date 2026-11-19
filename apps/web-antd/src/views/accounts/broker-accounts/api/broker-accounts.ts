@@ -16,6 +16,7 @@ import { demoAccountOverview } from '../data/demo';
  */
 
 const API = {
+  brokerOptions: '/acc/brokerAccount/getBrokerOptions',
   cardList: '/acc/brokerAccount/getCardList',
   create: '/acc/brokerAccount/create',
   setFee: '/acc/brokerAccount/setFee',
@@ -50,7 +51,7 @@ export const SYNC_DATA_TYPES = [
   { label: '当日成交', value: 'TRADE' },
 ] as const;
 
-/** 券商默认费率预设（对齐 t_acc_broker.default_* 字段，新建时留空由后端带出） */
+/** 券商默认费率预设（后端未就绪时的兜底数据，字段口径对齐 t_acc_broker.default_*） */
 export const BROKER_PRESETS = [
   {
     code: 'HTZQ',
@@ -242,13 +243,81 @@ export async function fetchCardDetail(accountCode: string) {
   });
 }
 
+// ==================== 券商下拉选项（新建/编辑账户弹窗） ====================
+
+/** 后端券商选项（AccBrokerVo，BigDecimal 序列化为字符串，消费前经 toNum 收敛） */
+interface AccBrokerOption {
+  brokerCode: string;
+  brokerName: string;
+  shortName: null | string;
+  defaultCommissionRate: NumLike;
+  defaultMinCommission: NumLike;
+  defaultAllIn: NumLike;
+  remark: null | string;
+}
+
+/** 券商下拉/费率提示用的收敛后结构 */
+export interface BrokerOption {
+  /** 券商编码（提交值，如 HTZQ） */
+  code: string;
+  /** 显示名（简称，如 华泰证券） */
+  name: string;
+  /** 券商全称 */
+  fullName: string;
+  /** 默认佣金费率（万口径，如 1.2） */
+  rateWan: number;
+  /** 默认单笔最低佣金（元） */
+  minCommission: number;
+  /** 默认佣金口径：1=全佣 0=净佣 */
+  isAllIn: 0 | 1;
+  /** 备注（A 股代码等） */
+  remark: string;
+}
+
+/** 兜底选项：后端未就绪时由 BROKER_PRESETS 构造，保证弹窗可独立演示 */
+function presetsToOptions(): BrokerOption[] {
+  return BROKER_PRESETS.map((p) => ({
+    code: p.code,
+    name: p.name,
+    fullName: p.name,
+    rateWan: p.rateWan,
+    minCommission: p.minCommission,
+    isAllIn: p.isAllIn as 0 | 1,
+    remark: '',
+  }));
+}
+
+/**
+ * 券商下拉选项：GET /acc/brokerAccount/getBrokerOptions（数据源 t_acc_broker）。
+ * 按排序号输出启用券商；请求失败时回落 BROKER_PRESETS 兜底。
+ */
+export async function fetchBrokerOptions(): Promise<BrokerOption[]> {
+  try {
+    const list = await alovaInstance.get<AccBrokerOption[]>(API.brokerOptions);
+    if (!Array.isArray(list) || list.length === 0) {
+      return presetsToOptions();
+    }
+    return list.map((item) => ({
+      code: item.brokerCode,
+      name: item.shortName || item.brokerName,
+      fullName: item.brokerName,
+      rateWan: Number((toNum(item.defaultCommissionRate) * 10_000).toFixed(2)),
+      minCommission: toNum(item.defaultMinCommission, 5),
+      isAllIn: (toNum(item.defaultAllIn, 1) === 0 ? 0 : 1) as 0 | 1,
+      remark: item.remark ?? '',
+    }));
+  } catch {
+    return presetsToOptions();
+  }
+}
+
 // ==================== 新建账户（FORM · 2.1-A） ====================
 
 /** 新建账户入参，字段对齐后端 AccAccountCreateBo（费率留空由后端带出券商默认值） */
 export interface AccAccountCreatePayload {
   /** 账户别名（必填） */
   accountName: string;
-  /** 券商编码（必填，字典 acc_broker_type 的 dictValue，如 HTZQ） */
+  /** 券商编码（必填，t_acc_broker.brokerCode，如 HTZQ） */
   brokerCode: string;
   /** 资金账号（可后补） */
   accountNo?: string;

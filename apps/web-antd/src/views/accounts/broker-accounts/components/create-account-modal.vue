@@ -1,15 +1,16 @@
 <script lang="ts" setup>
-import type { AccAccountCreatePayload } from '../api/broker-accounts';
+import type {
+  AccAccountCreatePayload,
+  BrokerOption,
+} from '../api/broker-accounts';
 
-import { computed, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 
 import { useVbenModal } from '@vben/common-ui';
 
 import { Button, Select } from 'antdv-next';
 
-import { getDictOptions } from '#/utils/dict';
-
-import { BROKER_PRESETS, createAccount } from '../api/broker-accounts';
+import { createAccount, fetchBrokerOptions } from '../api/broker-accounts';
 
 /**
  * 新建券商账户弹窗（对齐设计稿 FORM · 2.1-A）
@@ -38,13 +39,32 @@ const form = reactive({
   remark: '',
 });
 
-/** 券商选项：字典 acc_broker_type（系统管理 → 字典管理维护，含 43 家上市券商 + 华宝） */
-const brokerOptions = getDictOptions('acc_broker_type');
+/** 券商选项：API 拉取 t_acc_broker 券商档案（GET /acc/brokerAccount/getBrokerOptions），
+ * 含默认费率，用于下拉展示与费率提示；请求失败回落前端预设兜底 */
+const brokerOptions = ref<BrokerOption[]>([]);
 
-/** 前端费率提示预设（仅覆盖常用 4 家；其余券商留空由后端带出 t_acc_broker 默认值） */
-const brokerPreset = computed(() =>
-  BROKER_PRESETS.find((b) => b.code === form.brokerCode),
+/** 下拉框选项（label=简称，value=券商编码） */
+const brokerSelectOptions = computed(() =>
+  brokerOptions.value.map((b) => ({ label: b.name, value: b.code })),
 );
+
+/** 当前选中券商的默认费率预设（来自 t_acc_broker.default_* 字段） */
+const brokerPreset = computed(() =>
+  brokerOptions.value.find((b) => b.code === form.brokerCode),
+);
+
+/** 拉取券商选项；当前默认编码不在档案中时回落到第一个 */
+async function loadBrokerOptions() {
+  brokerOptions.value = await fetchBrokerOptions();
+  if (
+    brokerOptions.value.length > 0 &&
+    !brokerOptions.value.some((b) => b.code === form.brokerCode)
+  ) {
+    form.brokerCode = brokerOptions.value[0]?.code ?? '';
+  }
+}
+
+onMounted(loadBrokerOptions);
 
 const ACCOUNT_TYPES = [
   { label: '普通', value: 'NORMAL' },
@@ -65,6 +85,8 @@ const [BasicModal, modalApi] = useVbenModal({
   onOpenChange(isOpen) {
     if (isOpen) {
       resetForm();
+      // 每次打开重新拉取，保证券商档案变更后下拉即时生效
+      loadBrokerOptions();
     }
   },
   title: '新建券商账户',
@@ -153,7 +175,7 @@ async function handleSubmit() {
         <Select
           v-model:value="form.brokerCode"
           class="cam__select"
-          :options="brokerOptions"
+          :options="brokerSelectOptions"
           option-filter-prop="label"
           placeholder="请选择券商"
           show-search

@@ -67,9 +67,9 @@ export function dictDataUpdate(data: Partial<DictData>) {
 
 /**
  * 查询字典数据详细
- * @param dictCode 字典编码
+ * @param dictId 字典编码
  * @returns 字典数据
  */
-export function dictDetailInfo(dictCode: ID) {
-  return alovaInstance.get<DictData>(`${Api.root}/${dictCode}`);
+export function dictDetailInfo(dictId: ID) {
+  return alovaInstance.get<DictData>(`${Api.root}/${dictId}`);
 }

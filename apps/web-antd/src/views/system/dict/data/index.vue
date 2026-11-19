@@ -66,7 +66,7 @@ const gridOptions: VxeGridProps = {
     },
   },
   rowConfig: {
-    keyField: 'dictCode',
+    keyField: 'dictId',
   },
   id: 'system-dict-data-index',
 };
@@ -88,19 +88,19 @@ function handleAdd() {
 async function handleEdit(record: DictData) {
   drawerApi.setData({
     dictType: dictType.value,
-    dictCode: record.dictCode,
+    dictId: record.dictId,
   });
   drawerApi.open();
 }
 
 async function handleDelete(row: DictData) {
-  await dictDataRemove([row.dictCode]);
+  await dictDataRemove([row.dictId]);
   await tableApi.query();
 }
 
 function handleMultiDelete() {
   const rows = tableApi.grid.getCheckboxRecords();
-  const ids = rows.map((row: DictData) => row.dictCode);
+  const ids = rows.map((row: DictData) => row.dictId);
   window.modal.confirm({
     title: '提示',
     okType: 'danger',
@@ -181,7 +181,7 @@ onBeforeUnmount(() => {
           </action-button>
           <!-- 这里数据会不一致 必须加key标识 -->
           <Popconfirm
-            :key="row.dictCode"
+            :key="row.dictId"
             placement="left"
             title="确认删除？"
             @confirm="handleDelete(row)"

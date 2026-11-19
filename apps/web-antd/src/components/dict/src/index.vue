@@ -46,20 +46,25 @@ export default defineComponent({
   },
   setup(props) {
     const color = computed<string>(() => {
-      const current = props.dicts.find((item) => item.dictValue == props.value);
+      // props.value 可为 Number/String，统一转字符串后严格比较（原 == 的宽等价语义）
+      const current = props.dicts.find(
+        (item) => item.dictCode === String(props.value),
+      );
       const listClass = current?.listClass ?? '';
       // 是否为默认的颜色
       const isDefault = Reflect.has(tagTypes, listClass);
       // 判断是默认还是自定义颜色
       if (isDefault) {
         // 这里做了antd - element-plus的兼容
-        return tagTypes[listClass]!.color;
+        return tagTypes[listClass]?.color ?? listClass;
       }
       return listClass;
     });
 
     const cssClass = computed<string>(() => {
-      const current = props.dicts.find((item) => item.dictValue == props.value);
+      const current = props.dicts.find(
+        (item) => item.dictCode === String(props.value),
+      );
       return current?.cssClass ?? '';
     });
 
@@ -67,8 +72,10 @@ export default defineComponent({
      * 返回null 走 fallback逻辑
      */
     const label = computed<null | string>(() => {
-      const current = props.dicts.find((item) => item.dictValue == props.value);
-      return current?.dictLabel ?? null;
+      const current = props.dicts.find(
+        (item) => item.dictCode === String(props.value),
+      );
+      return current?.dictName ?? null;
     });
 
     const loading = computed(() => {

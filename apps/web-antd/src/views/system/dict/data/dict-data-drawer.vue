@@ -20,7 +20,7 @@ import TagStylePicker from './tag-style-picker.vue';
 const emit = defineEmits<{ reload: [] }>();
 
 interface DrawerProps {
-  dictCode?: number | string;
+  dictId?: number | string;
   dictType: string;
 }
 
@@ -75,12 +75,12 @@ const [BasicDrawer, drawerApi] = useVbenDrawer({
     }
     drawerApi.drawerLoading(true);
 
-    const { dictCode, dictType } = drawerApi.getData() as DrawerProps;
-    isUpdate.value = !!dictCode;
+    const { dictId, dictType } = drawerApi.getData() as DrawerProps;
+    isUpdate.value = !!dictId;
     await formApi.setFieldValue('dictType', dictType);
 
-    if (dictCode && isUpdate.value) {
-      const record = await dictDetailInfo(dictCode);
+    if (dictId && isUpdate.value) {
+      const record = await dictDetailInfo(dictId);
       setupSelectType(record.listClass);
       await formApi.setValues(record);
     }

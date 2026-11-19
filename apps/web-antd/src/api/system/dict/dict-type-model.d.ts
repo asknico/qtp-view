@@ -1,6 +1,6 @@
 export interface DictType {
   createTime: string;
-  dictId: number;
+  typeId: number;
   dictName: string;
   dictType: string;
   remark: string;

@@ -3,11 +3,12 @@ export interface DictData {
   createTime: string;
   cssClass: string;
   default: boolean;
-  dictCode: number;
-  dictLabel: string;
+  dictId: number;
+  dictName: string;
+  dictValue: string;
   dictSort: number;
   dictType: string;
-  dictValue: string;
+  dictCode: string;
   isDefault: string;
   listClass: string;
   remark: string;

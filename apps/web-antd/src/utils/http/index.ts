@@ -78,19 +78,18 @@ interface ApiTraceInfo {
 }
 
 /**
- * 提取响应中的 traceId 并记录；返回用于错误提示拼接的尾巴
+ * 提取响应中的 traceId 并记录（仅 console 诊断用，不拼进用户可见的错误提示）
  */
-function captureTrace(data: unknown): string {
+function captureTrace(data: unknown): void {
   const trace = (data as ApiTraceInfo)?.traceId;
   if (trace) {
     lastTraceId = trace;
     const ts = (data as ApiTraceInfo)?.ts;
     const cost = ts ? ` 耗时≈${Math.max(0, Date.now() - ts)}ms` : '';
     // 开发排查入口：浏览器控制台可见，不影响界面（no-console 仅此一处豁免）
-     
+    // oxlint-disable-next-line no-console
     console.debug(`[trace] traceId=${trace}${cost}`);
   }
-  return trace ? `（traceId：${trace}）` : '';
 }
 
 const axiosDefaultConfig: AxiosRequestConfig = {
@@ -270,7 +269,7 @@ const alovaInstance = createAlova({
       }
 
       // 提取链路信息 traceId/ts（加密响应已在上方解密完成，结构完整）
-      const traceIdTail = captureTrace(axiosResponseData);
+      captureTrace(axiosResponseData);
 
       // 后端并没有采用严格的{code, msg, data}模式
       const { code, data, msg, ...other } = axiosResponseData;
@@ -315,8 +314,8 @@ const alovaInstance = createAlova({
         }
         default: {
           if (msg) {
-            // 错误提示携带 traceId，用户截图报障时可直接在服务端日志检索
-            timeoutMsg = msg + traceIdTail;
+            // traceId 只进 console（captureTrace），不拼进用户可见提示
+            timeoutMsg = msg;
           }
         }
       }
@@ -365,10 +364,10 @@ const alovaInstance = createAlova({
 
       const respData: Record<string, any> = (response?.data as any) ?? {};
       const msg: string = respData?.msg ?? '';
-      // HTTP 层错误（非业务码）也捕获 traceId，一并追加到提示
-      const traceIdTail = captureTrace(respData);
+      // HTTP 层错误（非业务码）也捕获 traceId，仅进 console 诊断
+      captureTrace(respData);
       // 根据httpStatus判断错误 弹窗提示
-      checkStatus(error?.response?.status, msg + traceIdTail, method.config);
+      checkStatus(error?.response?.status, msg, method.config);
 
       return Promise.reject(error);
     },
