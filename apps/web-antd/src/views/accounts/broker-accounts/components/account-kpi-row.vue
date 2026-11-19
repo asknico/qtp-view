@@ -165,7 +165,7 @@ function toneOf(index: number): string {
 .kpi__label {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -173,20 +173,20 @@ function toneOf(index: number): string {
 .kpi__value {
   margin-top: 2px;
   overflow: hidden;
-  font-size: 24px;
-  font-weight: 650;
+  font-size: var(--font-kpi);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   line-height: 1.25;
-  letter-spacing: -0.7px;
+  letter-spacing: -0.5px;
   white-space: nowrap;
 }
 
 .kpi__value small {
   margin-left: 2px;
-  font-size: 12px;
-  font-weight: 500;
-  color: hsl(var(--muted-foreground));
+  font-size: var(--font-kpi-dec);
+  font-weight: var(--font-weight-medium);
   letter-spacing: 0;
+  opacity: 0.8;
 }
 
 .kpi__unit {
@@ -194,12 +194,12 @@ function toneOf(index: number): string {
 }
 
 .kpi__hint {
-  height: 18px;
+  height: 20px;
   margin-top: auto;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11px;
-  line-height: 18px;
+  font-size: var(--font-small);
+  line-height: 20px;
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }

@@ -7,12 +7,14 @@ import { useVbenModal } from '@vben/common-ui';
 
 import { Button } from 'antdv-next';
 
-import CardShell from '../_shared/card-shell.vue';
+import CardShell from '#/components/card-shell.vue';
+
 import { fetchBrokerAccountOverview } from './api/broker-accounts';
 import AccountDetailCard from './components/account-detail-card.vue';
 import AccountKpiRow from './components/account-kpi-row.vue';
 import AccountOverviewCard from './components/account-overview-card.vue';
 import CreateAccountModal from './components/create-account-modal.vue';
+import EditAccountModal from './components/edit-account-modal.vue';
 import FeeRateCard from './components/fee-rate-card.vue';
 import SyncAccountModal from './components/sync-account-modal.vue';
 import { pageDescription } from './data/demo';
@@ -87,17 +89,16 @@ function onSelect(id: string) {
   selectedId.value = id;
 }
 
-/** 两个写操作弹窗（对齐设计稿 FORM·2.1-A / SYNC·2.1-B） */
+/** 三个写操作弹窗（对齐设计稿 FORM·2.1-A / SYNC·2.1-B / EDIT·2.1-C） */
 const [CreateModal, createModalApi] = useVbenModal({
   connectedComponent: CreateAccountModal,
 });
 const [SyncModal, syncModalApi] = useVbenModal({
   connectedComponent: SyncAccountModal,
 });
-
-function onDemoAction(name: string) {
-  window.message.info(`【${name}】为演示入口，接入后端后开放`);
-}
+const [EditModal, editModalApi] = useVbenModal({
+  connectedComponent: EditAccountModal,
+});
 
 function onCreate() {
   createModalApi.setData({});
@@ -105,7 +106,9 @@ function onCreate() {
 }
 
 function onEdit() {
-  onDemoAction(`编辑 ${currentAccount.value?.id ?? ''}`);
+  if (!currentAccount.value) return;
+  editModalApi.setData({ account: currentAccount.value });
+  editModalApi.open();
 }
 
 function onSync() {
@@ -132,15 +135,15 @@ function onSync() {
           <i class="ba-page__dot"></i>{{ overview.syncedAt }}
         </span>
         <Button v-access:code="['acc:sync:exec']" @click="onSync">
-⟳ 同步账户
-</Button>
+          ⟳ 同步账户
+        </Button>
         <Button
           v-access:code="['acc:brokerAccount:add']"
           type="primary"
           @click="onCreate"
-          >
-＋ 新建账户
-</Button>
+        >
+          ＋ 新建账户
+        </Button>
       </div>
     </header>
 
@@ -185,9 +188,10 @@ function onSync() {
       </CardShell>
     </div>
 
-    <!-- 新建账户 / 同步账户弹窗 -->
+    <!-- 新建账户 / 同步账户 / 编辑账户弹窗 -->
     <CreateModal @reload="reload" />
     <SyncModal @reload="reload" />
+    <EditModal @reload="reload" />
   </div>
 </template>
 
@@ -210,15 +214,15 @@ function onSync() {
 
 .ba-page__title {
   margin: 0;
-  font-size: 20px;
-  font-weight: 650;
+  font-size: var(--font-page);
+  font-weight: var(--font-weight-strong);
   letter-spacing: -0.3px;
 }
 
 .ba-page__desc {
   max-width: 820px;
   margin: 4px 0 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
 }
 
@@ -233,7 +237,7 @@ function onSync() {
   display: inline-flex;
   gap: 5px;
   align-items: center;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -251,7 +255,7 @@ function onSync() {
   height: 32px !important;
   min-height: 32px !important;
   padding: 0 15px !important;
-  font-size: 14px !important;
+  font-size: var(--font-base) !important;
   line-height: 30px !important;
   border-radius: 6px;
   box-shadow: none !important;
@@ -259,18 +263,20 @@ function onSync() {
 
 .ba-link {
   padding: 0;
-  font-size: 12px;
+  font-size: var(--font-small);
   color: hsl(var(--primary));
   cursor: pointer;
   background: none;
   border: none;
 }
 
-/* ---- 12 列栅格 ---- */
+/* ---- 12 列栅格 ----
+   KPI 行 104px：图标行 24 + 数字 26 + 提示行 20 + 内边距 19 的实测高度，
+   原 96px 在数字升到 26px 后会溢出 1.5px；账户卡 172px 同理留 4px 呼吸位 */
 .ba-grid {
   display: grid;
   flex: 1;
-  grid-template-rows: 96px 168px minmax(0, 1fr);
+  grid-template-rows: 104px 172px minmax(0, 1fr);
   grid-template-columns: repeat(12, 1fr);
   gap: 6px;
   min-height: 0;

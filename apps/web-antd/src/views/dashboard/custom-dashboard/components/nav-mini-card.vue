@@ -93,7 +93,7 @@ function buildOption(): EChartsOption {
     xAxis: {
       axisLabel: {
         color: axisColor.value,
-        fontSize: 9,
+        fontSize: 12,
         interval: Math.max(1, Math.ceil(labels.length / 5)),
       },
       axisLine: { show: false },
@@ -163,13 +163,13 @@ onMounted(() => render());
   flex: 0 0 auto;
   gap: 12px;
   align-items: baseline;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
 .navm__stat b {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
 }
 
@@ -191,7 +191,7 @@ onMounted(() => render());
   flex: 0 0 auto;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 10px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground) / 85%);
   white-space: nowrap;
 }

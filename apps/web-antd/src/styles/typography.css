@@ -1,0 +1,54 @@
+/**
+ * QTP 统一字体排版 Token
+ *
+ * 两套排版体系（antd 默认 vs 金融看板自定义）的唯一事实来源。
+ * 2026-11-18 字体审查后的阶梯（7 级，底线 12px）：
+ *   20 页面标题 / 16 区块标题 / 26 KPI 主数字 / 18 中型数值
+ *   / 14 基准正文 / 13 次要正文 / 12 辅助信息（下限）/ 11 仅徽标
+ *
+ * 约定：
+ * - 禁止在业务组件里写死 font-size / font-weight 像素值（stylelint 强制）
+ * - 12px 是辅助信息绝对下限，使用时必须同时满足 color ≥ --muted-foreground
+ * - 11px 仅限圆角徽标（badge）内部文字，其他场景一律用 --font-small
+ * - 涉及金额、账号等数字列，配合 font-variant-numeric: tabular-nums 使用
+ */
+:root {
+  /* ---------- 字号阶梯 ---------- */
+
+  /* 徽标专用（原 9.5px / 10px），其余场景禁用 */
+  --font-tiny: 11px;
+
+  /* 辅助信息下限：轴标签、脚注、表头、chip、掩码（原 10.5px / 11px / 11.5px） */
+  --font-small: 12px;
+
+  /* 次要正文：副标题、图例、菜单、限定词（原 12px / 12.5px） */
+  --font-body: 13px;
+
+  /* 区块标题：卡片标题（card-shell，审查后从 13px 上调） */
+  --font-title: 16px;
+
+  /* 系统基准正文 = antd fontSize 默认值，system 等管理模块直接使用 */
+  --font-base: 14px;
+
+  /* 中型数值：KV 值、仪表盘中心值、资金卡数值 */
+  --font-value: 18px;
+
+  /* 页面标题、大型指标值 */
+  --font-page: 20px;
+
+  /* KPI 大数字 */
+  --font-kpi: 26px;
+
+  /* KPI 小数/后缀：主数字 × 0.6（审查 D1：小数比例不得低于 0.6） */
+  --font-kpi-dec: 16px;
+
+  /* ---------- 字重（可变字体安全，回退不跳变） ---------- */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-strong: 600;
+
+  /* ---------- 数字专用 ---------- */
+
+  /* 资金账号、金额等需要逐位对齐的字段 */
+  --font-numeric: ui-monospace, consolas, 'SF Mono', monospace;
+}

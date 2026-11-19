@@ -149,14 +149,16 @@ export function accountTypeText(type: AccountType): string {
   return type === 'CREDIT' ? '信用' : '普通';
 }
 
-/** 详情卡状态胶囊：正常 / 休眠 */
+/** 详情卡状态胶囊：正常 / 休眠 / 销户 */
 export function statusPillText(account: BrokerAccount): string {
-  return account.status === 'ACTIVE' ? '正常' : '休眠';
+  if (account.status === 'ACTIVE') return '正常';
+  return account.status === 'CLOSED' ? '销户' : '休眠';
 }
 
-/** 费率表状态列：启用 / 休眠 */
-export function statusTableText(account: BrokerAccount): string {
-  return account.status === 'ACTIVE' ? '启用' : '休眠';
+/** 费率表状态列：启用 / 休眠 / 销户（费率行与账户共用同一状态枚举） */
+export function statusTableText(row: Pick<BrokerAccount, 'status'>): string {
+  if (row.status === 'ACTIVE') return '启用';
+  return row.status === 'CLOSED' ? '销户' : '休眠';
 }
 
 /** 交易经验：101 → 「8 年 5 个月」 */

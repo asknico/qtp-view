@@ -54,9 +54,12 @@ const dateRangeLabel = computed(() => {
   return `${first.date} ~ ${last.date} · 日频`;
 });
 
-/** 坐标轴/分隔线颜色随主题 */
+/** 图表内文字统一 12px（审查 A1–A3：轴标签/注释/图例不得低于 12） */
+const CHART_FONT = 12;
+
+/** 坐标轴/分隔线颜色随主题；浅色轴色 #6b7280 保证 4.5:1 对比度（审查 A2） */
 const axisColor = computed(() =>
-  isDark.value ? 'hsl(240 5% 45%)' : '#8d97a8',
+  isDark.value ? 'hsl(240 5% 55%)' : '#6b7280',
 );
 const splitColor = computed(() =>
   isDark.value ? 'hsl(240 5% 20%)' : '#eef1f7',
@@ -166,8 +169,9 @@ function buildOption(): EChartsOption {
         align: opts.align,
         color,
         distance: 3,
-        fontSize: 11,
-        fontWeight: 600,
+        fontSize: CHART_FONT,
+        // 审查 E2：小字不加粗，靠颜色区分，避免"又小又黑"抢视线
+        fontWeight: 500,
         formatter: text,
         position: 'start',
       },
@@ -260,7 +264,7 @@ function buildOption(): EChartsOption {
       itemHeight: 3,
       itemWidth: 14,
       right: 8,
-      textStyle: { color: axisColor.value, fontSize: 11 },
+      textStyle: { color: axisColor.value, fontSize: CHART_FONT },
       top: 0,
     },
     series: [
@@ -303,7 +307,7 @@ function buildOption(): EChartsOption {
           : undefined,
         markLine: {
           data: callouts,
-          label: { fontSize: 11 },
+          label: { fontSize: CHART_FONT },
           lineStyle: { width: 1 },
           silent: true,
           symbol: ['none', 'arrow'],
@@ -343,7 +347,10 @@ function buildOption(): EChartsOption {
     tooltip: {
       backgroundColor: isDark.value ? '#1C1C1F' : '#FFFFFF',
       borderColor: splitColor.value,
-      textStyle: { color: isDark.value ? '#E4E4E7' : '#1A2130', fontSize: 11 },
+      textStyle: {
+        color: isDark.value ? '#E4E4E7' : '#1A2130',
+        fontSize: CHART_FONT,
+      },
       trigger: 'axis',
       valueFormatter: (v) => {
         const n = Array.isArray(v) ? Number(v[1]) : Number(v);
@@ -355,7 +362,7 @@ function buildOption(): EChartsOption {
     xAxis: {
       axisLine: { show: false },
       axisTick: { show: false },
-      axisLabel: { color: axisColor.value, fontSize: 10 },
+      axisLabel: { color: axisColor.value, fontSize: CHART_FONT },
       boundaryGap: false,
       data: axisLabels,
       splitLine: { show: false },
@@ -364,7 +371,7 @@ function buildOption(): EChartsOption {
     yAxis: {
       axisLabel: {
         color: axisColor.value,
-        fontSize: 10,
+        fontSize: CHART_FONT,
         formatter: (v: number) => `${(v / 10_000).toFixed(0)}万`,
       },
       axisLine: { show: false },
@@ -466,7 +473,7 @@ onMounted(() => render());
 
 .seg {
   padding: 2px 9px;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   cursor: pointer;
   user-select: none;
@@ -481,7 +488,7 @@ onMounted(() => render());
 }
 
 .seg--on {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--foreground));
   background: hsl(var(--card));
   box-shadow: 0 1px 3px rgb(16 24 40 / 12%);
@@ -497,7 +504,7 @@ onMounted(() => render());
 
 .nav-card__range {
   margin-right: auto;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
@@ -507,8 +514,8 @@ onMounted(() => render());
   align-items: center;
   height: 19px;
   padding: 0 7px;
-  font-size: 10.5px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   white-space: nowrap;
   border-radius: 10px;
 }
@@ -553,12 +560,12 @@ onMounted(() => render());
   flex: 0 0 auto;
   gap: 14px;
   margin-top: 6px;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
 .nav-card__footer b {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--foreground));
 }
 

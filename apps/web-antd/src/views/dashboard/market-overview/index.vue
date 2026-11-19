@@ -18,7 +18,8 @@ import { computed, ref } from 'vue';
 
 import { Button } from 'antdv-next';
 
-import CardShell from '../_shared/card-shell.vue';
+import CardShell from '#/components/card-shell.vue';
+
 import BreadthCard from './components/breadth-card.vue';
 import IndexStrip from './components/index-strip.vue';
 import SectorHeatmap from './components/sector-heatmap.vue';
@@ -164,15 +165,15 @@ async function onRefresh() {
 
 .mk-page__title {
   margin: 0;
-  font-size: 20px;
-  font-weight: 650;
+  font-size: var(--font-page);
+  font-weight: var(--font-weight-strong);
   letter-spacing: -0.3px;
 }
 
 .mk-page__desc {
   max-width: 820px;
   margin: 4px 0 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
 }
 
@@ -188,17 +189,17 @@ async function onRefresh() {
   height: 32px !important;
   min-height: 32px !important;
   padding: 0 15px !important;
-  font-size: 14px !important;
+  font-size: var(--font-base) !important;
   line-height: 30px !important;
   border-radius: 6px;
   box-shadow: none !important;
 }
 
-/* ---- 12 列栅格：指数条 106px（与另两页一致）/ 热力与量能 / 情绪 ---- */
+/* ---- 12 列栅格：指数条 112px（点位升到 26 后的实测高度）/ 热力与量能 / 情绪 ---- */
 .mk-grid {
   display: grid;
   flex: 1;
-  grid-template-rows: 106px minmax(0, 1.15fr) minmax(0, 0.95fr);
+  grid-template-rows: 112px minmax(0, 1.15fr) minmax(0, 0.95fr);
   grid-template-columns: repeat(12, 1fr);
   gap: 6px;
   min-height: 0;
@@ -225,8 +226,8 @@ async function onRefresh() {
 }
 
 .mk-seg__item {
-  padding: 2px 9px;
-  font-size: 11px;
+  padding: 3px 10px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   cursor: pointer;
   user-select: none;
@@ -236,7 +237,7 @@ async function onRefresh() {
 }
 
 .mk-seg__item--on {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--foreground));
   background: hsl(var(--card));
   box-shadow: 0 1px 2px rgb(16 24 40 / 10%);
@@ -244,7 +245,7 @@ async function onRefresh() {
 
 .mk-loading {
   padding: 80px 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   text-align: center;
 }

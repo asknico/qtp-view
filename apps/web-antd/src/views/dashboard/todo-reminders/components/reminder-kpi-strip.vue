@@ -62,7 +62,7 @@ defineProps<Props>();
 .tkpi__label {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -70,11 +70,11 @@ defineProps<Props>();
 .tkpi__value {
   margin-top: 3px;
   overflow: hidden;
-  font-size: 23px;
-  font-weight: 650;
+  font-size: var(--font-kpi);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   line-height: 1.2;
-  letter-spacing: -0.6px;
+  letter-spacing: -0.5px;
   white-space: nowrap;
 }
 
@@ -83,7 +83,7 @@ defineProps<Props>();
   margin-top: auto;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   line-height: 20px;
   color: hsl(var(--muted-foreground));
   white-space: nowrap;

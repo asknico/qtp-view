@@ -64,7 +64,7 @@ const texts = computed(() => marketHeatTextOf(props.data));
   display: flex;
   flex-direction: column;
   gap: 2px;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   text-align: center;
 }
@@ -76,7 +76,7 @@ const texts = computed(() => marketHeatTextOf(props.data));
 }
 
 .heat__summary b {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   color: hsl(var(--foreground));
 }

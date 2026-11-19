@@ -130,7 +130,7 @@ const spark = computed(() => {
 .mc--empty {
   align-items: center;
   justify-content: center;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
@@ -158,11 +158,13 @@ const spark = computed(() => {
   justify-content: space-between;
 }
 
+/* 迷你卡容积有限，数值取“中型数值”18 —— 与卡片标题 13 拉开层级，
+   又不至于把副行挤出 112px 的高度 */
 .mc__value {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 21px;
-  font-weight: 650;
+  font-size: var(--font-value);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   line-height: 1.15;
   letter-spacing: -0.6px;
@@ -170,8 +172,8 @@ const spark = computed(() => {
 }
 
 .mc__value small {
-  font-size: 11px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   letter-spacing: 0;
   opacity: 0.75;
 }
@@ -186,7 +188,7 @@ const spark = computed(() => {
 .mc__note {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11px;
+  font-size: var(--font-small);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -194,14 +196,14 @@ const spark = computed(() => {
 .mc__sub {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   line-height: 1.5;
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
 
 .mc__sub b {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
 }
 
 .t-up {
@@ -230,7 +232,7 @@ const spark = computed(() => {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   line-height: 1.5;
   color: hsl(var(--muted-foreground));
 }
@@ -244,7 +246,7 @@ const spark = computed(() => {
   gap: 8px;
   align-items: center;
   justify-content: space-between;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   line-height: 1.4;
 }
 

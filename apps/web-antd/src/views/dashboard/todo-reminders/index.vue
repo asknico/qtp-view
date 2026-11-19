@@ -10,7 +10,8 @@ import type { ReminderItem } from './data/types';
 
 import { Button } from 'antdv-next';
 
-import CardShell from '../_shared/card-shell.vue';
+import CardShell from '#/components/card-shell.vue';
+
 import ReminderCalendar from './components/reminder-calendar.vue';
 import ReminderChannels from './components/reminder-channels.vue';
 import ReminderKpiStrip from './components/reminder-kpi-strip.vue';
@@ -159,15 +160,15 @@ function onReminderAction(item: ReminderItem) {
 
 .tr-page__title {
   margin: 0;
-  font-size: 20px;
-  font-weight: 650;
+  font-size: var(--font-page);
+  font-weight: var(--font-weight-strong);
   letter-spacing: -0.3px;
 }
 
 .tr-page__desc {
   max-width: 820px;
   margin: 4px 0 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
 }
 
@@ -183,7 +184,7 @@ function onReminderAction(item: ReminderItem) {
   height: 32px !important;
   min-height: 32px !important;
   padding: 0 15px !important;
-  font-size: 14px !important;
+  font-size: var(--font-base) !important;
   line-height: 30px !important;
   border-radius: 6px;
   box-shadow: none !important;
@@ -192,7 +193,7 @@ function onReminderAction(item: ReminderItem) {
 .tr-grid {
   display: grid;
   flex: 1;
-  grid-template-rows: 96px minmax(0, 1fr);
+  grid-template-rows: 104px minmax(0, 1fr);
   grid-template-columns: repeat(12, 1fr);
   gap: 6px;
   min-height: 0;
@@ -220,10 +221,10 @@ function onReminderAction(item: ReminderItem) {
 .tr-count-pill {
   display: inline-flex;
   align-items: center;
-  height: 19px;
+  height: 20px;
   padding: 0 7px;
-  font-size: 10.5px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   color: hsl(var(--stock-up));
   white-space: nowrap;
   background: hsl(var(--stock-up) / 10%);
@@ -232,7 +233,7 @@ function onReminderAction(item: ReminderItem) {
 
 .tr-link {
   padding: 0;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(215deg 85% 55%);
   white-space: nowrap;
   cursor: pointer;
@@ -246,7 +247,7 @@ function onReminderAction(item: ReminderItem) {
 
 .tr-loading {
   padding: 80px 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   text-align: center;
 }

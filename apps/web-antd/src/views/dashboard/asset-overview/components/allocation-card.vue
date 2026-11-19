@@ -80,7 +80,7 @@ function buildOption(): EChartsOption {
     ],
     tooltip: {
       backgroundColor: isDark.value ? '#1C1C1F' : '#FFFFFF',
-      textStyle: { color: isDark.value ? '#E4E4E7' : '#1A2130', fontSize: 11 },
+      textStyle: { color: isDark.value ? '#E4E4E7' : '#1A2130', fontSize: 12 },
       trigger: 'item',
       valueFormatter: (v) => formatWan(Number(v)),
     },
@@ -119,7 +119,9 @@ onMounted(() => render());
     <div class="alloc__limit">
       <div class="alloc__limit-head">
         <span>股票仓位上限 {{ positionLimit.limit }}%</span>
-        <b>{{ positionLimit.current }}% / {{ positionLimit.limit }}%</b>
+        <!-- 分子加粗深色 / 分母弱化（审查 D4） -->
+        <b>{{ positionLimit.current }}%</b>
+        <span class="alloc__limit-denom">/ {{ positionLimit.limit }}%</span>
       </div>
       <div class="alloc__bar">
         <i
@@ -165,13 +167,13 @@ onMounted(() => render());
 
 .alloc__center-label {
   display: block;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
 .alloc__center-value {
-  font-size: 17px;
-  font-weight: 650;
+  font-size: var(--font-value);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.3px;
 }
@@ -194,7 +196,7 @@ onMounted(() => render());
   gap: 6px;
   align-items: center;
   padding: 2px 6px;
-  font-size: 11px;
+  font-size: var(--font-body);
   white-space: nowrap;
   border-radius: 6px;
   transition: background 0.15s;
@@ -215,7 +217,7 @@ onMounted(() => render());
 
 .alloc__legend-pct {
   min-width: 32px;
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   color: hsl(var(--foreground));
   text-align: right;
@@ -244,12 +246,17 @@ onMounted(() => render());
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
-  font-size: 11px;
+  font-size: var(--font-small);
 }
 
 .alloc__limit-head b {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
+}
+
+.alloc__limit-denom {
+  font-variant-numeric: tabular-nums;
+  color: hsl(var(--muted-foreground));
 }
 
 .alloc__bar {
@@ -273,7 +280,7 @@ onMounted(() => render());
 
 .alloc__note {
   margin-top: 8px;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 </style>

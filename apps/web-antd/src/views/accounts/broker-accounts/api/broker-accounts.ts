@@ -18,10 +18,14 @@ import { demoAccountOverview } from '../data/demo';
 const API = {
   cardList: '/acc/brokerAccount/getCardList',
   create: '/acc/brokerAccount/create',
+  setFee: '/acc/brokerAccount/setFee',
+  setPerm: '/acc/brokerAccount/setPerm',
   summary: '/acc/brokerAccount/getSummary',
   syncCancel: '/acc/sync/cancel',
   syncStart: '/acc/sync/start',
   syncTask: '/acc/sync/task',
+  switchStatus: '/acc/brokerAccount/switchStatus',
+  update: '/acc/brokerAccount/update',
 } as const;
 
 /**
@@ -119,6 +123,7 @@ interface AccAccountCard {
   openedAt: string;
   experienceMonths: NumLike;
   purpose: string;
+  remark: string;
   riskLevel: string;
   fee: AccFeeRate;
   boards: AccBoardPerm[];
@@ -168,9 +173,10 @@ function cardToBrokerAccount(
     alias: card.alias,
     broker: card.broker,
     type: card.type,
-    status: card.status === 'CLOSED' ? 'DORMANT' : card.status,
+    status: card.status,
     openedAt: card.openedAt ?? '',
     purpose: card.purpose ?? '',
+    remark: card.remark ?? '',
     experienceMonths: toNum(card.experienceMonths),
     riskLevel: card.riskLevel ?? '',
     totalAssets: toNum(card.totalAssets),
@@ -242,7 +248,7 @@ export async function fetchCardDetail(accountCode: string) {
 export interface AccAccountCreatePayload {
   /** 账户别名（必填） */
   accountName: string;
-  /** 券商编码（必填，BROKER_PRESETS 里的 code） */
+  /** 券商编码（必填，字典 acc_broker_type 的 dictValue，如 HTZQ） */
   brokerCode: string;
   /** 资金账号（可后补） */
   accountNo?: string;
@@ -265,6 +271,76 @@ export interface AccAccountCreatePayload {
 /** 新建账户：POST /acc/brokerAccount/create，返回业务账户编号（AG-xxxx） */
 export async function createAccount(payload: AccAccountCreatePayload) {
   return alovaInstance.post<string>(API.create, payload);
+}
+
+// ==================== 编辑账户（EDIT · 2.1-C） ====================
+
+/** 档案编辑入参，字段对齐后端 AccAccountUpdateBo（按 accountCode 定位，编码不可改） */
+export interface AccAccountUpdatePayload {
+  /** 账户编码（AG-xxxx，定位主键） */
+  accountCode: string;
+  /** 账户别名 */
+  accountName?: string;
+  /** 账户用途 */
+  purpose?: string;
+  /** 备注 */
+  remark?: string;
+}
+
+/** 板块权限入参，字段对齐后端 AccPermBo（一次调用变更一个板块） */
+export interface AccPermPayload {
+  /** 账户编码（AG-xxxx） */
+  accountCode: string;
+  /** 权限编码：MAIN / GEM / STAR / BSE / CONVERTIBLE */
+  permCode: string;
+  /** 是否开通 */
+  granted: boolean;
+  /** 变更原因 */
+  changeReason?: string;
+}
+
+/** 费率编辑入参，字段对齐后端 AccFeeBo */
+export interface AccFeePayload {
+  /** 账户编码（AG-xxxx） */
+  accountCode: string;
+  /** 佣金费率（小数，如 0.00012） */
+  commissionRate: number;
+  /** 单笔最低佣金（元） */
+  minCommission?: number;
+  /** 佣金口径：1=全佣 0=净佣 */
+  isAllInCommission?: 0 | 1;
+  /** 变更原因 */
+  changeReason?: string;
+}
+
+/** 状态切换入参，字段对齐后端 AccAccountStatusBo */
+export interface AccStatusPayload {
+  /** 账户编码（AG-xxxx） */
+  accountCode: string;
+  /** 目标状态：ACTIVE / DORMANT / CLOSED */
+  status: 'ACTIVE' | 'CLOSED' | 'DORMANT';
+  /** 变更原因 */
+  changeReason?: string;
+}
+
+/** 档案编辑：POST /acc/brokerAccount/update */
+export async function updateAccount(payload: AccAccountUpdatePayload) {
+  return alovaInstance.post<void>(API.update, payload);
+}
+
+/** 板块权限变更：POST /acc/brokerAccount/setPerm（后端写权限变更日志） */
+export async function setBoardPerm(payload: AccPermPayload) {
+  return alovaInstance.post<void>(API.setPerm, payload);
+}
+
+/** 费率变更：POST /acc/brokerAccount/setFee（后端写费率变更记录） */
+export async function setAccountFee(payload: AccFeePayload) {
+  return alovaInstance.post<void>(API.setFee, payload);
+}
+
+/** 账户状态切换：POST /acc/brokerAccount/switchStatus */
+export async function switchAccountStatus(payload: AccStatusPayload) {
+  return alovaInstance.post<void>(API.switchStatus, payload);
 }
 
 // ==================== 同步账户（SYNC · 2.1-B） ====================

@@ -90,7 +90,7 @@ const ARC_PATH = `M ${CX - R},${CY} A ${R},${R} 0 0 1 ${CX + R},${CY}`;
         :x="targetLabel.x"
         :y="targetLabel.y + 3"
         fill="hsl(var(--muted-foreground))"
-        font-size="8.5"
+        font-size="9.5"
         text-anchor="end"
       >
         目标
@@ -108,7 +108,7 @@ const ARC_PATH = `M ${CX - R},${CY} A ${R},${R} 0 0 1 ${CX + R},${CY}`;
         :x="warnLabel.x"
         :y="warnLabel.y - 3"
         fill="hsl(var(--muted-foreground))"
-        font-size="8.5"
+        font-size="9.5"
         text-anchor="middle"
       >
         {{ warnPct }}%
@@ -181,14 +181,14 @@ const ARC_PATH = `M ${CX - R},${CY} A ${R},${R} 0 0 1 ${CX + R},${CY}`;
 }
 
 .gg__kv-label {
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
 .gg__kv-value {
   margin-top: 1px;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: var(--font-value);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
 }
 

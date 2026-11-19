@@ -31,3 +31,70 @@ html:not(.dark) .ant-btn.ant-btn-color-primary.ant-btn-variant-solid:active {
 html:not(.dark) .ant-tag.ant-tag-filled.ant-tag-processing {
   color: #fff;
 }
+
+/**
+ * 深浅主题 · antd 弹层配色兜底（规范：深色背景必须配浅色前景）
+ * ---------------------------------------------------------------------------
+ * 现象：主题切换/HMR 后，antd css-var 模式的弹层变量可能残留旧主题——
+ *   出现「深色高亮底 + 深色文字」（对比度≈1，几乎不可读），或弹层面板底色
+ *   与页面主题不一致（深色页面 + 白色下拉）。
+ *   根因：antd css-var 模式的变量播种与主题切换存在时序差，弹层已挂载时
+ *   不会重新播种。
+ *   处理：以 html 根类（.dark / :not(.dark)）为准，把弹层关键配色直接钉到
+ *   vben 设计 token（--popover / --accent / --foreground 始终跟随当前主题），
+ *   无论 antd 变量是否刷新，都保证：
+ *     ① 深色主题：面板深底 + 浅色前景，选中/悬停项 accent 中性底 + 浅字
+ *     ② 浅色主题：高亮项浅底 + 深字（防残留深底出现"深底深字"）
+ *   覆盖：Select / TreeSelect / Cascader / AutoComplete 下拉、DatePicker 面板。
+ */
+
+/* ① 深色主题：弹层面板深底 + 浅色前景 */
+html.dark .ant-select-dropdown,
+html.dark .ant-picker-dropdown .ant-picker-panel-container,
+html.dark .ant-cascader-dropdown {
+  color: hsl(var(--foreground));
+  background: hsl(var(--popover));
+}
+
+/* ① 深色主题：选项文字浅色（含禁用项弱化为 muted，不得用深字）
+ *    注意：antd 自身规则为 .ant-select-dropdown .ant-select-item（0,2,0），
+ *    这里必须带上 .ant-select-dropdown 提高优先级，否则会被 antd 覆盖。 */
+html.dark .ant-select-dropdown .ant-select-item,
+html.dark .ant-cascader-dropdown .ant-cascader-menu-item {
+  color: hsl(var(--foreground));
+}
+
+html.dark .ant-select-dropdown .ant-select-item-option-disabled {
+  color: hsl(var(--muted-foreground));
+}
+
+/* ① 深色主题：选中/悬停高亮 = accent 中性深底 + 浅字
+ *    antd 有 (0,4,0) 的组合规则（selected+active，变量也是深色），且本主题
+ *    colorPrimary 近黑、antd 各高亮 token 均算出深底，必须 !important 钉死：
+ *    深色背景必须配浅色前景（UI 规范强制项）。 */
+html.dark .ant-select-dropdown .ant-select-item-option-selected,
+html.dark .ant-select-dropdown .ant-select-item-option-active,
+html.dark .ant-cascader-dropdown .ant-cascader-menu-item-active,
+html.dark .ant-cascader-dropdown .ant-cascader-menu-item:hover {
+  color: hsl(var(--foreground)) !important;
+  background: hsl(var(--accent)) !important;
+}
+
+/* ① 深色主题：选择器本体（收起态输入框）钉深底，防残留白底 */
+html.dark
+  .ant-select:not(.ant-select-customize-input):not(.ant-select-borderless)
+  .ant-select-selector {
+  background-color: hsl(var(--card));
+}
+
+/* ② 浅色主题：选中/悬停项浅底 + 深字
+ *    关键修复：本主题 colorPrimary 近黑，antd 选中/悬停 token 会算出
+ *    深灰底 rgb(86,87,92) + 深字（对比度≈1.06，完全不可读），
+ *    必须 !important 钉回 accent 浅底 + foreground 深字。 */
+html:not(.dark) .ant-select-dropdown .ant-select-item-option-selected,
+html:not(.dark) .ant-select-dropdown .ant-select-item-option-active,
+html:not(.dark) .ant-cascader-dropdown .ant-cascader-menu-item-active,
+html:not(.dark) .ant-cascader-dropdown .ant-cascader-menu-item:hover {
+  color: hsl(var(--foreground)) !important;
+  background: hsl(var(--accent)) !important;
+}

@@ -118,11 +118,12 @@ function avatarTone(code: string): string {
   border-collapse: collapse;
 }
 
+/* 与涨跌榜同规格：表头 32/12、表体 36/13（与券商账户表格同阶梯） */
 th {
-  height: 30px;
+  height: 32px;
   padding: 0 12px;
-  font-size: 11px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   color: hsl(var(--muted-foreground));
   text-align: left;
   white-space: nowrap;
@@ -131,11 +132,11 @@ th {
 }
 
 td {
-  height: 34px;
+  height: 36px;
   padding: 0 12px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 12px;
+  font-size: var(--font-body);
   white-space: nowrap;
   border-bottom: 1px solid hsl(var(--border) / 50%);
 }
@@ -161,8 +162,9 @@ tbody tr:last-child td {
 }
 
 .trade__time {
-  font-family: ui-monospace, Consolas, 'SF Mono', monospace;
-  font-size: 11.5px;
+  font-family: var(--font-numeric);
+  font-size: var(--font-small);
+  font-variant-numeric: tabular-nums;
   color: hsl(var(--muted-foreground));
 }
 
@@ -180,8 +182,8 @@ tbody tr:last-child td {
   justify-content: center;
   width: 20px;
   height: 20px;
-  font-size: 10.5px;
-  font-weight: 600;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-strong);
   border-radius: 6px;
 }
 
@@ -203,12 +205,13 @@ tbody tr:last-child td {
 .trade__name {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .trade__code {
-  font-family: ui-monospace, Consolas, 'SF Mono', monospace;
-  font-size: 11.5px;
+  font-family: var(--font-numeric);
+  font-size: var(--font-small);
+  font-variant-numeric: tabular-nums;
   color: hsl(var(--muted-foreground));
   letter-spacing: -0.2px;
 }
@@ -216,10 +219,10 @@ tbody tr:last-child td {
 .tag {
   display: inline-flex;
   align-items: center;
-  height: 18px;
+  height: 20px;
   padding: 0 8px;
-  font-size: 10.5px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   border-radius: 999px;
 }
 

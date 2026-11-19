@@ -354,8 +354,8 @@ onUnmounted(stopPoll);
           <span class="sam-footer__note">约 8 秒完成 · 期间数据只读</span>
           <div class="sam-footer__btns">
             <Button class="sam-footer__danger" danger @click="handleCancel">
-取消同步
-</Button>
+              取消同步
+            </Button>
             <Button type="primary" @click="handleBackground">后台运行</Button>
           </div>
         </template>
@@ -383,14 +383,14 @@ onUnmounted(stopPoll);
   display: flex;
   gap: 8px;
   align-items: baseline;
-  font-size: 12px;
-  font-weight: 650;
+  font-size: var(--font-body);
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--foreground));
 }
 
 .sam__group span {
-  font-size: 11px;
-  font-weight: 400;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-normal);
   color: hsl(var(--muted-foreground));
 }
 
@@ -423,7 +423,7 @@ onUnmounted(stopPoll);
   justify-content: center;
   width: 16px;
   height: 16px;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--primary-foreground));
   background: hsl(var(--muted) / 80%);
   border-radius: 4px;
@@ -444,20 +444,20 @@ onUnmounted(stopPoll);
 }
 
 .sam__name {
-  font-size: 13px;
-  font-weight: 550;
+  font-size: var(--font-title);
+  font-weight: var(--font-weight-medium);
   color: hsl(var(--foreground));
 }
 
 .sam__code {
   margin-left: auto;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
 .sam__empty {
   padding: 14px;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   text-align: center;
 }
@@ -470,7 +470,7 @@ onUnmounted(stopPoll);
 
 .sam__chip {
   padding: 5px 12px;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   cursor: pointer;
   background: hsl(var(--muted) / 50%);
@@ -479,7 +479,7 @@ onUnmounted(stopPoll);
 }
 
 .sam__chip.on {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--primary-foreground));
   background: hsl(var(--primary));
   border-color: hsl(var(--primary));
@@ -487,7 +487,7 @@ onUnmounted(stopPoll);
 
 .sam__note {
   padding: 8px 12px;
-  font-size: 11px;
+  font-size: var(--font-small);
   line-height: 1.7;
   color: hsl(213deg 60% 45%);
   background: hsl(213deg 80% 96%);
@@ -496,7 +496,7 @@ onUnmounted(stopPoll);
 
 .sam__error {
   padding: 8px 12px;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(0deg 60% 45%);
   background: hsl(0deg 70% 96%);
   border-radius: 8px;
@@ -511,20 +511,20 @@ onUnmounted(stopPoll);
 }
 
 .sam__task {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: var(--font-body);
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--foreground));
 }
 
 .sam__step {
   margin-top: 2px;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
 }
 
 .sam__pct {
-  font-size: 26px;
-  font-weight: 700;
+  font-size: var(--font-kpi);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   color: hsl(var(--primary));
 }
@@ -560,7 +560,7 @@ onUnmounted(stopPoll);
   gap: 8px;
   align-items: center;
   padding: 6px 10px;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   border-radius: 7px;
 }
@@ -571,14 +571,14 @@ onUnmounted(stopPoll);
 }
 
 .sam__step-item.now {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--primary));
   background: hsl(var(--primary) / 8%);
 }
 
 .sam__step-ico {
   width: 16px;
-  font-size: 12px;
+  font-size: var(--font-body);
   text-align: center;
 }
 
@@ -599,8 +599,8 @@ onUnmounted(stopPoll);
 
 .sam__pill {
   padding: 3px 10px;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-strong);
   border-radius: 999px;
 }
 
@@ -627,7 +627,7 @@ onUnmounted(stopPoll);
 }
 
 .sam-footer__note {
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 

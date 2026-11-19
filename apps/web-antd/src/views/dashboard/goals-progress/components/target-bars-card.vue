@@ -50,7 +50,7 @@ defineProps<Props>();
   align-items: center;
   justify-content: space-between;
   margin-bottom: 5px;
-  font-size: 11.5px;
+  font-size: var(--font-small);
 }
 
 .tb__label {
@@ -61,7 +61,7 @@ defineProps<Props>();
 }
 
 .tb__label--over {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--stock-up));
 }
 
@@ -72,7 +72,7 @@ defineProps<Props>();
 }
 
 .tb__value--over {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--stock-up));
 }
 

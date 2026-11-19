@@ -46,7 +46,7 @@ defineProps<Props>();
         />
         <text
           fill="hsl(var(--muted-foreground))"
-          font-size="8.5"
+          font-size="9.5"
           text-anchor="middle"
           x="100"
           y="6"
@@ -162,7 +162,7 @@ defineProps<Props>();
   align-items: center;
   justify-content: space-between;
   padding: 2px 0;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   border-bottom: 1px dashed hsl(var(--border) / 50%);
 }
 
@@ -175,7 +175,7 @@ defineProps<Props>();
 }
 
 .bd__kv-row b {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
 }
 
@@ -187,7 +187,7 @@ defineProps<Props>();
 
 .bd__vol-title {
   margin-bottom: 6px;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
@@ -230,7 +230,7 @@ defineProps<Props>();
 }
 
 .bd__bar-date {
-  font-size: 10px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   text-align: center;
   white-space: nowrap;

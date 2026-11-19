@@ -66,15 +66,15 @@ defineProps<Props>();
 .channel__label {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
 
 .channel__value {
   margin-top: 1px;
-  font-size: 15px;
-  font-weight: 650;
+  font-size: var(--font-value);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   line-height: 1.25;
 }
@@ -83,7 +83,7 @@ defineProps<Props>();
   margin-top: 1px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 9.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -99,13 +99,13 @@ defineProps<Props>();
   display: flex;
   flex: 1;
   gap: 9px;
-  min-height: 38px;
+  min-height: 42px;
 }
 
 .push__time {
   flex: 0 0 54px;
   padding-top: 1px;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   font-variant-numeric: tabular-nums;
   color: hsl(var(--muted-foreground));
   text-align: right;
@@ -164,8 +164,8 @@ defineProps<Props>();
 .push__title {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11.5px;
-  font-weight: 550;
+  font-size: var(--font-body);
+  font-weight: var(--font-weight-medium);
   white-space: nowrap;
 }
 
@@ -173,7 +173,7 @@ defineProps<Props>();
   margin-top: 1px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }

@@ -5,7 +5,9 @@ import { computed, reactive, ref } from 'vue';
 
 import { useVbenModal } from '@vben/common-ui';
 
-import { Button } from 'antdv-next';
+import { Button, Select } from 'antdv-next';
+
+import { getDictOptions } from '#/utils/dict';
 
 import { BROKER_PRESETS, createAccount } from '../api/broker-accounts';
 
@@ -36,6 +38,10 @@ const form = reactive({
   remark: '',
 });
 
+/** 券商选项：字典 acc_broker_type（系统管理 → 字典管理维护，含 43 家上市券商 + 华宝） */
+const brokerOptions = getDictOptions('acc_broker_type');
+
+/** 前端费率提示预设（仅覆盖常用 4 家；其余券商留空由后端带出 t_acc_broker 默认值） */
 const brokerPreset = computed(() =>
   BROKER_PRESETS.find((b) => b.code === form.brokerCode),
 );
@@ -144,22 +150,19 @@ async function handleSubmit() {
       </div>
       <div class="cam__row">
         <label class="cam__label">券商<i>*</i></label>
-        <div class="cam__chips">
-          <button
-            v-for="b in BROKER_PRESETS"
-            :key="b.code"
-            :class="{ on: form.brokerCode === b.code }"
-            class="cam__chip"
-            type="button"
-            @click="form.brokerCode = b.code"
-          >
-            {{ b.name }}
-          </button>
-        </div>
-        <span class="cam__tip">
-          默认费率 万{{ brokerPreset?.rateWan }} ·
-          {{ brokerPreset?.isAllIn === 1 ? '全佣' : '净佣' }}
+        <Select
+          v-model:value="form.brokerCode"
+          class="cam__select"
+          :options="brokerOptions"
+          option-filter-prop="label"
+          placeholder="请选择券商"
+          show-search
+        />
+        <span v-if="brokerPreset" class="cam__tip">
+          默认费率 万{{ brokerPreset.rateWan }} ·
+          {{ brokerPreset.isAllIn === 1 ? '全佣' : '净佣' }}
         </span>
+        <span v-else class="cam__tip">留空带出券商档案默认值</span>
       </div>
       <div class="cam__row">
         <label class="cam__label">资金账号</label>
@@ -213,7 +216,11 @@ async function handleSubmit() {
             v-model.number="form.rateWan"
             class="cam__inp"
             min="0"
-            :placeholder="`默认 万${brokerPreset?.rateWan}`"
+            :placeholder="
+              brokerPreset
+                ? `默认 万${brokerPreset.rateWan}`
+                : '默认取券商档案值'
+            "
             step="0.1"
             type="number"
           />
@@ -294,8 +301,8 @@ async function handleSubmit() {
           <Button @click="modalApi.close()">取消</Button>
           <Button @click="handleReset">清空重填</Button>
           <Button :loading="submitting" type="primary" @click="handleSubmit">
-创建账户
-</Button>
+            创建账户
+          </Button>
         </div>
       </div>
     </template>
@@ -315,8 +322,8 @@ async function handleSubmit() {
   gap: 8px;
   align-items: baseline;
   margin-top: 6px;
-  font-size: 12px;
-  font-weight: 650;
+  font-size: var(--font-body);
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--foreground));
 }
 
@@ -325,8 +332,8 @@ async function handleSubmit() {
 }
 
 .cam__group span {
-  font-size: 11px;
-  font-weight: 400;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-normal);
   color: hsl(var(--muted-foreground));
 }
 
@@ -342,7 +349,7 @@ async function handleSubmit() {
 
 .cam__label {
   flex: 0 0 72px;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   text-align: right;
 }
@@ -357,7 +364,7 @@ async function handleSubmit() {
   width: 220px;
   height: 32px;
   padding: 0 10px;
-  font-size: 13px;
+  font-size: var(--font-body);
   color: hsl(var(--foreground));
   outline: none;
   background: hsl(var(--card));
@@ -380,14 +387,14 @@ async function handleSubmit() {
 }
 
 .cam__suffix span {
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
 }
 
 .cam__area {
   width: 100%;
   padding: 7px 10px;
-  font-size: 13px;
+  font-size: var(--font-body);
   color: hsl(var(--foreground));
   resize: vertical;
   outline: none;
@@ -406,9 +413,18 @@ async function handleSubmit() {
   gap: 6px;
 }
 
+/* 券商下拉框：宽度与文本输入框一致，字号对齐 13px 排版阶梯 */
+.cam__select {
+  width: 220px;
+}
+
+.cam__select :deep(.ant-select-selector) {
+  font-size: var(--font-body);
+}
+
 .cam__chip {
   padding: 5px 12px;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   cursor: pointer;
   background: hsl(var(--muted) / 50%);
@@ -421,21 +437,21 @@ async function handleSubmit() {
 }
 
 .cam__chip.on {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--primary-foreground));
   background: hsl(var(--primary));
   border-color: hsl(var(--primary));
 }
 
 .cam__tip {
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
 .cam__note {
   padding: 8px 12px;
   margin-top: 4px;
-  font-size: 11px;
+  font-size: var(--font-small);
   line-height: 1.7;
   color: hsl(213deg 60% 45%);
   background: hsl(213deg 80% 96%);
@@ -450,7 +466,7 @@ async function handleSubmit() {
 }
 
 .cam-footer__note {
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 

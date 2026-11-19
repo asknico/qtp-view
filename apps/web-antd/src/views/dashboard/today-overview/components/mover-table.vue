@@ -106,11 +106,13 @@ function avatarTone(code: string): string {
   border-collapse: collapse;
 }
 
+/* 表头 32px / 表体 36px：表头 12px 次要、表体 14px 正文，
+   行高比字号多 24px 垂直留白，14px 数字不再贴边 */
 th {
-  height: 30px;
+  height: 32px;
   padding: 0 12px;
-  font-size: 11px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   color: hsl(var(--muted-foreground));
   text-align: left;
   white-space: nowrap;
@@ -119,11 +121,11 @@ th {
 }
 
 td {
-  height: 34px;
+  height: 36px;
   padding: 0 12px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 12px;
+  font-size: var(--font-body);
   white-space: nowrap;
   border-bottom: 1px solid hsl(var(--border) / 50%);
 }
@@ -159,8 +161,8 @@ tbody tr:last-child td {
   justify-content: center;
   width: 20px;
   height: 20px;
-  font-size: 10.5px;
-  font-weight: 600;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-strong);
   border-radius: 6px;
 }
 
@@ -182,23 +184,25 @@ tbody tr:last-child td {
 .mover__name {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .mover__code {
-  font-family: ui-monospace, Consolas, 'SF Mono', monospace;
-  font-size: 11.5px;
+  font-family: var(--font-numeric);
+  font-size: var(--font-small);
+  font-variant-numeric: tabular-nums;
   color: hsl(var(--muted-foreground));
   letter-spacing: -0.2px;
 }
 
-/* 止损预警小标（amber） */
+/* 止损预警小标（amber）：11px 仅限此处的圆角徽标 */
 .mover__stop {
   flex: 0 0 auto;
+  height: 18px;
   padding: 0 6px;
-  font-size: 10px;
-  font-weight: 500;
-  line-height: 15px;
+  font-size: var(--font-tiny);
+  font-weight: var(--font-weight-medium);
+  line-height: 18px;
   color: hsl(32deg 80% 40%);
   background: hsl(32deg 95% 53% / 12%);
   border-radius: 999px;
@@ -208,8 +212,8 @@ tbody tr:last-child td {
 .mover__pct {
   display: inline-block;
   padding: 1px 7px;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-strong);
   border-radius: 999px;
 }
 

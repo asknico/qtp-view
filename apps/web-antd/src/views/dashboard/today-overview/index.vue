@@ -15,7 +15,8 @@ import { computed } from 'vue';
 
 import { Button } from 'antdv-next';
 
-import CardShell from '../_shared/card-shell.vue';
+import CardShell from '#/components/card-shell.vue';
+
 import KpiStrip from './components/kpi-strip.vue';
 import MoverTable from './components/mover-table.vue';
 import TradeTable from './components/trade-table.vue';
@@ -158,15 +159,15 @@ async function onRefresh() {
   gap: 8px;
   align-items: center;
   margin: 0;
-  font-size: 20px;
-  font-weight: 650;
+  font-size: var(--font-page);
+  font-weight: var(--font-weight-strong);
   letter-spacing: -0.3px;
 }
 
 .to-page__desc {
   max-width: 820px;
   margin: 4px 0 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
 }
 
@@ -182,17 +183,18 @@ async function onRefresh() {
   height: 32px !important;
   min-height: 32px !important;
   padding: 0 15px !important;
-  font-size: 14px !important;
+  font-size: var(--font-base) !important;
   line-height: 30px !important;
   border-radius: 6px;
   box-shadow: none !important;
 }
 
-/* ---- 12 列栅格：KPI 106px（与资产总览一致）/ 涨跌榜 / 成交记录 ---- */
+/* ---- 12 列栅格：KPI 110px（图标行 24 + 数字 26 + 副行 22 的实测高度，
+   比资产总览的 106 高 4px，因为这里多了图标行）/ 涨跌榜 / 成交记录 ---- */
 .to-grid {
   display: grid;
   flex: 1;
-  grid-template-rows: 106px minmax(0, 1.25fr) minmax(0, 1fr);
+  grid-template-rows: 110px minmax(0, 1.25fr) minmax(0, 1fr);
   grid-template-columns: repeat(12, 1fr);
   gap: 6px;
   min-height: 0;
@@ -208,7 +210,7 @@ async function onRefresh() {
 
 .to-loading {
   padding: 80px 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   text-align: center;
 }
@@ -219,10 +221,10 @@ async function onRefresh() {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 17px;
-  padding: 0 5px;
-  font-size: 10.5px;
-  font-weight: 600;
+  height: 19px;
+  padding: 0 6px;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-strong);
   border-radius: 4px;
 }
 
@@ -238,7 +240,7 @@ async function onRefresh() {
 
 .to-link {
   padding: 0;
-  font-size: 11.5px;
+  font-size: var(--font-small);
 
   /* 主题安全色：--primary 在深色主题下是黑色，链接需恒定亮色 */
   color: hsl(215deg 85% 55%);
@@ -256,7 +258,7 @@ async function onRefresh() {
 .to-chip {
   display: inline-flex;
   padding: 1px 7px;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   background: hsl(var(--muted) / 60%);
   border: 1px solid hsl(var(--border));
