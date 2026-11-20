@@ -18,8 +18,9 @@
     "customDashboard": "自定义看板",
     "workspace": "工作台"
   },
-  "accounts": {
+  "acc": {
     "title": "账户与资金",
-    "brokerAccounts": "券商账户"
+    "brokerAccounts": "券商账户",
+    "brokerManage": "券商管理"
   }
 }

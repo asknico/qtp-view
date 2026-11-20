@@ -174,7 +174,7 @@ function onSync() {
           type="primary"
           @click="onCreate"
         >
-          ＋ 新建账户
+          ＋ 新增账户
         </Button>
       </div>
     </header>
@@ -242,7 +242,7 @@ function onSync() {
       </CardShell>
     </div>
 
-    <!-- 新建账户 / 同步账户 / 编辑账户弹窗 -->
+    <!-- 新增账户 / 同步账户 / 编辑账户弹窗 -->
     <CreateModal @reload="reload" />
     <SyncModal @reload="reload" />
     <EditModal @reload="reload" />
