@@ -7,25 +7,29 @@ import { renderDictTag } from '#/utils/render';
 export const querySchema: FormSchemaGetter = () => [
   {
     component: 'Input',
-    fieldName: 'dictLabel',
-    label: '字典标签',
+    fieldName: 'dictName',
+    label: '字典名称',
   },
 ];
 
 export const columns: VxeGridProps['columns'] = [
   { type: 'checkbox', width: 60 },
   {
-    title: '字典标签',
+    title: '字典名称',
     field: 'cssClass',
     slots: {
       default: ({ row }) => {
-        const { dictValue } = row as DictData;
-        return renderDictTag(dictValue, [row]);
+        const { dictCode } = row as DictData;
+        return renderDictTag(dictCode, [row]);
       },
     },
   },
   {
-    title: '字典键值',
+    title: '字典编码',
+    field: 'dictCode',
+  },
+  {
+    title: '字典值',
     field: 'dictValue',
   },
   {
@@ -57,7 +61,7 @@ export const drawerSchema: FormSchemaGetter = () => [
       show: () => false,
       triggerFields: [''],
     },
-    fieldName: 'dictCode',
+    fieldName: 'dictId',
   },
   {
     component: 'Input',
@@ -74,15 +78,27 @@ export const drawerSchema: FormSchemaGetter = () => [
   },
   {
     component: 'Input',
-    fieldName: 'dictLabel',
-    label: '数据标签',
+    fieldName: 'dictName',
+    label: '字典名称',
     rules: 'required',
   },
   {
     component: 'Input',
-    fieldName: 'dictValue',
-    label: '数据键值',
+    fieldName: 'dictCode',
+    label: '字典编码',
     rules: 'required',
+  },
+  {
+    component: 'Textarea',
+    componentProps: {
+      maxlength: 2000,
+      showCount: true,
+      rows: 2,
+    },
+    fieldName: 'dictValue',
+    formItemClass: 'items-start',
+    help: '业务扩展值，最长 2000 字符',
+    label: '字典值',
   },
   {
     component: 'Textarea',

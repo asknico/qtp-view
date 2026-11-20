@@ -137,7 +137,7 @@ function onDrop(event: DragEvent) {
 }
 
 .dcard__grip {
-  font-size: 13px;
+  font-size: var(--font-base);
   line-height: 1;
   color: hsl(var(--muted-foreground) / 55%);
   cursor: grab;
@@ -152,13 +152,14 @@ function onDrop(event: DragEvent) {
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: var(--font-title);
+  font-weight: var(--font-weight-strong);
   white-space: nowrap;
 }
 
 .dcard--dense .dcard__label {
-  font-size: 12.5px;
+  /* 与原型 1.6 自定义看板对齐：小卡标题同样使用区块标题字号 */
+  font-size: var(--font-title);
 }
 
 .dcard__extra {

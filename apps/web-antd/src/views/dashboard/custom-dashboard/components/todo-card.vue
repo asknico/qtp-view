@@ -74,7 +74,7 @@ const emit = defineEmits<{
   justify-content: center;
   width: 22px;
   height: 22px;
-  font-size: 11px;
+  font-size: var(--font-small);
   background: hsl(var(--muted) / 60%);
   border-radius: 6px;
 }
@@ -90,15 +90,15 @@ const emit = defineEmits<{
 .tdl__title {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11.5px;
-  font-weight: 600;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-strong);
   white-space: nowrap;
 }
 
 .tdl__detail {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -106,8 +106,8 @@ const emit = defineEmits<{
 .tdl__tag {
   flex: 0 0 auto;
   padding: 1px 6px;
-  font-size: 10px;
-  font-weight: 500;
+  font-size: var(--font-tiny);
+  font-weight: var(--font-weight-medium);
   white-space: nowrap;
   border-radius: 9px;
 }
@@ -125,7 +125,7 @@ const emit = defineEmits<{
 .tdl__link {
   flex: 0 0 auto;
   padding: 0;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(215deg 85% 55%);
   white-space: nowrap;
   cursor: pointer;
@@ -135,7 +135,7 @@ const emit = defineEmits<{
 
 .tdl__empty {
   padding: 24px 0;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   text-align: center;
 }

@@ -120,13 +120,13 @@ onMounted(() => render());
 }
 
 .ind__center-label {
-  font-size: 9.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
 .ind__center-value {
-  font-size: 14px;
-  font-weight: 650;
+  font-size: var(--font-value);
+  font-weight: var(--font-weight-strong);
   letter-spacing: -0.2px;
 }
 
@@ -142,7 +142,7 @@ onMounted(() => render());
   display: flex;
   gap: 6px;
   align-items: center;
-  font-size: 11px;
+  font-size: var(--font-small);
 }
 
 .ind__dot {
@@ -168,7 +168,7 @@ onMounted(() => render());
   margin-top: 4px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 9.5px;
+  font-size: var(--font-small);
   line-height: 1.4;
   color: hsl(var(--muted-foreground) / 85%);
   white-space: nowrap;

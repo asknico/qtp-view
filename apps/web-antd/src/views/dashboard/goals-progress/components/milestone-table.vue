@@ -47,6 +47,7 @@ defineProps<Props>();
 
 table {
   width: 100%;
+  font-variant-numeric: tabular-nums;
   table-layout: fixed;
   border-collapse: collapse;
 }
@@ -54,8 +55,8 @@ table {
 th {
   height: 32px;
   padding: 0 12px;
-  font-size: 11px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   color: hsl(var(--muted-foreground));
   text-align: left;
   white-space: nowrap;
@@ -68,7 +69,7 @@ td {
   padding: 0 12px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--foreground));
   white-space: nowrap;
   border-bottom: 1px solid hsl(var(--border) / 40%);
@@ -95,9 +96,9 @@ tr:last-child td {
 .ms__tag {
   display: inline-flex;
   align-items: center;
-  height: 18px;
+  height: 20px;
   padding: 0 7px;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   border-radius: 4px;
 }
 

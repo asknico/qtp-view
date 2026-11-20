@@ -104,13 +104,13 @@ function bandWidth(item: GoalItem): number {
 
 .goals__label {
   flex: 0 0 190px;
-  font-size: 12px;
+  font-size: var(--font-body);
   white-space: nowrap;
 }
 
 .goals__hint {
   margin-left: 4px;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
@@ -145,18 +145,18 @@ function bandWidth(item: GoalItem): number {
 
 .goals__value {
   flex: 0 0 96px;
-  font-size: 12px;
+  font-size: var(--font-body);
   font-variant-numeric: tabular-nums;
   text-align: right;
   white-space: nowrap;
 }
 
 .goals__value b {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
 }
 
 .goals__muted {
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 

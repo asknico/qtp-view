@@ -154,7 +154,7 @@ function pnlClass(v: number): string {
 
 .acc__row--total {
   margin-top: 2px;
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   background: hsl(var(--muted) / 45%);
   border-bottom: none;
 }
@@ -171,8 +171,8 @@ function pnlClass(v: number): string {
   justify-content: center;
   width: 28px;
   height: 28px;
-  font-size: 12.5px;
-  font-weight: 600;
+  font-size: var(--font-body);
+  font-weight: var(--font-weight-strong);
   border-radius: 8px;
 }
 
@@ -202,16 +202,21 @@ function pnlClass(v: number): string {
 }
 
 .acc__name {
-  font-size: 12px;
-  font-weight: 500;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* 与原型 1.1 分账户资产对齐：账户名 13px（次要正文），数值列仍为 14px */
+  font-size: var(--font-body);
+  font-weight: var(--font-weight-medium);
   white-space: nowrap;
 }
 
 .acc__tag {
   padding: 1px 5px;
   margin-left: 4px;
-  font-size: 10px;
-  font-weight: 400;
+  font-size: var(--font-tiny);
+  font-weight: var(--font-weight-normal);
   vertical-align: 1px;
   color: hsl(var(--muted-foreground));
   background: hsl(var(--muted) / 80%);
@@ -224,8 +229,9 @@ function pnlClass(v: number): string {
 }
 
 .acc__no {
-  font-family: ui-monospace, Consolas, 'SF Mono', monospace;
-  font-size: 10.5px;
+  font-family: var(--font-numeric);
+  font-size: var(--font-small);
+  font-variant-numeric: tabular-nums;
   color: hsl(var(--muted-foreground));
   letter-spacing: -0.2px;
 }
@@ -239,28 +245,30 @@ function pnlClass(v: number): string {
   min-width: 88px;
 }
 
+/* 列头与数据同级可读（审查 C3：表头 12 / 表体 14） */
 .acc__col-label {
   display: block;
-  font-size: 10px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
 .acc__col b {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
 }
 
 .acc__col span:not(.acc__col-label):not(.acc__pnl-pill) {
-  font-size: 12px;
+  font-size: var(--font-base);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ---- 盈亏胶囊（参考设计稿 My Holdings 的百分比徽标） ---- */
 .acc__pnl-pill {
   display: inline-block;
   padding: 1.5px 8px;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   border-radius: 999px;
 }

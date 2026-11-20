@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 /**
- * 账户与资金（ACC）通用卡片外壳
- * ---------------------------------------------------------------------------
- * 与驾驶舱 `dashboard/_shared/card-shell.vue` 同源（同一套视觉口径），
- * 单独留一份是为了让 ACC 模块不反向依赖 DSH 模块；两者将来可合并到公共层。
- * 只做排版，不含任何业务字段。
+ * QTP 通用卡片外壳（公共组件）
+ * -------------------------------------------------------------------------
+ * 驾驶舱（dashboard）与账户与资金（accounts）共用：标题 + 副标题 + 右侧操作 + 主体 + 页脚。
+ * 只做排版，不含任何业务字段。字号使用 styles/typography.css 的统一 Token。
  */
 interface Props {
   /** 主体区去掉内边距（表格类内容贴边） */
@@ -51,12 +50,15 @@ withDefaults(defineProps<Props>(), { flush: false });
   box-shadow: 0 3px 12px rgb(16 24 40 / 6%);
 }
 
+/* 头部高度钉死 42px：标题 16px 的行高显式声明，
+   避免字号上调后各卡片头部高度随内容浮动，导致并排卡片标题不在同一基线 */
 .qtp-card__header {
   display: flex;
   flex: 0 0 auto;
   gap: 8px;
   align-items: center;
-  padding: 10px 14px 9px;
+  height: 42px;
+  padding: 0 14px;
   border-bottom: 1px solid hsl(var(--border) / 50%);
 }
 
@@ -64,14 +66,16 @@ withDefaults(defineProps<Props>(), { flush: false });
   display: flex;
   gap: 6px;
   align-items: center;
-  font-size: 13px;
-  font-weight: 600;
+  min-width: 0;
+  font-size: var(--font-title);
+  font-weight: var(--font-weight-strong);
+  line-height: 22px;
   white-space: nowrap;
 }
 
 .qtp-card__sub {
-  font-size: 11px;
-  font-weight: 400;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-normal);
   color: hsl(var(--muted-foreground));
 }
 
@@ -93,12 +97,16 @@ withDefaults(defineProps<Props>(), { flush: false });
   padding: 0;
 }
 
+/* 页脚 32px：12px 文字配 8px 上下内边距，保证与表格行高节奏一致 */
 .qtp-card__footer {
   display: flex;
   flex: 0 0 auto;
   gap: 8px;
-  padding: 7px 14px;
-  font-size: 11px;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  font-size: var(--font-small);
+  line-height: 18px;
   color: hsl(var(--muted-foreground));
   background: hsl(var(--muted) / 30%);
   border-top: 1px solid hsl(var(--border) / 50%);

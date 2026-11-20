@@ -64,7 +64,7 @@ const gridOptions: VxeGridProps = {
     },
   },
   rowConfig: {
-    keyField: 'dictId',
+    keyField: 'typeId',
     // 高亮当前行
     isCurrent: true,
   },
@@ -98,18 +98,18 @@ function handleAdd() {
 }
 
 async function handleEdit(record: DictType) {
-  modalApi.setData({ id: record.dictId });
+  modalApi.setData({ id: record.typeId });
   modalApi.open();
 }
 
 async function handleDelete(row: DictType) {
-  await dictTypeRemove([row.dictId]);
+  await dictTypeRemove([row.typeId]);
   await tableApi.query();
 }
 
 function handleMultiDelete() {
   const rows = tableApi.grid.getCheckboxRecords();
-  const ids = rows.map((row: DictType) => row.dictId);
+  const ids = rows.map((row: DictType) => row.typeId);
   window.modal.confirm({
     title: '提示',
     okType: 'danger',
@@ -206,8 +206,8 @@ async function handleExport() {
 div#dict-type {
   .vxe-body--row {
     &.row--current {
-      // 选中行bold
-      @apply font-semibold;
+      // 选中行bold（@apply 会被 stylelint 的 at-rule-prelude-no-invalid 拦截，直接写原生属性）
+      font-weight: 600;
     }
   }
 }

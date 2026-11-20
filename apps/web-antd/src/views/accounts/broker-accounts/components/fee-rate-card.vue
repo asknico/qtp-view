@@ -13,6 +13,7 @@ import {
   accountTypeText,
   modeTagText,
   netPremiumText,
+  statusTableText,
   weightedRateText,
 } from '../data/selectors';
 
@@ -32,7 +33,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const emit = defineEmits<{ create: []; select: [id: string] }>();
+const emit = defineEmits<{ select: [id: string] }>();
 
 /** 启用账户中最优（最低）佣金率 */
 const bestRateText = computed(() => {
@@ -60,9 +61,6 @@ function isDormant(row: FeeRow): boolean {
     <div class="frc__tools">
       <span class="frc__tools-title">分账户费率配置</span>
       <span class="frc__tools-hint">规费 / 印花税 / 过户费为交易所统一标准</span>
-      <button class="frc__link" type="button" @click="emit('create')">
-        ＋ 新建账户
-      </button>
     </div>
 
     <div class="frc__table-wrap">
@@ -144,9 +142,13 @@ function isDormant(row: FeeRow): boolean {
             <td class="is-center">
               <span
                 class="frc__tag"
-                :class="isDormant(row) ? 'frc__tag--slate' : 'frc__tag--green'"
+                :class="
+                  row.status === 'ACTIVE'
+                    ? 'frc__tag--green'
+                    : 'frc__tag--slate'
+                "
               >
-                {{ isDormant(row) ? '休眠' : '启用' }}
+                {{ statusTableText(row) }}
               </span>
             </td>
           </tr>
@@ -221,27 +223,17 @@ function isDormant(row: FeeRow): boolean {
 }
 
 .frc__tools-title {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: var(--font-title);
+  font-weight: var(--font-weight-strong);
+  line-height: 22px;
 }
 
 .frc__tools-hint {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
-}
-
-.frc__link {
-  padding: 0;
-  margin-left: auto;
-  font-size: 11.5px;
-  color: hsl(var(--primary));
-  white-space: nowrap;
-  cursor: pointer;
-  background: none;
-  border: none;
 }
 
 .frc__table-wrap {
@@ -259,10 +251,10 @@ function isDormant(row: FeeRow): boolean {
 }
 
 .frc__table th {
-  height: 30px;
+  height: 32px;
   padding: 0 10px;
-  font-size: 11px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   color: hsl(var(--muted-foreground));
   text-align: left;
   white-space: nowrap;
@@ -275,7 +267,7 @@ function isDormant(row: FeeRow): boolean {
   padding: 0 10px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11.5px;
+  font-size: var(--font-body);
   white-space: nowrap;
   border-bottom: 1px solid hsl(var(--border) / 40%);
 }
@@ -302,9 +294,9 @@ function isDormant(row: FeeRow): boolean {
 }
 
 .frc__table tfoot td {
-  height: 34px;
-  font-size: 11.5px;
-  font-weight: 600;
+  height: 36px;
+  font-size: var(--font-body);
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--muted-foreground));
   background: hsl(var(--muted) / 45%);
   border-bottom: none;
@@ -315,12 +307,12 @@ function isDormant(row: FeeRow): boolean {
 }
 
 .frc__name {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .frc__id {
   margin-left: 4px;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
@@ -340,7 +332,7 @@ function isDormant(row: FeeRow): boolean {
 .frc__tag {
   display: inline-block;
   padding: 1px 6px;
-  font-size: 10px;
+  font-size: var(--font-tiny);
   line-height: 16px;
   border-radius: 4px;
 }
@@ -388,13 +380,13 @@ function isDormant(row: FeeRow): boolean {
 }
 
 .frc__metric span {
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
 .frc__metric b {
-  font-size: 14px;
-  font-weight: 650;
+  font-size: var(--font-value);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.3px;
 }
@@ -410,7 +402,7 @@ function isDormant(row: FeeRow): boolean {
   align-items: flex-start;
   padding: 8px 10px;
   margin: 10px 0 0;
-  font-size: 11px;
+  font-size: var(--font-small);
   line-height: 1.55;
   color: hsl(32deg 70% 28%);
   background: hsl(38deg 95% 50% / 9%);
@@ -419,7 +411,7 @@ function isDormant(row: FeeRow): boolean {
 }
 
 .frc__note b {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
 }
 
 .frc__note-mark {
@@ -430,8 +422,8 @@ function isDormant(row: FeeRow): boolean {
   width: 13px;
   height: 13px;
   margin-top: 1px;
-  font-size: 9.5px;
-  font-weight: 700;
+  font-size: var(--font-tiny);
+  font-weight: var(--font-weight-strong);
   color: #fff;
   background: hsl(32deg 85% 48%);
   border-radius: 50%;

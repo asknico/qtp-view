@@ -226,7 +226,7 @@ const rows = computed<KpiRow[]>(() =>
 .kpi__label {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -234,20 +234,22 @@ const rows = computed<KpiRow[]>(() =>
 .kpi__value {
   margin-top: 4px;
   overflow: hidden;
-  font-size: 24px;
-  font-weight: 650;
+  font-size: var(--font-kpi);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   line-height: 1.25;
-  letter-spacing: -0.7px;
+  letter-spacing: -0.5px;
   white-space: nowrap;
 }
 
+/* 小数/后缀：与主数字同色（审查 D1），比例取主数字 0.6 */
 .kpi__value small {
   margin-left: 2px;
-  font-size: 12px;
-  font-weight: 500;
-  color: hsl(var(--muted-foreground));
+  font-size: var(--font-kpi-dec);
+  font-weight: var(--font-weight-medium);
+  color: inherit;
   letter-spacing: 0;
+  opacity: 0.8;
 }
 
 /* ---- 副行：固定高度 + 钉底，与今日速览 KPI 同一水平对齐策略 ---- */
@@ -258,7 +260,7 @@ const rows = computed<KpiRow[]>(() =>
   height: 20px;
   margin-top: auto;
   overflow: hidden;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   line-height: 20px;
   white-space: nowrap;
 }
@@ -273,8 +275,8 @@ const rows = computed<KpiRow[]>(() =>
 .kpi__pill {
   flex: 0 0 auto;
   padding: 1px 7px;
-  font-size: 10.5px;
-  font-weight: 600;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-strong);
   border-radius: 999px;
 }
 

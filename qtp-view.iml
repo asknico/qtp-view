@@ -3,7 +3,7 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/scripts/代码生成模板antdv-next专用" isTestSource="false" packagePrefix="org.dromara.generator.util" />
+      <sourceFolder url="file://$MODULE_DIR$/scripts/代码生成模板antdv-next专用" isTestSource="false" packagePrefix="com.minscope.generator.util" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/.vscode" />

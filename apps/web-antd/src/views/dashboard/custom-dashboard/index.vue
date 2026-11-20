@@ -17,7 +17,8 @@ import { computed } from 'vue';
 
 import { Button } from 'antdv-next';
 
-import CardShell from '../_shared/card-shell.vue';
+import CardShell from '#/components/card-shell.vue';
+
 import DashboardCard from './components/dashboard-card.vue';
 import HeatCard from './components/heat-card.vue';
 import IndustryCard from './components/industry-card.vue';
@@ -280,15 +281,15 @@ function onToggle(key: DashboardCardKey) {
 
 .cud-page__title {
   margin: 0;
-  font-size: 20px;
-  font-weight: 650;
+  font-size: var(--font-page);
+  font-weight: var(--font-weight-strong);
   letter-spacing: -0.3px;
 }
 
 .cud-page__desc {
   max-width: 820px;
   margin: 4px 0 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
 }
 
@@ -304,7 +305,7 @@ function onToggle(key: DashboardCardKey) {
   height: 32px !important;
   min-height: 32px !important;
   padding: 0 15px !important;
-  font-size: 14px !important;
+  font-size: var(--font-base) !important;
   line-height: 30px !important;
   border-radius: 6px;
   box-shadow: none !important;
@@ -312,8 +313,8 @@ function onToggle(key: DashboardCardKey) {
 
 .cud-dirty {
   padding: 1px 7px;
-  font-size: 10.5px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   color: hsl(32deg 80% 40%);
   white-space: nowrap;
   background: hsl(32deg 95% 53% / 12%);
@@ -346,8 +347,10 @@ function onToggle(key: DashboardCardKey) {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+/* 迷你卡 116px：标题行 33 + 正文内边距 16 + 数值 21 + 说明两行 36 的实测高度。
+   原来 108px 在数值升到 18px 后只剩 2px 余量，容易把副行压掉 */
 .cud-mini > * {
-  height: 108px;
+  height: 116px;
 }
 
 .cud-panels {
@@ -371,8 +374,8 @@ function onToggle(key: DashboardCardKey) {
 
 .cud-count {
   padding: 1px 7px;
-  font-size: 10.5px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
   background: hsl(var(--muted) / 60%);
@@ -380,7 +383,7 @@ function onToggle(key: DashboardCardKey) {
 }
 
 .cud-link {
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(215deg 85% 55%);
   white-space: nowrap;
   cursor: pointer;
@@ -396,7 +399,7 @@ function onToggle(key: DashboardCardKey) {
 
 .cud-seg__btn {
   padding: 1px 7px;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   cursor: pointer;
   background: none;
@@ -412,7 +415,7 @@ function onToggle(key: DashboardCardKey) {
 
 .cud-empty {
   padding: 40px 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   text-align: center;
   border: 1px dashed hsl(var(--border));
@@ -421,7 +424,7 @@ function onToggle(key: DashboardCardKey) {
 
 .cud-loading {
   padding: 80px 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   text-align: center;
 }

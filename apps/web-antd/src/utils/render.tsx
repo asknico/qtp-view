@@ -136,7 +136,7 @@ export interface RenderDictOptions {
 }
 
 /**
- * 显示字典标签 一般是table使用
+ * 显示字典名称 一般是table使用
  * @param value 值
  * @param dictName dictName
  * @returns tag
@@ -201,7 +201,7 @@ const DefaultBrowserIcon = 'icon-[ph--browser-duotone]';
 
 export function renderOsIcon(os: string, className?: string) {
   if (!os) {
-    return;
+    return null;
   }
   let current = osOptions.find((item) =>
     os.toLocaleLowerCase().includes(item.value),
@@ -216,7 +216,7 @@ export function renderOsIcon(os: string, className?: string) {
 
 export function renderBrowserIcon(browser: string, className?: string) {
   if (!browser) {
-    return;
+    return null;
   }
   const current = browserOptions.find((item) =>
     browser.toLocaleLowerCase().includes(item.value),

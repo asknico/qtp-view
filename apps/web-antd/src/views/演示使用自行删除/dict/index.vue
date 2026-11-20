@@ -35,7 +35,7 @@ onMounted(async () => {
 `;
 
 const computedOptions = computed(() => {
-  return options.filter((item) => item.dictValue !== '1');
+  return options.filter((item) => item.dictCode !== '1');
 });
 
 const filterCode = `
@@ -145,7 +145,7 @@ const items: DescriptionsProps['items'] = [
       />
     </Card>
 
-    <Card size="small" title="字典标签 - 未匹配到值的fallback">
+    <Card size="small" title="字典名称 - 未匹配到值的fallback">
       <Descriptions :column="1" :items="items" />
     </Card>
 

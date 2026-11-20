@@ -187,10 +187,10 @@ function onTypeChange(event: Event): void {
 }
 
 .reminders__tabs button {
-  min-width: 42px;
-  height: 23px;
+  min-width: 46px;
+  height: 26px;
   padding: 0 9px;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   cursor: pointer;
   background: transparent;
@@ -199,7 +199,7 @@ function onTypeChange(event: Event): void {
 }
 
 .reminders__tabs button.is-active {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--foreground));
   background: hsl(var(--card));
   box-shadow: 0 1px 3px rgb(16 24 40 / 10%);
@@ -207,7 +207,7 @@ function onTypeChange(event: Event): void {
 
 .reminders__toolbar-note {
   margin-left: auto;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -222,9 +222,9 @@ function onTypeChange(event: Event): void {
 
 .reminders__select,
 .reminders__filter {
-  height: 27px;
+  height: 30px;
   padding: 0 9px;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   outline: none;
   background: hsl(var(--card));
@@ -253,7 +253,7 @@ function onTypeChange(event: Event): void {
 .reminders__read-all {
   padding: 0;
   margin-left: auto;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(215deg 85% 55%);
   white-space: nowrap;
   cursor: pointer;
@@ -276,8 +276,8 @@ function onTypeChange(event: Event): void {
 
 .reminder-group__title {
   margin: 7px 0 2px;
-  font-size: 11px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   color: hsl(var(--muted-foreground));
 }
 
@@ -285,7 +285,7 @@ function onTypeChange(event: Event): void {
   display: flex;
   gap: 9px;
   align-items: center;
-  min-height: 49px;
+  min-height: 52px;
   padding: 7px 0;
   border-bottom: 1px dashed hsl(var(--border) / 65%);
 }
@@ -302,7 +302,7 @@ function onTypeChange(event: Event): void {
   width: 25px;
   height: 25px;
   padding: 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   cursor: pointer;
   border: none;
   border-radius: 7px;
@@ -336,8 +336,8 @@ function onTypeChange(event: Event): void {
 .reminder__title {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 12px;
-  font-weight: 550;
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-medium);
   white-space: nowrap;
 }
 
@@ -356,7 +356,7 @@ function onTypeChange(event: Event): void {
   margin-top: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -364,7 +364,7 @@ function onTypeChange(event: Event): void {
 .reminder__action {
   flex: 0 0 auto;
   padding: 0;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   white-space: nowrap;
   cursor: pointer;
   background: none;
@@ -372,12 +372,12 @@ function onTypeChange(event: Event): void {
 }
 
 .reminder__action--link {
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(215deg 85% 55%);
 }
 
 .reminder__action--pill {
-  height: 20px;
+  height: 22px;
   padding: 0 7px;
   border-radius: 10px;
 }
@@ -409,7 +409,7 @@ function onTypeChange(event: Event): void {
 
 .reminders__empty {
   padding: 60px 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   text-align: center;
 }

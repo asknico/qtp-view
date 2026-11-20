@@ -13,8 +13,11 @@
 /** 账户类型：普通 / 信用（两融） */
 export type AccountType = 'CREDIT' | 'NORMAL';
 
-/** 账户状态：启用 / 休眠（休眠账户不计入总资产与费率加权） */
-export type AccountStatus = 'ACTIVE' | 'DORMANT';
+/**
+ * 账户状态：启用 / 休眠 / 销户
+ * 休眠账户不计入总资产与费率加权；销户账户只读备查
+ */
+export type AccountStatus = 'ACTIVE' | 'CLOSED' | 'DORMANT';
 
 /** 佣金口径：全佣（已含规费）/ 净佣（需再叠加规费） */
 export type CommissionMode = 'ALL_IN' | 'NET';
@@ -82,6 +85,8 @@ export interface BrokerAccount {
   purpose: string;
   /** 风险等级，如「C4 积极型」 */
   riskLevel: string;
+  /** 备注（编辑弹窗回显） */
+  remark: string;
   /** 账户状态 */
   status: AccountStatus;
   /** 今日盈亏（元），可正可负 */

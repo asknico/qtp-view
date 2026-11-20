@@ -12,7 +12,8 @@ import { computed } from 'vue';
 
 import { Button } from 'antdv-next';
 
-import CardShell from '../_shared/card-shell.vue';
+import CardShell from '#/components/card-shell.vue';
+
 import GoalsKpiStrip from './components/goals-kpi-strip.vue';
 import MilestoneTable from './components/milestone-table.vue';
 import TargetBarsCard from './components/target-bars-card.vue';
@@ -143,15 +144,15 @@ const trackPill = computed(() =>
 
 .gp-page__title {
   margin: 0;
-  font-size: 20px;
-  font-weight: 650;
+  font-size: var(--font-page);
+  font-weight: var(--font-weight-strong);
   letter-spacing: -0.3px;
 }
 
 .gp-page__desc {
   max-width: 820px;
   margin: 4px 0 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
 }
 
@@ -167,17 +168,18 @@ const trackPill = computed(() =>
   height: 32px !important;
   min-height: 32px !important;
   padding: 0 15px !important;
-  font-size: 14px !important;
+  font-size: var(--font-base) !important;
   line-height: 30px !important;
   border-radius: 6px;
   box-shadow: none !important;
 }
 
-/* ---- 12 列栅格：与另三页同节奏（gap 6px / KPI 行钉高） ---- */
+/* ---- 12 列栅格：与另三页同节奏（gap 6px / KPI 行钉高 104px：
+   标签 12 + 数字 26 + 副行 22 + 内边距 20 的实测高度） ---- */
 .gp-grid {
   display: grid;
   flex: 1;
-  grid-template-rows: 96px minmax(0, 258px) minmax(0, 1fr);
+  grid-template-rows: 104px minmax(0, 258px) minmax(0, 1fr);
   grid-template-columns: repeat(12, 1fr);
   gap: 6px;
   min-height: 0;
@@ -199,10 +201,10 @@ const trackPill = computed(() =>
 .gp-pill {
   display: inline-flex;
   align-items: center;
-  height: 19px;
+  height: 20px;
   padding: 0 7px;
-  font-size: 10.5px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   white-space: nowrap;
   border-radius: 10px;
 }
@@ -219,7 +221,7 @@ const trackPill = computed(() =>
 
 .gp-loading {
   padding: 80px 0;
-  font-size: 12px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
   text-align: center;
 }

@@ -192,7 +192,7 @@ onMounted(() => render());
   gap: 12px;
   align-items: center;
   padding-top: 8px;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   border-top: 1px solid hsl(var(--border) / 50%);
 }

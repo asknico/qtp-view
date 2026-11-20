@@ -40,7 +40,7 @@ const { apiURL, clientId, enableEncrypt, rsaPublicKey, rsaPrivateKey } =
  *
  * 你可以使用Sm2Encryption来替换 后端也需要同步替换公私钥对
  *
- * 后端文件位置: ruoyi-common/ruoyi-common-encrypt/src/main/java/org/dromara/common/encrypt/filter/DecryptRequestBodyWrapper.java
+ * 后端文件位置: qtp-common/qtp-common-data/src/main/java/com/minscope/common/encrypt/filter/DecryptRequestBodyWrapper.java
  *
  * 注意前端sm-crypto库只能支持04开头的公钥! 否则加密会有问题 你可以使用前端的import { logSm2KeyPair } from '@vben/utils';方法来生成
  * 如果你生成的公钥开头不是04 那么不能正常加密
@@ -55,6 +55,42 @@ const asymmetricEncryption: BaseAsymmetricEncryption = new RsaEncryption({
  * 对称加密的实现 AES/SM4
  */
 const symmetricEncryption: BaseSymmetricEncryption = new AesEncryption();
+
+/**
+ * 后端响应体统一返回 traceId / ts（Micrometer Tracing 自动生成）
+ * 结构：{ code, msg, data, traceId, ts }
+ * - traceId：与后端日志 [%X{traceId}] 同源，报障时凭此ID可直接在服务端日志检索完整请求链路
+ * - ts：服务端响应时间戳(ms)，Date.now() - ts ≈ 接口网络往返耗时
+ */
+
+/** 最近一次响应的 traceId（模块级保存，供报障反馈、全局诊断使用） */
+let lastTraceId = '';
+
+/** 获取最近一次响应的 traceId */
+export function getLastTraceId(): string {
+  return lastTraceId;
+}
+
+/** 响应中的链路信息（traceId/ts 为可选字段，兼容未升级的后端） */
+interface ApiTraceInfo {
+  traceId?: string;
+  ts?: number;
+}
+
+/**
+ * 提取响应中的 traceId 并记录（仅 console 诊断用，不拼进用户可见的错误提示）
+ */
+function captureTrace(data: unknown): void {
+  const trace = (data as ApiTraceInfo)?.traceId;
+  if (trace) {
+    lastTraceId = trace;
+    const ts = (data as ApiTraceInfo)?.ts;
+    const cost = ts ? ` 耗时≈${Math.max(0, Date.now() - ts)}ms` : '';
+    // 开发排查入口：浏览器控制台可见，不影响界面（no-console 仅此一处豁免）
+    // oxlint-disable-next-line no-console
+    console.debug(`[trace] traceId=${trace}${cost}`);
+  }
+}
 
 const axiosDefaultConfig: AxiosRequestConfig = {
   successMessageMode: 'none',
@@ -196,6 +232,8 @@ const alovaInstance = createAlova({
            * 执行登出操作
            */
           const resp = response.data as unknown as HttpResponse;
+          // 该路径不做业务转换，但 traceId/ts 照常捕获
+          captureTrace(resp);
           // 抛出异常 不再执行
           if (
             typeof resp === 'object' &&
@@ -229,6 +267,9 @@ const alovaInstance = createAlova({
       if (!axiosResponseData) {
         throw new Error($t('http.apiRequestFailed'));
       }
+
+      // 提取链路信息 traceId/ts（加密响应已在上方解密完成，结构完整）
+      captureTrace(axiosResponseData);
 
       // 后端并没有采用严格的{code, msg, data}模式
       const { code, data, msg, ...other } = axiosResponseData;
@@ -273,6 +314,7 @@ const alovaInstance = createAlova({
         }
         default: {
           if (msg) {
+            // traceId 只进 console（captureTrace），不拼进用户可见提示
             timeoutMsg = msg;
           }
         }
@@ -320,7 +362,10 @@ const alovaInstance = createAlova({
         throw new Error(error as unknown as string, { cause: error });
       }
 
-      const msg: string = (response?.data as any)?.msg ?? '';
+      const respData: Record<string, any> = (response?.data as any) ?? {};
+      const msg: string = respData?.msg ?? '';
+      // HTTP 层错误（非业务码）也捕获 traceId，仅进 console 诊断
+      captureTrace(respData);
       // 根据httpStatus判断错误 弹窗提示
       checkStatus(error?.response?.status, msg, method.config);
 

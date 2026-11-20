@@ -95,7 +95,7 @@ const gridStyle = { gridTemplateColumns: 'repeat(6, 1fr)' };
   flex-direction: column;
   justify-content: space-between;
   min-width: 0;
-  padding: 10px 14px 9px;
+  padding: 9px 14px 8px;
   overflow: hidden;
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border) / 80%);
@@ -122,7 +122,7 @@ const gridStyle = { gridTemplateColumns: 'repeat(6, 1fr)' };
 .idx__name {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -143,12 +143,14 @@ const gridStyle = { gridTemplateColumns: 'repeat(6, 1fr)' };
   stroke: hsl(var(--stock-down));
 }
 
+/* 指数点位是本卡唯一主数字：与另两页 KPI 同档（26），
+   名称/涨跌/成交额退到 12 —— 层级由“26 vs 12”拉开，不靠加粗堆叠 */
 .idx__value {
-  font-size: 21px;
-  font-weight: 650;
+  font-size: var(--font-kpi);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   line-height: 1.2;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.6px;
   white-space: nowrap;
 }
 
@@ -158,19 +160,19 @@ const gridStyle = { gridTemplateColumns: 'repeat(6, 1fr)' };
   align-items: baseline;
   justify-content: space-between;
   min-width: 0;
-  font-size: 11px;
+  font-size: var(--font-small);
 }
 
 .idx__change {
   flex: 0 0 auto;
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
 }
 
 .idx__turnover {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }

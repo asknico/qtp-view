@@ -37,7 +37,7 @@ const [Modal] = useVbenModal({
           替换
           <code class="rounded bg-gray-100 px-1">
             路径:
-            /ruoyi-modules/ruoyi-generator/src/main/java/org/dromara/generator/util
+            /qtp-modules/qtp-generator/src/main/java/com/minscope/generator/util
           </code>
           (简单描述就是替换 utils 文件)
           <strong>此文件只是新增了 vben 代码支持, 不影响原版生成</strong>

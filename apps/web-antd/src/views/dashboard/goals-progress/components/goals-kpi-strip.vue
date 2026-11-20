@@ -70,7 +70,7 @@ defineProps<Props>();
 .gkpi__label {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -78,20 +78,20 @@ defineProps<Props>();
 .gkpi__value {
   margin-top: 3px;
   overflow: hidden;
-  font-size: 23px;
-  font-weight: 650;
+  font-size: var(--font-kpi);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   line-height: 1.2;
-  letter-spacing: -0.6px;
+  letter-spacing: -0.5px;
   white-space: nowrap;
 }
 
 .gkpi__value small {
   margin-left: 2px;
-  font-size: 12px;
-  font-weight: 500;
-  color: hsl(var(--muted-foreground));
+  font-size: var(--font-kpi-dec);
+  font-weight: var(--font-weight-medium);
   letter-spacing: 0;
+  opacity: 0.8;
 }
 
 /* 副行固定高度 + 钉底：四张卡信息行永远同一水平线（与另两页 KPI 同策略） */
@@ -99,11 +99,11 @@ defineProps<Props>();
   display: flex;
   gap: 6px;
   align-items: center;
-  height: 20px;
+  height: 22px;
   margin-top: auto;
   overflow: hidden;
-  font-size: 11.5px;
-  line-height: 20px;
+  font-size: var(--font-small);
+  line-height: 22px;
   white-space: nowrap;
 }
 

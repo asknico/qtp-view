@@ -64,8 +64,8 @@ const weekdays = ['一', '二', '三', '四', '五', '六', '日'];
 }
 
 .calendar__weekday {
-  height: 16px;
-  font-size: 10px;
+  height: 18px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
@@ -73,8 +73,8 @@ const weekdays = ['一', '二', '三', '四', '五', '六', '日'];
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 20px;
-  font-size: 10.5px;
+  height: 22px;
+  font-size: var(--font-small);
   font-variant-numeric: tabular-nums;
   color: hsl(var(--muted-foreground));
   border-radius: 4px;
@@ -90,7 +90,7 @@ const weekdays = ['一', '二', '三', '四', '五', '六', '日'];
 }
 
 .calendar__day--today {
-  font-weight: 650;
+  font-weight: var(--font-weight-strong);
   color: hsl(215deg 85% 52%);
   background: hsl(215deg 90% 55% / 12%);
   box-shadow: none;
@@ -101,7 +101,7 @@ const weekdays = ['一', '二', '三', '四', '五', '六', '日'];
   gap: 12px;
   align-items: center;
   margin-top: 7px;
-  font-size: 10px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
@@ -137,8 +137,8 @@ const weekdays = ['一', '二', '三', '四', '五', '六', '日'];
   gap: 8px;
   align-items: center;
   justify-content: space-between;
-  min-height: 23px;
-  font-size: 10.5px;
+  min-height: 26px;
+  font-size: var(--font-small);
   border-bottom: 1px dashed hsl(var(--border) / 55%);
 }
 
@@ -154,7 +154,7 @@ const weekdays = ['一', '二', '三', '四', '五', '六', '日'];
 .calendar__event b {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 550;
+  font-weight: var(--font-weight-medium);
   white-space: nowrap;
 }
 </style>

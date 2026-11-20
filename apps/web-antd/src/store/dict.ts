@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import type { DictData } from '#/api/system/dict/dict-data-model';
 
 import { reactive } from 'vue';
@@ -27,8 +26,8 @@ export function dictToOptions(
 ): DictOption[] {
   return data.map((item) => ({
     ...item,
-    label: item.dictLabel,
-    value: formatNumber ? Number(item.dictValue) : item.dictValue,
+    label: item.dictName,
+    value: formatNumber ? Number(item.dictCode) : item.dictCode,
   }));
 }
 
@@ -54,8 +53,8 @@ export const useDictStore = defineStore('app-dict', () => {
     if (!dictOptionsMap.has(dictName)) {
       dictOptionsMap.set(dictName, []);
     }
-    // 这里拿到的就不可能为空了
-    return dictOptionsMap.get(dictName)!;
+    // 上一行已确保 key 存在，正常必命中；?? [] 仅为类型收窄兜底
+    return dictOptionsMap.get(dictName) ?? [];
   }
 
   function resetCache() {
@@ -77,7 +76,7 @@ export const useDictStore = defineStore('app-dict', () => {
    */
   function setDictInfo(
     dictName: string,
-    dictValue: DictData[],
+    dictCode: DictData[],
     formatNumber = false,
   ) {
     if (
@@ -86,9 +85,9 @@ export const useDictStore = defineStore('app-dict', () => {
     ) {
       dictOptionsMap
         .get(dictName)
-        ?.push(...dictToOptions(dictValue, formatNumber));
+        ?.push(...dictToOptions(dictCode, formatNumber));
     } else {
-      dictOptionsMap.set(dictName, dictToOptions(dictValue, formatNumber));
+      dictOptionsMap.set(dictName, dictToOptions(dictCode, formatNumber));
     }
   }
 

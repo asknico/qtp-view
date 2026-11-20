@@ -33,11 +33,11 @@ export function dictTypeExport(data: Partial<DictType>) {
 
 /**
  * 删除字典类型
- * @param dictIds 字典类型id数组
+ * @param typeIds 字典类型id数组
  * @returns void
  */
-export function dictTypeRemove(dictIds: IDS) {
-  return alovaInstance.deleteWithMsg<void>(`${Api.root}/${dictIds}`);
+export function dictTypeRemove(typeIds: IDS) {
+  return alovaInstance.deleteWithMsg<void>(`${Api.root}/${typeIds}`);
 }
 
 /**
@@ -68,11 +68,11 @@ export function dictTypeUpdate(data: Partial<DictType>) {
 
 /**
  * 查询详情
- * @param dictId 字典类型id
+ * @param typeId 字典类型id
  * @returns 信息
  */
-export function dictTypeInfo(dictId: ID) {
-  return alovaInstance.get<DictType>(`${Api.root}/${dictId}`);
+export function dictTypeInfo(typeId: ID) {
+  return alovaInstance.get<DictType>(`${Api.root}/${typeId}`);
 }
 
 /**

@@ -4,7 +4,6 @@ import type { BrokerAccount } from '../data/types';
 import { computed } from 'vue';
 
 import { formatThousand } from '../../_shared/format';
-import { grantedBoardText } from '../../_shared/rate';
 import {
   accountNameOf,
   accountTypeText,
@@ -28,13 +27,18 @@ const props = defineProps<Props>();
 const kvRows = computed(() => {
   const account = props.account;
   if (!account) return [];
+  const granted = account.boards.filter((board) => board.granted);
   return [
     {
       key: '账户类型',
       value: `${accountTypeText(account.type)}（${account.type}）`,
     },
     { key: '风险等级', value: account.riskLevel },
-    { key: '开通板块', value: grantedBoardText(account) },
+    {
+      key: '开通板块',
+      title: granted.length > 0 ? granted.map((b) => b.name).join(' · ') : '',
+      value: granted.length > 0 ? `${granted.length} 个板块` : '未开通',
+    },
     { key: '交易经验', value: experienceText(account.experienceMonths) },
     { key: '佣金费率', value: commissionDetailText(account.fee) },
     { key: '佣金口径', value: modeText(account.fee.mode) },
@@ -74,7 +78,7 @@ function avatarText(account: BrokerAccount): string {
     <dl class="adc__kv">
       <div v-for="row in kvRows" :key="row.key" class="adc__kv-row">
         <dt>{{ row.key }}</dt>
-        <dd>{{ row.value }}</dd>
+        <dd :title="row.title ?? ''">{{ row.value }}</dd>
       </div>
     </dl>
 
@@ -124,8 +128,9 @@ function avatarText(account: BrokerAccount): string {
   justify-content: center;
   width: 42px;
   height: 42px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: var(--font-value);
+  font-weight: var(--font-weight-strong);
+  font-variant-numeric: tabular-nums;
   color: #fff;
   border-radius: 9px;
 }
@@ -153,15 +158,15 @@ function avatarText(account: BrokerAccount): string {
 .adc__ident-name {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--font-title);
+  font-weight: var(--font-weight-strong);
   white-space: nowrap;
 }
 
 .adc__ident-sub {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -170,8 +175,8 @@ function avatarText(account: BrokerAccount): string {
   flex: 0 0 auto;
   padding: 1px 7px;
   margin-left: auto;
-  font-size: 10.5px;
-  font-weight: 500;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-medium);
   border-radius: 999px;
 }
 
@@ -208,7 +213,7 @@ function avatarText(account: BrokerAccount): string {
 
 .adc__kv-row dt {
   flex: 0 0 auto;
-  font-size: 11.5px;
+  font-size: var(--font-body);
   color: hsl(var(--muted-foreground));
 }
 
@@ -216,8 +221,8 @@ function avatarText(account: BrokerAccount): string {
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 11.5px;
-  font-weight: 600;
+  font-size: var(--font-body);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   text-align: right;
   white-space: nowrap;
@@ -231,8 +236,8 @@ function avatarText(account: BrokerAccount): string {
 
 .adc__section {
   margin-bottom: 4px;
-  font-size: 11.5px;
-  font-weight: 600;
+  font-size: var(--font-body);
+  font-weight: var(--font-weight-strong);
 }
 
 .adc__boards {
@@ -246,7 +251,7 @@ function avatarText(account: BrokerAccount): string {
   gap: 7px;
   align-items: center;
   padding: 4px 0;
-  font-size: 11px;
+  font-size: var(--font-body);
   border-bottom: 1px dashed hsl(var(--border) / 45%);
 }
 
@@ -282,7 +287,7 @@ function avatarText(account: BrokerAccount): string {
 
 .adc__board-name {
   flex: 0 0 62px;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .adc__board-req {
@@ -296,7 +301,7 @@ function avatarText(account: BrokerAccount): string {
 
 .adc__board-state {
   flex: 0 0 auto;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 

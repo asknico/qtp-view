@@ -9,7 +9,7 @@ SM4只支持16长度的字符串作为key, 需要在前端后端都更改为16�
 const key = randomStr(16);
 ```
 
-后端位置: `src/main/java/org/dromara/common/encrypt/filter/EncryptResponseBodyWrapper.java`
+后端位置: `src/main/java/com/minscope/common/encrypt/filter/EncryptResponseBodyWrapper.java`
 
 ```java
 public String getEncryptContent(HttpServletResponse servletResponse, String publicKey,    String headerFlag) throws IOException {
@@ -50,7 +50,7 @@ const symmetricEncryption: BaseSymmetricEncryption = new Sm4Encryption();
 
 ## 后端加密必须为hex字符串
 
-位置`ruoyi-common/ruoyi-common-encrypt/src/main/java/org/dromara/common/encrypt/filter/EncryptResponseBodyWrapper.java`
+位置`qtp-common/qtp-common-data/src/main/java/com/minscope/common/encrypt/filter/EncryptResponseBodyWrapper.java`
 
 使用SM相关修改为`xxxxHex`方法而非`base64`!!!
 

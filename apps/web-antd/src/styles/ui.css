@@ -1,11 +1,12 @@
 /**
  * 应用级 UI 微调（全局，仅 light 主题）
  * ---------------------------------------------------------------------------
- * 黑色主按钮边框统一：
- *   本主题 colorPrimary 为近黑（rgb(24,24,27)），solid 主按钮默认边框透明，
- *   hover/active 时为近黑描边，和相邻浅色按钮放在一起会显得更"大"更重。
- *   这里保持黑色填充与白色文字不动，只把边框色钉成与浅色按钮相同的 #E4E4E7
- *   （antd 默认按钮的 --ant-color-border，light 主题下 rgb(228,228,231)）。
+ * 黑色实底主按钮统一（参照【资产总览】的按钮规范）：
+ *   本主题 colorPrimary 为近黑（rgb(24,24,27)），antd 给 solid 主按钮渲染
+ *   0 2px 0 rgba(3,4,12,0.67) 的硬投影——深色底影超出按钮下边界，在搜索表单
+ *   /表格工具栏里看起来就像黑按钮边缘压住相邻按钮（浅色按钮投影 alpha 0.02
+ *   不可见，因此只有黑按钮"显大压边"）。
+ *   处理：去掉硬投影 + 边框钉成与浅色按钮相同的 #E4E4E7，视觉与浅色按钮等重。
  *
  *   - 只匹配 color-primary + variant-solid，danger 红、ghost、dashed 均不受影响
  *   - 深色主题不动（.dark 下浅灰边框会发刺眼）
@@ -16,4 +17,97 @@ html:not(.dark) .ant-btn.ant-btn-color-primary.ant-btn-variant-solid:hover,
 html:not(.dark) .ant-btn.ant-btn-color-primary.ant-btn-variant-solid:focus-visible,
 html:not(.dark) .ant-btn.ant-btn-color-primary.ant-btn-variant-solid:active {
   border-color: #e4e4e7 !important;
+  box-shadow: none !important;
+}
+
+/**
+ * filled Tag 前景色统一：
+ *   本主题 colorInfo 被映射为锌灰，color="processing" 的实底 Tag
+ *   渲染为 深灰底 rgb(86,87,92) + 近黑字 rgb(24,24,27)，几乎不可读。
+ *   实底背景本身够深，把前景钉成白色提高区分度（角色管理"权限字符"列等）。
+ *   - 只处理实底（filled）的 processing 标签，green/cyan/error 等浅底彩字不受影响
+ *   - 深色主题不动
+ */
+html:not(.dark) .ant-tag.ant-tag-filled.ant-tag-processing {
+  color: #fff;
+}
+
+/**
+ * 深浅主题 · antd 弹层配色兜底（规范：深色背景必须配浅色前景）
+ * ---------------------------------------------------------------------------
+ * 现象：主题切换/HMR 后，antd css-var 模式的弹层变量可能残留旧主题——
+ *   出现「深色高亮底 + 深色文字」（对比度≈1，几乎不可读），或弹层面板底色
+ *   与页面主题不一致（深色页面 + 白色下拉）。
+ *   根因：antd css-var 模式的变量播种与主题切换存在时序差，弹层已挂载时
+ *   不会重新播种。
+ *   处理：以 html 根类（.dark / :not(.dark)）为准，把弹层关键配色直接钉到
+ *   vben 设计 token（--popover / --accent / --foreground 始终跟随当前主题），
+ *   无论 antd 变量是否刷新，都保证：
+ *     ① 深色主题：面板深底 + 浅色前景，选中/悬停项 accent 中性底 + 浅字
+ *     ② 浅色主题：高亮项浅底 + 深字（防残留深底出现"深底深字"）
+ *   覆盖：Select / TreeSelect / Cascader / AutoComplete 下拉、DatePicker 面板。
+ */
+
+/* ① 深色主题：弹层面板深底 + 浅色前景 */
+html.dark .ant-select-dropdown,
+html.dark .ant-picker-dropdown .ant-picker-panel-container,
+html.dark .ant-cascader-dropdown {
+  color: hsl(var(--foreground));
+  background: hsl(var(--popover));
+}
+
+/* ① 深色主题：选项文字浅色（含禁用项弱化为 muted，不得用深字）
+ *    注意：antd 自身规则为 .ant-select-dropdown .ant-select-item（0,2,0），
+ *    这里必须带上 .ant-select-dropdown 提高优先级，否则会被 antd 覆盖。 */
+html.dark .ant-select-dropdown .ant-select-item,
+html.dark .ant-cascader-dropdown .ant-cascader-menu-item {
+  color: hsl(var(--foreground));
+}
+
+html.dark .ant-select-dropdown .ant-select-item-option-disabled {
+  color: hsl(var(--muted-foreground));
+}
+
+/* ① 深色主题：选中/悬停高亮 = accent 中性深底 + 浅字
+ *    antd 有 (0,4,0) 的组合规则（selected+active，变量也是深色），且本主题
+ *    colorPrimary 近黑、antd 各高亮 token 均算出深底，必须 !important 钉死：
+ *    深色背景必须配浅色前景（UI 规范强制项）。 */
+html.dark .ant-select-dropdown .ant-select-item-option-selected,
+html.dark .ant-select-dropdown .ant-select-item-option-active,
+html.dark .ant-cascader-dropdown .ant-cascader-menu-item-active,
+html.dark .ant-cascader-dropdown .ant-cascader-menu-item:hover {
+  color: hsl(var(--foreground)) !important;
+  background: hsl(var(--accent)) !important;
+}
+
+/* ① 深色主题：选择器本体（收起态输入框）钉深底，防残留白底 */
+html.dark
+  .ant-select:not(.ant-select-customize-input):not(.ant-select-borderless)
+  .ant-select-selector {
+  background-color: hsl(var(--card));
+}
+
+/* ② 浅色主题：选中/悬停项浅底 + 深字
+ *    关键修复：本主题 colorPrimary 近黑，antd 选中/悬停 token 会算出
+ *    深灰底 rgb(86,87,92) + 深字（对比度≈1.06，完全不可读），
+ *    必须 !important 钉回 accent 浅底 + foreground 深字。 */
+html:not(.dark) .ant-select-dropdown .ant-select-item-option-selected,
+html:not(.dark) .ant-select-dropdown .ant-select-item-option-active,
+html:not(.dark) .ant-cascader-dropdown .ant-cascader-menu-item-active,
+html:not(.dark) .ant-cascader-dropdown .ant-cascader-menu-item:hover {
+  color: hsl(var(--foreground)) !important;
+  background: hsl(var(--accent)) !important;
+}
+
+/* 全局通知弹窗（notification）字号
+ *    antd 弹窗不读 vben preferences.theme.fontSize（token 映射只同步颜色）。
+ *    注意两点：① antdv-next 标题类名是 -title（非 antd 经典版的 -message）；
+ *    ② antd 注入规则是 .ant-notification .ant-notification-notice-title (0,2,0)，
+ *    必须加 html 前缀 (0,2,1) 才能压过。 */
+html .ant-notification .ant-notification-notice-title {
+  font-size: 16px; /* 标题，如「登录成功」「收到新消息」 */
+}
+
+html .ant-notification .ant-notification-notice-description {
+  font-size: 14px; /* 描述文字 */
 }

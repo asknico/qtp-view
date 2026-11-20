@@ -147,16 +147,16 @@ const figures = computed(() => [
 .aoc__name {
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: var(--font-title);
+  font-weight: var(--font-weight-strong);
   white-space: nowrap;
 }
 
 .aoc__pill {
   flex: 0 0 auto;
   padding: 1px 6px;
-  font-size: 10px;
-  font-weight: 500;
+  font-size: var(--font-tiny);
+  font-weight: var(--font-weight-medium);
   border-radius: 999px;
 }
 
@@ -173,8 +173,9 @@ const figures = computed(() => [
 .aoc__no {
   margin-left: auto;
   overflow: hidden;
-  font-family: ui-monospace, Consolas, 'SF Mono', monospace;
-  font-size: 10.5px;
+  font-family: var(--font-numeric);
+  font-size: var(--font-small);
+  font-variant-numeric: tabular-nums;
   color: hsl(var(--muted-foreground));
   letter-spacing: -0.2px;
   white-space: nowrap;
@@ -195,7 +196,7 @@ const figures = computed(() => [
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -204,8 +205,8 @@ const figures = computed(() => [
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 16.5px;
-  font-weight: 650;
+  font-size: var(--font-value);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   line-height: 1.4;
   letter-spacing: -0.5px;
@@ -223,7 +224,7 @@ const figures = computed(() => [
 .aoc__tag {
   flex: 0 0 auto;
   padding: 1px 6px;
-  font-size: 10px;
+  font-size: var(--font-tiny);
   line-height: 16px;
   white-space: nowrap;
   border-radius: 4px;
@@ -255,14 +256,14 @@ const figures = computed(() => [
   align-items: center;
   padding-top: 7px;
   margin-top: 7px;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
   border-top: 1px dashed hsl(var(--border) / 55%);
 }
 
 .aoc__fee b {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
   color: hsl(var(--foreground));
 }
 

@@ -97,14 +97,14 @@ defineProps<Props>();
 }
 
 .st__label {
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
 .st__value {
   margin-top: 1px;
-  font-size: 18px;
-  font-weight: 650;
+  font-size: var(--font-value);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   line-height: 1.3;
   letter-spacing: -0.3px;
@@ -113,7 +113,7 @@ defineProps<Props>();
 
 .st__slash {
   margin: 0 2px;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: hsl(var(--muted-foreground));
 }
 
@@ -121,7 +121,7 @@ defineProps<Props>();
   margin-top: 1px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 10.5px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
 }
@@ -140,20 +140,20 @@ defineProps<Props>();
 
 .st__warn-icon {
   flex: 0 0 auto;
-  font-size: 12px;
+  font-size: var(--font-body);
   line-height: 1.4;
   color: hsl(32deg 80% 40%);
 }
 
 .st__warn p {
   margin: 0;
-  font-size: 11px;
+  font-size: var(--font-small);
   line-height: 1.55;
   color: hsl(32deg 70% 35%);
 }
 
 .st__warn b {
-  font-weight: 600;
+  font-weight: var(--font-weight-strong);
 }
 
 /* ---- 时间轴 ---- */
@@ -174,7 +174,7 @@ defineProps<Props>();
 .st__tl-time {
   flex: 0 0 44px;
   padding-top: 1px;
-  font-size: 11px;
+  font-size: var(--font-small);
   font-variant-numeric: tabular-nums;
   color: hsl(var(--muted-foreground));
   text-align: right;
@@ -228,13 +228,13 @@ defineProps<Props>();
 }
 
 .st__tl-title {
-  font-size: 12px;
-  font-weight: 550;
+  font-size: var(--font-body);
+  font-weight: var(--font-weight-medium);
 }
 
 .st__tl-desc {
   margin-top: 1px;
-  font-size: 11px;
+  font-size: var(--font-small);
   line-height: 1.5;
   color: hsl(var(--muted-foreground));
 }

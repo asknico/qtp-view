@@ -189,7 +189,7 @@ async function onFileChange(event: Event) {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 11.5px;
+  font-size: var(--font-small);
 }
 
 .cfg__group {
@@ -200,7 +200,7 @@ async function onFileChange(event: Event) {
 
 .cfg__label {
   margin-bottom: 4px;
-  font-size: 11px;
+  font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
 }
 
@@ -239,7 +239,7 @@ async function onFileChange(event: Event) {
   gap: 6px;
   align-items: center;
   padding: 0;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(var(--foreground));
   text-align: left;
   cursor: pointer;
@@ -266,13 +266,13 @@ async function onFileChange(event: Event) {
   gap: 8px;
   align-items: center;
   justify-content: space-between;
-  font-size: 11.5px;
+  font-size: var(--font-small);
 }
 
 .cfg__select {
   height: 26px;
   padding: 0 6px;
-  font-size: 11.5px;
+  font-size: var(--font-small);
   color: hsl(var(--foreground));
   cursor: pointer;
   background: hsl(var(--card));
@@ -295,7 +295,7 @@ async function onFileChange(event: Event) {
   height: 30px !important;
   min-height: 30px !important;
   padding: 0 10px !important;
-  font-size: 12px !important;
+  font-size: var(--font-body) !important;
   line-height: 28px !important;
   border-radius: 6px;
   box-shadow: none !important;
@@ -307,7 +307,7 @@ async function onFileChange(event: Event) {
 
 .cfg__note {
   margin: 0;
-  font-size: 10px;
+  font-size: var(--font-small);
   line-height: 1.6;
   color: hsl(var(--muted-foreground) / 85%);
 }

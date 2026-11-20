@@ -96,8 +96,8 @@ const arc = computed(() => {
 }
 
 .hgauge__value {
-  font-size: 17px;
-  font-weight: 650;
+  font-size: var(--font-value);
+  font-weight: var(--font-weight-strong);
   font-variant-numeric: tabular-nums;
   line-height: 1.1;
   letter-spacing: -0.4px;
@@ -106,7 +106,7 @@ const arc = computed(() => {
 .hgauge__caption {
   display: block;
   margin-top: 3px;
-  font-size: 9.5px;
+  font-size: var(--font-small);
   line-height: 1.2;
   color: hsl(var(--muted-foreground));
   text-align: center;

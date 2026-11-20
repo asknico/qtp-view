@@ -140,7 +140,6 @@ const [Form, formApi] = useVbenForm({
     content: '修改',
   },
   handleSubmit: async (values) => {
-    console.log(values);
     window.modal.confirm({
       title: '修改流程变量',
       content: '确认修改流程变量吗？',
@@ -205,7 +204,7 @@ async function handleSubmit(values: any) {
     <div class="mt-2 break-all text-sm font-medium text-orange-500">
       需要支持变量类型需要更改后端代码(原版只支持string类型)
       <div>
-        ruoyi-modules/ruoyi-workflow/src/main/java/org/dromara/workflow/domain/bo/FlowVariableBo.java
+        qtp-modules/qtp-workflow/src/main/java/com/minscope/workflow/domain/bo/FlowVariableBo.java
       </div>
       将value的类型改为Object才能使用
     </div>
