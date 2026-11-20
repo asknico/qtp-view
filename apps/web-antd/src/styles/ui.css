@@ -98,3 +98,16 @@ html:not(.dark) .ant-cascader-dropdown .ant-cascader-menu-item:hover {
   color: hsl(var(--foreground)) !important;
   background: hsl(var(--accent)) !important;
 }
+
+/* 全局通知弹窗（notification）字号
+ *    antd 弹窗不读 vben preferences.theme.fontSize（token 映射只同步颜色）。
+ *    注意两点：① antdv-next 标题类名是 -title（非 antd 经典版的 -message）；
+ *    ② antd 注入规则是 .ant-notification .ant-notification-notice-title (0,2,0)，
+ *    必须加 html 前缀 (0,2,1) 才能压过。 */
+html .ant-notification .ant-notification-notice-title {
+  font-size: 16px; /* 标题，如「登录成功」「收到新消息」 */
+}
+
+html .ant-notification .ant-notification-notice-description {
+  font-size: 14px; /* 描述文字 */
+}

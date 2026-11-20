@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth', () => {
     onSuccess?: () => Promise<void> | void,
   ) {
     // 异步处理用户登录操作并获取 accessToken
-    let userInfo: null | UserInfo = null;
+    let userInfo: null | UserInfo;
     try {
       loginLoading.value = true;
       const { access_token } = await loginApi(params);
@@ -68,7 +68,7 @@ export const useAuthStore = defineStore('auth', () => {
       if (userInfo?.realName) {
         window.notification.success({
           description: `${$t('authentication.loginSuccessDesc')}:${userInfo?.realName}`,
-          duration: 3,
+          duration: 2,
           title: $t('authentication.loginSuccess'),
         });
       }
@@ -122,7 +122,7 @@ export const useAuthStore = defineStore('auth', () => {
     if (!backUserInfo) {
       throw new Error('获取用户信息失败.');
     }
-    const { permissions = [], roles = [], user } = backUserInfo;
+    const { permissions, roles, user } = backUserInfo;
     /**
      * 从后台user -> vben user转换
      */

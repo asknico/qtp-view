@@ -33,7 +33,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const emit = defineEmits<{ create: []; select: [id: string] }>();
+const emit = defineEmits<{ select: [id: string] }>();
 
 /** 启用账户中最优（最低）佣金率 */
 const bestRateText = computed(() => {
@@ -61,14 +61,6 @@ function isDormant(row: FeeRow): boolean {
     <div class="frc__tools">
       <span class="frc__tools-title">分账户费率配置</span>
       <span class="frc__tools-hint">规费 / 印花税 / 过户费为交易所统一标准</span>
-      <button
-        v-access:code="['acc:brokerAccount:add']"
-        class="frc__link"
-        type="button"
-        @click="emit('create')"
-      >
-        ＋ 新建账户
-      </button>
     </div>
 
     <div class="frc__table-wrap">
@@ -242,17 +234,6 @@ function isDormant(row: FeeRow): boolean {
   font-size: var(--font-small);
   color: hsl(var(--muted-foreground));
   white-space: nowrap;
-}
-
-.frc__link {
-  padding: 0;
-  margin-left: auto;
-  font-size: var(--font-small);
-  color: hsl(var(--primary));
-  white-space: nowrap;
-  cursor: pointer;
-  background: none;
-  border: none;
 }
 
 .frc__table-wrap {

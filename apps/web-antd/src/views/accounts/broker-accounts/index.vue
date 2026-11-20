@@ -38,6 +38,9 @@ defineOptions({ name: 'BrokerAccounts' });
 const overview = ref<AccountOverview | null>(null);
 const selectedId = ref('');
 
+/** 卡片条容器：圆点切换时用它做平滑滚动 */
+const stripEl = ref<HTMLElement | null>(null);
+
 onMounted(async () => {
   await reload();
 });
@@ -87,6 +90,35 @@ const currentAccount = computed(
 function onSelect(id: string) {
   if (!id) return;
   selectedId.value = id;
+}
+
+/* ---- 卡片圆点切换 ----
+   一行固定三张可视，多出的卡片靠下方圆点切换：
+   圆点数 = 卡片数，黑点为当前选中卡片，点击圆点平滑滚动到对应卡片 */
+
+/** 当前选中卡片在可视卡片中的下标（未选中任何可见卡片时为 -1，全灰） */
+const dotIndex = computed(() =>
+  activeAccounts.value.findIndex((a) => a.id === selectedId.value),
+);
+
+/** 点击圆点：选中该卡片并把它滚动到可视区内（左对齐，不超过最大滚动位） */
+function goToDot(index: number) {
+  const account = activeAccounts.value[index];
+  if (!account) return;
+  onSelect(account.id);
+  scrollToCard(index);
+}
+
+function scrollToCard(index: number) {
+  const strip = stripEl.value;
+  const card = strip?.children[index] as HTMLElement | undefined;
+  if (!strip || !card) return;
+  const left =
+    card.getBoundingClientRect().left -
+    strip.getBoundingClientRect().left +
+    strip.scrollLeft;
+  const max = strip.scrollWidth - strip.clientWidth;
+  strip.scrollTo({ left: Math.min(left, max), behavior: 'smooth' });
 }
 
 /** 三个写操作弹窗（对齐设计稿 FORM·2.1-A / SYNC·2.1-B / EDIT·2.1-C） */
@@ -150,14 +182,37 @@ function onSync() {
     <div v-if="overview" class="ba-grid">
       <AccountKpiRow class="ba-grid__kpi" :items="kpiItems" />
 
-      <AccountOverviewCard
-        v-for="account in activeAccounts"
-        :key="account.id"
-        class="ba-grid__account"
-        :account="account"
-        :selected="account.id === selectedId"
-        @select="onSelect"
-      />
+      <!-- 账户卡片：一行三张可视，多账户靠下方圆点切换（不折行、无滚动条） -->
+      <div class="ba-grid__accounts-wrap">
+        <div ref="stripEl" class="ba-grid__accounts">
+          <AccountOverviewCard
+            v-for="account in activeAccounts"
+            :key="account.id"
+            class="ba-accounts__card"
+            :account="account"
+            :selected="account.id === selectedId"
+            @select="onSelect"
+          />
+        </div>
+        <div
+          v-if="activeAccounts.length > 1"
+          class="ba-accounts__dots"
+          role="tablist"
+          aria-label="账户卡片切换"
+        >
+          <button
+            v-for="(account, i) in activeAccounts"
+            :key="account.id"
+            class="ba-accounts__dot"
+            :class="{ 'is-active': i === dotIndex }"
+            type="button"
+            role="tab"
+            :aria-selected="i === dotIndex"
+            :aria-label="account.alias || account.id"
+            @click="goToDot(i)"
+          ></button>
+        </div>
+      </div>
 
       <CardShell class="ba-grid__detail">
         <template #title>账户详情</template>
@@ -182,7 +237,6 @@ function onSync() {
           :rows="feeRows"
           :selected-id="selectedId"
           :summary="feeSummary"
-          @create="onCreate"
           @select="onSelect"
         />
       </CardShell>
@@ -272,11 +326,12 @@ function onSync() {
 
 /* ---- 12 列栅格 ----
    KPI 行 104px：图标行 24 + 数字 26 + 提示行 20 + 内边距 19 的实测高度，
-   原 96px 在数字升到 26px 后会溢出 1.5px；账户卡 172px 同理留 4px 呼吸位 */
+   原 96px 在数字升到 26px 后会溢出 1.5px；
+   账户卡行 186px：卡片 172 + 间隙 4 + 圆点行 10 */
 .ba-grid {
   display: grid;
   flex: 1;
-  grid-template-rows: 104px 172px minmax(0, 1fr);
+  grid-template-rows: 104px 186px minmax(0, 1fr);
   grid-template-columns: repeat(12, 1fr);
   gap: 6px;
   min-height: 0;
@@ -286,8 +341,64 @@ function onSync() {
   grid-column: span 12;
 }
 
-.ba-grid__account {
-  grid-column: span 4;
+.ba-grid__accounts-wrap {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 12;
+  gap: 4px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.ba-grid__accounts {
+  display: flex;
+  flex: 1;
+  gap: 6px;
+  min-height: 0;
+  overflow: auto hidden;
+
+  /* 圆点切换取代滚动条：隐藏原生滚动条，仍保留 JS 平滑滚动能力 */
+  scrollbar-width: none;
+}
+
+.ba-grid__accounts::-webkit-scrollbar {
+  display: none;
+}
+
+/* 一行固定三张可视：多出的账户由圆点切换，永不折行 */
+.ba-accounts__card {
+  flex: 0 0 calc((100% - 12px) / 3);
+  min-width: 0;
+}
+
+.ba-accounts__dots {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ba-accounts__dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  cursor: pointer;
+  background: hsl(var(--muted-foreground) / 35%);
+  border: none;
+  border-radius: 50%;
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
+}
+
+.ba-accounts__dot:hover {
+  transform: scale(1.25);
+}
+
+.ba-accounts__dot.is-active {
+  background: hsl(var(--foreground));
+  transform: scale(1.15);
 }
 
 .ba-grid__detail {
@@ -307,13 +418,15 @@ function onSync() {
   }
 
   .ba-grid__kpi,
-  .ba-grid__account,
+  .ba-grid__accounts-wrap,
   .ba-grid__detail,
   .ba-grid__rate {
     grid-column: auto;
   }
 
-  .ba-grid__account {
+  /* 窄屏：单张卡片占满可视宽度，仍由圆点切换 */
+  .ba-accounts__card {
+    flex: 0 0 min(100%, 320px);
     min-height: 168px;
   }
 
