@@ -18,8 +18,9 @@
     "customDashboard": "Custom Dashboard",
     "workspace": "Workspace"
   },
-  "accounts": {
+  "acc": {
     "title": "Accounts & Capital",
-    "brokerAccounts": "Broker Accounts"
+    "brokerAccounts": "Broker Accounts",
+    "brokerManage": "Broker Management"
   }
 }

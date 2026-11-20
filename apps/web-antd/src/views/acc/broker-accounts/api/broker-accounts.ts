@@ -311,7 +311,7 @@ export async function fetchBrokerOptions(): Promise<BrokerOption[]> {
   }
 }
 
-// ==================== 新建账户（FORM · 2.1-A） ====================
+// ==================== 新增账户（FORM · 2.1-A） ====================
 
 /** 新建账户入参，字段对齐后端 AccAccountCreateBo（费率留空由后端带出券商默认值） */
 export interface AccAccountCreatePayload {
@@ -337,7 +337,7 @@ export interface AccAccountCreatePayload {
   remark?: string;
 }
 
-/** 新建账户：POST /acc/brokerAccount/create，返回业务账户编号（AG-xxxx） */
+/** 新增账户：POST /acc/brokerAccount/create，返回业务账户编号（AG-xxxx） */
 export async function createAccount(payload: AccAccountCreatePayload) {
   return alovaInstance.post<string>(API.create, payload);
 }
