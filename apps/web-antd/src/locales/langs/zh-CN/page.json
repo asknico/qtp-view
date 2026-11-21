@@ -21,6 +21,7 @@
   "acc": {
     "title": "账户与资金",
     "brokerAccounts": "券商账户",
+    "cashFlow": "资金流水",
     "brokerManage": "券商管理"
   }
 }

@@ -21,6 +21,14 @@ const routes: RouteRecordRaw[] = [
         },
       },
       {
+        name: 'CashFlow',
+        path: '/acc/cash-flow',
+        component: () => import('#/views/acc/cash-flow/index.vue'),
+        meta: {
+          title: $t('page.acc.cashFlow'),
+        },
+      },
+      {
         name: 'BrokerManage',
         path: '/acc/broker-manage',
         component: () => import('#/views/acc/broker-manage/index.vue'),

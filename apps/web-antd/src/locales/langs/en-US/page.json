@@ -21,6 +21,7 @@
   "acc": {
     "title": "Accounts & Capital",
     "brokerAccounts": "Broker Accounts",
+    "cashFlow": "Cash Flow",
     "brokerManage": "Broker Management"
   }
 }
