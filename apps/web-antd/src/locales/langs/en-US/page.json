@@ -22,6 +22,7 @@
     "title": "Accounts & Capital",
     "brokerAccounts": "Broker Accounts",
     "cashFlow": "Cash Flow",
-    "brokerManage": "Broker Management"
+    "brokerManage": "Broker Management",
+    "bankTransfer": "Bank-Broker Transfer"
   }
 }
