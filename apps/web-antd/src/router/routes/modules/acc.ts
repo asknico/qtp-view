@@ -29,6 +29,14 @@ const routes: RouteRecordRaw[] = [
         },
       },
       {
+        name: 'BankTransfer',
+        path: '/acc/bank-transfer',
+        component: () => import('#/views/acc/bank-transfer/index.vue'),
+        meta: {
+          title: $t('page.acc.bankTransfer'),
+        },
+      },
+      {
         name: 'BrokerManage',
         path: '/acc/broker-manage',
         component: () => import('#/views/acc/broker-manage/index.vue'),
