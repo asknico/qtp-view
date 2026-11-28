@@ -54,6 +54,7 @@ const ACCOUNTS: BrokerAccount[] = [
   {
     id: 'AG-0001',
     broker: '华泰证券',
+    brokerCode: 'HTZQ',
     alias: '主账户',
     type: 'NORMAL',
     status: 'ACTIVE',
@@ -69,10 +70,15 @@ const ACCOUNTS: BrokerAccount[] = [
     chipTone: 'blue',
     boards: boardsOf(['MAIN', 'GEM', 'STAR', 'CONVERTIBLE']),
     fee: feeRate(0.000_12, 'ALL_IN'),
+    poolConfigured: true,
+    poolAllocated: 280_000,
+    poolFree: 402_410.2,
+    poolCount: 4, // 所属券商池类别数（2.4 券商级）
   },
   {
     id: 'AG-0002',
     broker: '国泰君安',
+    brokerCode: 'GTJA',
     alias: '长线',
     type: 'NORMAL',
     status: 'ACTIVE',
@@ -88,10 +94,15 @@ const ACCOUNTS: BrokerAccount[] = [
     chipTone: 'violet',
     boards: boardsOf(['MAIN', 'GEM', 'CONVERTIBLE']),
     fee: feeRate(0.000_18, 'ALL_IN'),
+    poolConfigured: true,
+    poolAllocated: 100_000,
+    poolFree: 368_220.35,
+    poolCount: 3,
   },
   {
     id: 'AG-0003',
     broker: '招商证券',
+    brokerCode: 'ZSZQ',
     alias: '两融',
     type: 'CREDIT',
     status: 'ACTIVE',
@@ -107,10 +118,15 @@ const ACCOUNTS: BrokerAccount[] = [
     chipTone: 'teal',
     boards: boardsOf(['MAIN', 'STAR']),
     fee: feeRate(0.000_25, 'NET'),
+    poolConfigured: false,
+    poolAllocated: 0,
+    poolFree: 135_800,
+    poolCount: 0,
   },
   {
     id: 'AG-0004',
     broker: '东方财富',
+    brokerCode: 'DFCF',
     alias: '观察仓',
     type: 'NORMAL',
     status: 'DORMANT',
@@ -126,6 +142,10 @@ const ACCOUNTS: BrokerAccount[] = [
     chipTone: 'gray',
     boards: boardsOf(['MAIN']),
     fee: feeRate(0.000_25, 'NET'),
+    poolConfigured: false,
+    poolAllocated: 0,
+    poolFree: 0,
+    poolCount: 0,
   },
 ];
 
@@ -137,6 +157,3 @@ export const demoAccountOverview: AccountOverview = {
   t0Withdrawable: 96_420.55,
   weeklyCash: { inCount: 0, netIn: -20_000, outCount: 1 },
 };
-
-export const pageDescription =
-  '三个启用账户的资产、可用资金、板块权限与分账户费率（全佣 / 净佣口径），休眠账户单独保留备查。';

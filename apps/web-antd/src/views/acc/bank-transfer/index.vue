@@ -504,7 +504,7 @@ function netColorClass(value: null | number | undefined): string {
             "
             @click="switchAccount(acc.accountCode)"
           >
-            {{ acc.accountName }}
+            {{ acc.displayName }}
           </button>
           <span
             v-if="accountOptions.length === 0"

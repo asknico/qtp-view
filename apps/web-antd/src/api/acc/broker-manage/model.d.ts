@@ -29,6 +29,12 @@ export interface BrokerManage {
   shortSellRate?: null | number;
   openUrl?: null | string;
   orderNum?: null | number;
+  /** 绑定银行卡张数（券商级主数据，预算分配 2.4 体系） */
+  cardCount?: null | number;
+  /** 资金池是否已绑定（券商级一对一） */
+  poolBound?: boolean | null;
+  /** 资金池类别摘要（如：长线池 26万 + 稳定池 10万） */
+  poolText?: null | string;
   remark?: null | string;
   createTime?: null | string;
 }

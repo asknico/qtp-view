@@ -11,7 +11,7 @@ import { computed, onMounted, ref } from 'vue';
 
 import { Page, useVbenModal } from '@vben/common-ui';
 
-import { Popconfirm, Space, Tag } from 'antdv-next';
+import { Popconfirm, Space, Tag, Tooltip } from 'antdv-next';
 import dayjs from 'dayjs';
 
 import { useVbenVxeGrid, vxeCheckboxChecked } from '#/adapter/vxe-table';
@@ -274,6 +274,21 @@ async function handleExport() {
         <Tag :color="row.brokerStatus === 'ACTIVE' ? 'success' : 'default'">
           {{ BROKER_STATUS_MAP.get(row.brokerStatus) ?? row.brokerStatus }}
         </Tag>
+      </template>
+      <!-- 卡 / 池：银行卡为券商级多张，资金池为券商级一对一（预算分配 2.4 体系） -->
+      <template #cardPool="{ row }">
+        <span class="tabular-nums">
+          卡 <b>{{ row.cardCount ?? 0 }}</b> 张 ·
+        </span>
+        <Tooltip :title="row.poolText || ''">
+          <Tag v-if="row.poolBound" class="mr-0!" color="processing">
+            已绑池
+          </Tag>
+          <Tag v-else class="mr-0!" color="warning">未绑池</Tag>
+        </Tooltip>
+        <div v-if="row.poolBound" class="truncate text-xs text-gray-400">
+          {{ row.poolText }}
+        </div>
       </template>
       <template #commissionRate="{ row }">
         <span class="font-medium tabular-nums">{{

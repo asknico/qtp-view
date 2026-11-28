@@ -89,6 +89,20 @@ const defaultValues: FormData = {
 
 const formData = ref<FormData>({ ...defaultValues });
 
+/**
+ * 体系绑定只读信息（预算分配 2.4 · 券商-资金池-银行卡体系，编辑模式回显）：
+ * 银行卡为券商级多张、资金池为券商级一对一，均在各自页面维护，此处只展示绑定状态。
+ */
+const bindingInfo = ref<{
+  cardCount: number;
+  poolBound: boolean;
+  poolText: string;
+}>({
+  cardCount: 0,
+  poolBound: false,
+  poolText: '',
+});
+
 /** 打开弹窗时的初始快照（新建=默认值+推荐排序号；编辑=记录原值），供【重置】恢复 */
 const initialSnapshot = ref<FormData>({ ...defaultValues });
 
@@ -167,6 +181,11 @@ const [BasicModal, modalApi] = useVbenModal({
     isUpdate.value = !!id;
     if (isUpdate.value && id) {
       const record = await brokerManageInfo(id);
+      bindingInfo.value = {
+        cardCount: record.cardCount ?? 0,
+        poolBound: Boolean(record.poolBound),
+        poolText: record.poolText ?? '',
+      };
       const filterRecord = pick(record, [
         'id',
         'brokerCode',
@@ -195,6 +214,7 @@ const [BasicModal, modalApi] = useVbenModal({
       };
     } else {
       // 新建：默认排序号 = 当前列表最大排序号 + 1（由列表页传入）
+      bindingInfo.value = { cardCount: 0, poolBound: false, poolText: '' };
       formData.value = {
         ...defaultValues,
         supportMarkets: [...(defaultValues.supportMarkets ?? [])],
@@ -445,6 +465,31 @@ async function handleClosed() {
           />
         </FormItem>
       </div>
+
+      <!-- 体系绑定（只读回显，编辑模式）：银行卡/资金池在对应页面维护 -->
+      <template v-if="isUpdate">
+        <Divider plain class="mb-3!" title-placement="left">
+          资金池与银行卡（体系绑定）<span class="ml-2 text-xs text-gray-400">预算分配 2.4 · 券商级一对一 · 只读回显</span>
+        </Divider>
+        <div class="grid grid-cols-1 gap-x-4 lg:grid-cols-2">
+          <FormItem label="绑定银行卡">
+            <Input
+              :value="`卡 ${bindingInfo.cardCount} 张（券商级主数据）`"
+              disabled
+            />
+          </FormItem>
+          <FormItem label="资金池">
+            <Input
+              :value="
+                bindingInfo.poolBound
+                  ? `已绑定 · ${bindingInfo.poolText}`
+                  : '未绑定 · 请在「券商账户 → 券商资金池配置」中配置'
+              "
+              disabled
+            />
+          </FormItem>
+        </div>
+      </template>
     </Form>
     <template #prepend-footer>
       <Button class="mr-auto" @click="handleReset">重 置</Button>
