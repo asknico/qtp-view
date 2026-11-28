@@ -147,6 +147,12 @@ export const columns: VxeGridProps['columns'] = [
     slots: { default: 'brokerStatus' },
   },
   {
+    title: '卡 / 池',
+    field: 'cardCount',
+    width: 150,
+    slots: { default: 'cardPool' },
+  },
+  {
     title: '默认佣金率',
     field: 'commissionRateWan',
     width: 130,

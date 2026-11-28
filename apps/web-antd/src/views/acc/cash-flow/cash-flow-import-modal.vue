@@ -100,7 +100,7 @@ const statusMap: Record<
           v-model:value="formData.accountCode"
           :options="
             accountOptions.map((o) => ({
-              label: `${o.accountName}（${o.accountCode}）`,
+              label: `${o.displayName}（${o.accountCode}）`,
               value: o.accountCode,
             }))
           "

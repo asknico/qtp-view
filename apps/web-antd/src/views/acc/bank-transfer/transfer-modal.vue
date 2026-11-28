@@ -289,7 +289,7 @@ async function handleClosed() {
             :disabled="isUpdate"
             :options="
               accountOptions.map((o) => ({
-                label: `${o.accountName}（${o.accountCode}）`,
+                label: `${o.displayName}（${o.accountCode}）`,
                 value: o.accountCode,
               }))
             "

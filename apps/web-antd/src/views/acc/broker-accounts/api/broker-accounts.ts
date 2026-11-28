@@ -19,6 +19,8 @@ const API = {
   brokerOptions: '/acc/brokerAccount/getBrokerOptions',
   cardList: '/acc/brokerAccount/getCardList',
   create: '/acc/brokerAccount/create',
+  poolByBroker: '/acc/budgetPool/getByBroker',
+  poolSave: '/acc/budgetPool/saveByBroker',
   setFee: '/acc/brokerAccount/setFee',
   setPerm: '/acc/brokerAccount/setPerm',
   summary: '/acc/brokerAccount/getSummary',
@@ -128,6 +130,11 @@ interface AccAccountCard {
   riskLevel: string;
   fee: AccFeeRate;
   boards: AccBoardPerm[];
+  /** 资金池（2.4 券商级一对一）：所属券商池是否已绑定 / 池内配置合计 / 池外未配置 / 类别数 */
+  poolConfigured?: boolean;
+  poolAllocated?: NumLike;
+  poolFree?: NumLike;
+  poolCount?: NumLike;
 }
 
 /** 后端顶部汇总（AccSummaryVo） */
@@ -173,6 +180,7 @@ function cardToBrokerAccount(
     accountNo: card.accountNo ?? '',
     alias: card.alias,
     broker: card.broker,
+    brokerCode: card.brokerCode ?? '',
     type: card.type,
     status: card.status,
     openedAt: card.openedAt ?? '',
@@ -188,6 +196,10 @@ function cardToBrokerAccount(
         ? (CHIP_TONES[index % CHIP_TONES.length] ?? 'blue')
         : 'gray',
     boards: card.boards ?? [],
+    poolConfigured: card.poolConfigured ?? false,
+    poolAllocated: toNum(card.poolAllocated),
+    poolFree: toNum(card.poolFree),
+    poolCount: Math.round(toNum(card.poolCount)),
     fee: {
       commissionRate: toNum(card.fee?.commissionRate),
       minCommission: toNum(card.fee?.minCommission, 5),
@@ -410,6 +422,68 @@ export async function setAccountFee(payload: AccFeePayload) {
 /** 账户状态切换：POST /acc/brokerAccount/switchStatus */
 export async function switchAccountStatus(payload: AccStatusPayload) {
   return alovaInstance.post<void>(API.switchStatus, payload);
+}
+
+// ==================== 券商资金池配置（2.4 券商级一对一） ====================
+
+/** 后端池内类别行（AccPoolRowVo，BigDecimal 序列化为字符串） */
+export interface AccPoolRow {
+  poolType: string;
+  poolName: string;
+  amount: NumLike;
+  capPct: null | NumLike;
+  singleLimit: null | NumLike;
+  remark: null | string;
+}
+
+/** 后端券商绑定银行卡项（AccBankItemVo） */
+export interface AccPoolBankItem {
+  accountStatus: null | string;
+  bankCardNo: null | string;
+  bankName: string;
+  isPrimary: null | NumLike;
+}
+
+/** 后端单券商资金池配置（AccBrokerPoolVo） */
+export interface AccBrokerPoolConfig {
+  accountCount: NumLike;
+  allocated: NumLike;
+  bankCount: NumLike;
+  banks: AccPoolBankItem[];
+  brokerCode: string;
+  brokerName: string;
+  capAmount: null | NumLike;
+  free: NumLike;
+  poolBound: boolean;
+  poolCapPct: null | NumLike;
+  rows: AccPoolRow[];
+  totalAssets: NumLike;
+}
+
+/** 池配置保存入参，字段对齐后端 AccBrokerPoolSaveBo（整券商覆盖式保存） */
+export interface AccBrokerPoolSavePayload {
+  brokerCode: string;
+  poolCapPct?: number;
+  pools: Array<{
+    amount: number;
+    capPct?: number;
+    poolName: string;
+    poolType: string;
+    remark?: string;
+    singleLimit?: number;
+  }>;
+}
+
+/** 单券商资金池配置：GET /acc/budgetPool/getByBroker */
+export async function fetchPoolConfig(brokerCode: string) {
+  return alovaInstance.get<AccBrokerPoolConfig>(API.poolByBroker, {
+    params: { brokerCode },
+  });
+}
+
+/** 保存券商资金池配置（覆盖式）：POST /acc/budgetPool/saveByBroker，返回保存后的最新配置 */
+export async function savePoolConfig(payload: AccBrokerPoolSavePayload) {
+  return alovaInstance.post<AccBrokerPoolConfig>(API.poolSave, payload);
 }
 
 // ==================== 同步账户（SYNC · 2.1-B） ====================

@@ -16,8 +16,8 @@ import AccountOverviewCard from './components/account-overview-card.vue';
 import CreateAccountModal from './components/create-account-modal.vue';
 import EditAccountModal from './components/edit-account-modal.vue';
 import FeeRateCard from './components/fee-rate-card.vue';
+import PoolConfigModal from './components/pool-config-modal.vue';
 import SyncAccountModal from './components/sync-account-modal.vue';
-import { pageDescription } from './data/demo';
 import {
   activeAccountsOf,
   feeRowsOf,
@@ -59,6 +59,12 @@ async function reload() {
 
 const activeAccounts = computed(() =>
   overview.value ? activeAccountsOf(overview.value.accounts) : [],
+);
+
+/** 页头描述：账户数随数据动态生成，避免与概览卡「N 个」不一致 */
+const pageDesc = computed(
+  () =>
+    `${activeAccounts.value.length} 个启用账户的资产、可用资金、板块权限与分账户费率（全佣 / 净佣口径），休眠账户单独保留备查。`,
 );
 
 const kpiItems = computed(() =>
@@ -131,6 +137,9 @@ const [SyncModal, syncModalApi] = useVbenModal({
 const [EditModal, editModalApi] = useVbenModal({
   connectedComponent: EditAccountModal,
 });
+const [PoolModal, poolModalApi] = useVbenModal({
+  connectedComponent: PoolConfigModal,
+});
 
 function onCreate() {
   createModalApi.setData({});
@@ -141,6 +150,17 @@ function onEdit() {
   if (!currentAccount.value) return;
   editModalApi.setData({ account: currentAccount.value });
   editModalApi.open();
+}
+
+/** 券商资金池配置（2.4 券商级一对一）：按账户所属券商打开配置弹窗（同券商多账户共用一个池） */
+function onConfigPool(id: string) {
+  const account = overview.value?.accounts.find((a) => a.id === id);
+  if (!account) return;
+  selectedId.value = id;
+  poolModalApi.setData({
+    broker: { code: account.brokerCode, name: account.broker },
+  });
+  poolModalApi.open();
 }
 
 function onSync() {
@@ -160,7 +180,7 @@ function onSync() {
     <header class="ba-page__head">
       <div class="ba-page__title-wrap">
         <h1 class="ba-page__title">券商账户</h1>
-        <p class="ba-page__desc">{{ pageDescription }}</p>
+        <p class="ba-page__desc">{{ pageDesc }}</p>
       </div>
       <div class="ba-page__actions">
         <span v-if="overview" class="ba-page__sync">
@@ -191,6 +211,7 @@ function onSync() {
             class="ba-accounts__card"
             :account="account"
             :selected="account.id === selectedId"
+            @config-pool="onConfigPool"
             @select="onSelect"
           />
         </div>
@@ -242,10 +263,11 @@ function onSync() {
       </CardShell>
     </div>
 
-    <!-- 新增账户 / 同步账户 / 编辑账户弹窗 -->
+    <!-- 新增账户 / 同步账户 / 编辑账户 / 资金池配置弹窗 -->
     <CreateModal @reload="reload" />
     <SyncModal @reload="reload" />
     <EditModal @reload="reload" />
+    <PoolModal @reload="reload" />
   </div>
 </template>
 

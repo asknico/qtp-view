@@ -73,6 +73,8 @@ export interface BrokerAccount {
   boards: BoardPermission[];
   /** 券商名称 */
   broker: string;
+  /** 券商编码（HTZQ，资金池/银行卡均绑定在券商层） */
+  brokerCode: string;
   /** 头像色块色调 */
   chipTone: ChipTone;
   /** 交易经验（月），由开户日与数据基准日算出 */
@@ -95,6 +97,14 @@ export interface BrokerAccount {
   totalAssets: number;
   /** 账户类型 */
   type: AccountType;
+  /** 所属券商资金池是否已绑定（2.4 券商级一对一：池归属于券商，旗下账户共用） */
+  poolConfigured: boolean;
+  /** 所属券商资金池已配置额度合计（元 = Σ类别额度） */
+  poolAllocated: number;
+  /** 所属券商池外未配置（元 = max(0, 券商资产合计 - 已配置)） */
+  poolFree: number;
+  /** 所属券商池内类别数量 */
+  poolCount: number;
 }
 
 /** KPI 卡（由账户集合聚合得出，不单独落库） */

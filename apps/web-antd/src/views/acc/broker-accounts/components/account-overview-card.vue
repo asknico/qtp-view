@@ -23,9 +23,19 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const emit = defineEmits<{ select: [id: string] }>();
+const emit = defineEmits<{
+  configPool: [id: string];
+  select: [id: string];
+}>();
 
 const tags = computed(() => cardTagsOf(props.account));
+
+/** 所属券商资金池状态（2.4 券商级一对一：池归属于券商，旗下账户共用）；点击打开配置弹窗 */
+const poolText = computed(() =>
+  props.account.poolConfigured
+    ? `券商池 ${formatThousand(props.account.poolAllocated, 0)} · ${props.account.poolCount} 类`
+    : '券商池未绑定 · 去配置',
+);
 
 const figures = computed(() => [
   {
@@ -85,6 +95,15 @@ const figures = computed(() => [
         :class="`aoc__tag--${tag.tone}`"
       >
         {{ tag.text }}
+      </span>
+      <span
+        class="aoc__tag aoc__tag--pool"
+        :class="account.poolConfigured ? 'aoc__tag--blue' : 'aoc__tag--amber'"
+        role="button"
+        title="配置所属券商资金池（券商级一对一：旗下账户共用，池总额按券商资产占比控制）"
+        @click.stop="emit('configPool', account.id)"
+      >
+        {{ poolText }}
       </span>
     </div>
 
@@ -248,6 +267,16 @@ const figures = computed(() => [
 .aoc__tag--slate {
   color: hsl(var(--muted-foreground));
   background: hsl(var(--muted) / 80%);
+}
+
+/* 资金池标签：可点击进入配置弹窗 */
+.aoc__tag--pool {
+  cursor: pointer;
+  border: 1px dashed currentcolor;
+}
+
+.aoc__tag--pool:hover {
+  filter: brightness(0.95);
 }
 
 .aoc__fee {

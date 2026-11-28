@@ -92,6 +92,8 @@ export interface AccountOption {
   id: number;
   accountCode: string;
   accountName: string;
+  /** 展示名（对齐券商账户页口径）：「券商名称·账户别名」 */
+  displayName: string;
   brokerCode?: null | string;
   brokerName?: null | string;
   accountNo?: null | string;

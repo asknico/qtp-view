@@ -92,10 +92,10 @@ export const querySchema: FormSchemaGetter = () => [
     componentProps: {
       allowClear: true,
       api: cashFlowAccountOptions,
-      labelField: 'accountName',
+      labelField: 'displayName',
       valueField: 'accountCode',
       showSearch: true,
-      optionFilterProp: 'accountName',
+      optionFilterProp: 'displayName',
       getPopupContainer,
       placeholder: '全部账户',
     },
